@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:var(--font-sans);background:var(--color-background-tertiary);color:var(--color-text-primary);font-size:15px;line-height:1.6}
+
+.disc-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.5);z-index:100;display:flex;align-items:center;justify-content:center;padding:16px}
+.disc-box{background:var(--color-background-primary);border-radius:var(--border-radius-lg);border:0.5px solid var(--color-border-tertiary);max-width:460px;width:100%;padding:22px}
+.disc-box h3{font-size:15px;font-weight:500;margin-bottom:10px}
+.disc-box p{font-size:12px;color:var(--color-text-secondary);line-height:1.65;margin-bottom:8px}
+.disc-box p strong{color:var(--color-text-primary)}
+.disc-btn{width:100%;padding:10px;background:var(--color-text-primary);color:var(--color-background-primary);border:none;border-radius:var(--border-radius-md);font-size:13px;font-weight:500;cursor:pointer;margin-top:6px}
+
+.amber-bar{background:#FAEEDA;border-bottom:0.5px solid #EF9F27;padding:6px 16px;font-size:11px;color:#633806;display:flex;align-items:center;gap:7px}
+
+.top-nav{background:var(--color-background-primary);border-bottom:0.5px solid var(--color-border-tertiary);padding:0 14px;display:flex;align-items:center;gap:0;overflow-x:auto;position:sticky;top:0;z-index:10}
+.nav-brand{font-size:12px;font-weight:500;color:var(--color-text-secondary);padding:12px 12px 12px 0;border-right:0.5px solid var(--color-border-tertiary);margin-right:3px;white-space:nowrap;flex-shrink:0}
+.nav-btn{font-size:12px;color:var(--color-text-secondary);padding:12px 11px;cursor:pointer;border:none;background:transparent;border-bottom:2px solid transparent;white-space:nowrap;transition:all .15s}
+.nav-btn:hover{color:var(--color-text-primary)}
+.nav-btn.active{color:var(--color-text-primary);font-weight:500;border-bottom-color:var(--color-text-primary)}
+
+.pane{display:none;padding:18px 14px 40px}
+.pane.active{display:block}
+
+.ev-notice{background:var(--color-background-secondary);border:0.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-md);padding:9px 11px;font-size:11px;color:var(--color-text-secondary);line-height:1.55;margin-bottom:12px;display:flex;gap:7px;align-items:flex-start}
+
+.legend{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:14px}
+.leg-item{display:flex;align-items:center;gap:5px;font-size:11px;color:var(--color-text-secondary)}
+.leg-dot{width:8px;height:8px;border-radius:2px;flex-shrink:0}
+
+.sc-intro h2{font-size:16px;font-weight:500;margin-bottom:4px}
+.sc-intro p{font-size:12px;color:var(--color-text-secondary);max-width:500px;margin-bottom:14px}
+.scenario-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(175px,1fr));gap:8px}
+.sc-card{background:var(--color-background-primary);border:0.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-lg);padding:13px;cursor:pointer;transition:border-color .15s;border-left:3px solid transparent}
+.sc-card:hover{border-color:var(--color-border-secondary)}
+.sc-card.ffr{border-left-color:#1B3F6E}
+.sc-card.plq{border-left-color:#7A3B1E}
+.sc-card.comb{border-left-color:#1A5C36}
+.sc-tag{font-size:10px;font-weight:500;letter-spacing:.05em;text-transform:uppercase;margin-bottom:6px}
+.sc-card.ffr .sc-tag{color:#1B3F6E}
+.sc-card.plq .sc-tag{color:#7A3B1E}
+.sc-card.comb .sc-tag{color:#1A5C36}
+.sc-title{font-size:12px;font-weight:500;line-height:1.4;margin-bottom:4px}
+.sc-sub{font-size:11px;color:var(--color-text-secondary);line-height:1.4}
+.sc-arr{font-size:10px;color:var(--color-text-secondary);margin-top:8px}
+
+.ans-panel{display:none}
+.ans-panel.active{display:block;margin-bottom:16px}
+.ans-back{font-size:11px;color:var(--color-text-secondary);cursor:pointer;margin-bottom:12px;display:flex;align-items:center;gap:4px;border:none;background:none;padding:0}
+.ans-back:hover{color:var(--color-text-primary)}
+.ans-tag{font-size:10px;font-weight:500;letter-spacing:.06em;text-transform:uppercase;margin-bottom:6px}
+.ans-title{font-size:15px;font-weight:500;margin-bottom:12px;line-height:1.3}
+.platforms-box{background:var(--color-background-secondary);border-radius:var(--border-radius-md);padding:10px 12px;margin-bottom:10px}
+.pt-label{font-size:10px;color:var(--color-text-secondary);margin-bottom:7px;text-transform:uppercase;letter-spacing:.04em}
+.pt-list{display:flex;flex-wrap:wrap;gap:5px}
+.pt-pill{font-size:11px;padding:3px 8px;border-radius:10px;background:var(--color-background-primary);border:0.5px solid var(--color-border-secondary);color:var(--color-text-primary)}
+.ans-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:10px}
+.ans-cell{background:var(--color-background-secondary);border-radius:var(--border-radius-md);padding:10px}
+.cell-lbl{font-size:10px;color:var(--color-text-secondary);margin-bottom:4px;text-transform:uppercase;letter-spacing:.04em}
+.cell-val{font-size:12px;color:var(--color-text-primary);line-height:1.5}
+.cpt-row{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:8px}
+.cpt-pill{font-size:11px;padding:3px 8px;border-radius:10px;background:var(--color-background-info);color:var(--color-text-info);font-weight:500}
+.ans-footer{font-size:10px;color:var(--color-text-secondary);border-top:0.5px solid var(--color-border-tertiary);padding-top:8px;line-height:1.55}
+
+.filter-bar{display:flex;gap:5px;flex-wrap:wrap;margin-bottom:12px}
+.fb{font-size:11px;padding:4px 10px;border-radius:20px;cursor:pointer;border:0.5px solid var(--color-border-secondary);background:transparent;color:var(--color-text-secondary);transition:all .15s}
+.fb:hover,.fb.active{background:var(--color-text-primary);color:var(--color-background-primary);border-color:var(--color-text-primary)}
+
+.vendor-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(265px,1fr));gap:8px}
+.v-card{background:var(--color-background-primary);border:0.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-lg);padding:13px}
+.v-card.research{border-style:dashed;opacity:.8}
+.v-head{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:8px;gap:8px}
+.v-name{font-size:13px;font-weight:500}
+.v-prod{font-size:11px;color:var(--color-text-secondary);margin-top:1px}
+.badges{display:flex;gap:3px;flex-wrap:wrap;justify-content:flex-end;flex-shrink:0}
+.badge{font-size:9px;padding:2px 5px;border-radius:8px;font-weight:500;white-space:nowrap}
+.b-fda{background:#E6F1FB;color:#185FA5}
+.b-ce{background:#EAF3DE;color:#3B6D11}
+.b-nmpa{background:#FAEEDA;color:#633806}
+.b-hsa{background:#FBEAF0;color:#993556}
+.b-mfds{background:#F5EDE8;color:#7A3B1E}
+.b-res{background:#F1EFE8;color:#5F5E5A}
+.v-status{font-size:10px;font-weight:500;padding:2px 7px;border-radius:3px;display:inline-block;margin-bottom:7px}
+.s-cleared{background:#EAF3DE;color:#3B6D11}
+.s-research{background:#F1EFE8;color:#5F5E5A}
+.s-regional{background:#FAEEDA;color:#633806}
+.v-body{font-size:12px;color:var(--color-text-secondary);line-height:1.6}
+.v-body p{margin-bottom:4px}
+.v-body .coi{font-size:11px;color:var(--color-text-secondary);font-style:italic;margin-top:6px;padding-top:6px;border-top:0.5px solid var(--color-border-tertiary)}
+.v-body .coi.warn{color:#854F0B}
+.v-body strong{color:var(--color-text-primary)}
+
+.ev-list{display:flex;flex-direction:column;gap:8px}
+.ev-card{background:var(--color-background-primary);border:0.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-lg);padding:12px 14px}
+.ev-top{display:flex;justify-content:space-between;align-items:flex-start;gap:10px;margin-bottom:4px}
+.ev-name{font-size:13px;font-weight:500}
+.ev-yr{font-size:11px;color:var(--color-text-secondary);white-space:nowrap}
+.ev-txt{font-size:12px;color:var(--color-text-secondary);line-height:1.6}
+.ev-txt strong{color:var(--color-text-primary)}
+.ev-nums{display:flex;gap:5px;flex-wrap:wrap;margin-top:6px}
+.ev-num{font-size:10px;padding:2px 7px;background:var(--color-background-secondary);border-radius:8px;color:var(--color-text-secondary)}
+.ev-caution{font-size:11px;color:#854F0B;margin-top:5px;background:#FAEEDA;border-radius:3px;padding:4px 8px}
+
+.cl-warn{background:#FAEEDA;border-radius:var(--border-radius-md);padding:10px 12px;margin-bottom:14px;font-size:12px;color:#633806;display:flex;gap:8px;align-items:flex-start;line-height:1.55}
+.cl-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:14px}
+.cl-box{background:var(--color-background-primary);border:0.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-lg);padding:12px}
+.cl-title{font-size:12px;font-weight:500;margin-bottom:9px;display:flex;align-items:center;gap:5px}
+.cl-item{display:flex;gap:6px;font-size:12px;margin-bottom:6px;line-height:1.45;align-items:flex-start}
+.cl-item small{font-size:11px;color:var(--color-text-secondary)}
+.sec-lbl{font-size:10px;font-weight:500;text-transform:uppercase;letter-spacing:.08em;color:var(--color-text-secondary);margin:16px 0 9px}
+
+.about-box{background:var(--color-background-primary);border:0.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-lg);padding:13px;margin-bottom:8px;font-size:12px;color:var(--color-text-secondary);line-height:1.65}
+.about-box strong{color:var(--color-text-primary)}
+</style>
+</head>
+<body>
+
+<h2 class="sr-only">CCTA-AI Clinical Guide — Independent Evidence Reference</h2>
+
+<div class="disc-overlay" id="disc">
+  <div class="disc-box">
+    <h3>Before you continue</h3>
+    <p><strong>Educational resource only — not clinical guidance.</strong> This guide summarizes published peer-reviewed evidence and publicly available regulatory data. It does not constitute medical advice or a product recommendation. All clinical decisions remain the responsibility of the treating physician.</p>
+    <p><strong>Conflict of interest:</strong> The author holds advisory relationships with Keya Medical, Heartio, Ligence, and CASIS. All content is sourced solely to peer-reviewed literature and public regulatory filings. No vendor has reviewed or sponsored any content. The Keya Medical entry includes an explicit advisory disclosure.</p>
+    <p>Regulatory clearance dates are sourced to public FDA databases and official company announcements. Where a clearance cannot be independently verified, it is not stated.</p>
+    <button class="disc-btn" onclick="document.getElementById('disc').style.display='none'">I understand — continue</button>
+  </div>
+</div>
+
+<div class="amber-bar"><i class="ti ti-info-circle" aria-hidden="true" style="font-size:13px;flex-shrink:0"></i><span><strong>Educational resource.</strong> Not clinical advice. Author advises Keya Medical, Heartio, Ligence, CASIS. All claims sourced to peer-reviewed literature or public regulatory filings. No vendor sponsorship. · Nathan Qin 2026</span></div>
+
+<nav class="top-nav">
+  <div class="nav-brand">CCTA-AI Guide</div>
+  <button class="nav-btn active" onclick="showPane('scenarios',this)">Clinical scenarios</button>
+  <button class="nav-btn" onclick="showPane('vendors',this)">All vendors</button>
+  <button class="nav-btn" onclick="showPane('evidence',this)">Evidence</button>
+  <button class="nav-btn" onclick="showPane('protocol',this)">Acquisition protocol</button>
+  <button class="nav-btn" onclick="showPane('about',this)">About</button>
+</nav>
+
+<!-- SCENARIOS -->
+<div id="pane-scenarios" class="pane active">
+  <div class="sc-intro">
+    <h2>Evidence by clinical scenario</h2>
+    <p>Select a scenario to see which platforms have published data in that setting. This summarizes the literature — not a product recommendation.</p>
+  </div>
+  <div class="legend">
+    <div class="leg-item"><div class="leg-dot" style="background:#1B3F6E"></div>FFR / physiology</div>
+    <div class="leg-item"><div class="leg-dot" style="background:#7A3B1E"></div>Plaque / risk</div>
+    <div class="leg-item"><div class="leg-dot" style="background:#1A5C36"></div>Both</div>
+  </div>
+  <div id="ans-container"></div>
+  <div id="sc-grid" class="scenario-grid">
+    <div class="sc-card ffr" onclick="showAns('s1')"><div class="sc-tag">FFR</div><div class="sc-title">Intermediate stenosis 50–90%</div><div class="sc-sub">Does this lesion restrict flow?</div><div class="sc-arr"><i class="ti ti-arrow-right" aria-hidden="true"></i> See evidence</div></div>
+    <div class="sc-card ffr" onclick="showAns('s2')"><div class="sc-tag">FFR</div><div class="sc-title">High coronary calcium CAC ≥400</div><div class="sc-sub">Is FFRCT still valid?</div><div class="sc-arr"><i class="ti ti-arrow-right" aria-hidden="true"></i> See evidence</div></div>
+    <div class="sc-card plq" onclick="showAns('s3')"><div class="sc-tag">Plaque</div><div class="sc-title">Primary prevention / statin optimization</div><div class="sc-sub">What is the true plaque burden?</div><div class="sc-arr"><i class="ti ti-arrow-right" aria-hidden="true"></i> See evidence</div></div>
+    <div class="sc-card plq" onclick="showAns('s4')"><div class="sc-tag">Plaque</div><div class="sc-title">Serial plaque monitoring</div><div class="sc-sub">Is disease progressing or regressing?</div><div class="sc-arr"><i class="ti ti-arrow-right" aria-hidden="true"></i> See evidence</div></div>
+    <div class="sc-card comb" onclick="showAns('s5')"><div class="sc-tag">Combined</div><div class="sc-title">Pre-PCI planning</div><div class="sc-sub">Which lesion and how to treat it?</div><div class="sc-arr"><i class="ti ti-arrow-right" aria-hidden="true"></i> See evidence</div></div>
+    <div class="sc-card comb" onclick="showAns('s6')"><div class="sc-tag">Combined</div><div class="sc-title">Dual CPT billing 75580 + 75577</div><div class="sc-sub">Which platforms are cleared for both?</div><div class="sc-arr"><i class="ti ti-arrow-right" aria-hidden="true"></i> See evidence</div></div>
+    <div class="sc-card ffr" onclick="showAns('s7')"><div class="sc-tag">FFR</div><div class="sc-title">TAVR workup</div><div class="sc-sub">Evaluate CAD before valve replacement</div><div class="sc-arr"><i class="ti ti-arrow-right" aria-hidden="true"></i> See evidence</div></div>
+    <div class="sc-card plq" onclick="showAns('s8')"><div class="sc-tag">Plaque</div><div class="sc-title">On-premise / data sovereignty</div><div class="sc-sub">Data cannot leave the institution</div><div class="sc-arr"><i class="ti ti-arrow-right" aria-hidden="true"></i> See evidence</div></div>
+    <div class="sc-card comb" onclick="showAns('s9')"><div class="sc-tag">Combined</div><div class="sc-title">3-vessel disease CABG vs PCI</div><div class="sc-sub">Non-invasive revascularization planning</div><div class="sc-arr"><i class="ti ti-arrow-right" aria-hidden="true"></i> See evidence</div></div>
+  </div>
+</div>
+
+<!-- VENDORS -->
+<div id="pane-vendors" class="pane">
+  <div class="ev-notice"><i class="ti ti-info-circle" aria-hidden="true" style="font-size:12px;flex-shrink:0;margin-top:1px"></i><span>Regulatory clearances sourced to public FDA 510(k) databases and official company announcements only. Dates not independently verifiable are not stated. Research-only tools shown with dashed border. Author holds advisory relationship with Keya Medical — see that card for disclosure.</span></div>
+  <div class="filter-bar">
+    <button class="fb active" onclick="fV('all',this)">All</button>
+    <button class="fb" onclick="fV('ffrct',this)">FFR CT</button>
+    <button class="fb" onclick="fV('plaque',this)">Plaque</button>
+    <button class="fb" onclick="fV('cleared',this)">Cleared globally</button>
+    <button class="fb" onclick="fV('asia',this)">Asia / regional</button>
+    <button class="fb" onclick="fV('research',this)">Research only</button>
+  </div>
+  <div class="vendor-grid">
+
+    <!-- HeartFlow -->
+    <div class="v-card" data-v="ffrct plaque cleared">
+      <div class="v-head"><div><div class="v-name">HeartFlow</div><div class="v-prod">FFRCT · Plaque Analysis · PCI Planner</div></div><div class="badges"><span class="badge b-fda">FDA</span><span class="badge b-ce">CE</span></div></div>
+      <div class="v-status s-cleared">Cleared — US, EU, UK, Japan, Canada</div>
+      <div class="v-body">
+        <p><strong>FFRCT:</strong> FDA cleared Nov 2014. 3D CFD model. 600+ publications. NXT trial AUC 0.90, PACIFIC AUC 0.94 per-vessel. NICE-recommended in UK. FISH&CHIPS n=90,553 NHS patients.</p>
+        <p><strong>Plaque Analysis:</strong> First generation FDA cleared Oct 2022. Next Gen Plaque Analysis cleared Sep 2025 (updated algorithm, expanded nomogram, 3D visualization). 95% agreement with IVUS (REVEALPLAQUE). Cigna coverage from Oct 2025.</p>
+        <p><strong>PCI Planner:</strong> Virtual stent simulation. CE + FDA cleared.</p>
+        <p class="coi">No advisory relationship between author and HeartFlow.</p>
+      </div>
+    </div>
+
+    <!-- Cleerly -->
+    <div class="v-card" data-v="plaque cleared">
+      <div class="v-head"><div><div class="v-name">Cleerly</div><div class="v-prod">LABS · ISCHEMIA · COMPARE</div></div><div class="badges"><span class="badge b-fda">FDA</span></div></div>
+      <div class="v-status s-cleared">Cleared — US only. No CE mark for ISCHEMIA.</div>
+      <div class="v-body">
+        <p><strong>LABS v1.0:</strong> FDA cleared 2020. <strong>LABS v2.0:</strong> FDA cleared Mar 7, 2025 (K242338).</p>
+        <p><strong>ISCHEMIA module:</strong> Provides vessel-level ischemia probability (AI-QCT<sub>ISCHEMIA</sub>). Per SCCT-SCAI-ACC 2026, explicitly classified as outside CT-FFR scope — it is not a continuous FFR value and cannot report post-stenosis or delta CT-FFR. Not interchangeable with CT-FFR ≤0.80 threshold.</p>
+        <p><strong>COMPARE:</strong> Serial longitudinal plaque monitoring module — no equivalent from other cleared vendors.</p>
+        <p>In CREDENCE (Cleerly-sponsored): ISCHEMIA AUC 0.86 vs HeartFlow 0.76 per-vessel. In independent PACIFIC dataset: Cleerly 0.91 vs HeartFlow 0.90 per-patient — no significant difference.</p>
+        <p class="coi">No advisory relationship between author and Cleerly.</p>
+      </div>
+    </div>
+
+    <!-- Keya -->
+    <div class="v-card" data-v="ffrct cleared">
+      <div class="v-head"><div><div class="v-name">Keya Medical</div><div class="v-prod">DEEPVESSEL FFR</div></div><div class="badges"><span class="badge b-fda">FDA</span><span class="badge b-ce">CE</span><span class="badge b-nmpa">NMPA</span><span class="badge b-hsa">HSA</span></div></div>
+      <div class="v-status s-cleared">DEEPVESSEL FFR: US (Apr 2022) · EU (CE Aug 2018) · China NMPA (Jan 2020) · Singapore HSA</div>
+      <div class="v-body">
+        <p><strong>DEEPVESSEL FFR:</strong> Deep learning model trained on CCTA + invasive FFR. FDA cleared April 2022, CE certified August 2018, NMPA January 2020, HSA-certified (Singapore). Validated in ADAPT multicenter trial (10 sites US + EU). Published in TARGET RCT (vs functional testing in intermediate stenosis).</p>
+        <p><strong>Plaque module:</strong> Keya has announced a plaque analysis product. A separate FDA clearance for a plaque module has not been independently confirmed in public FDA databases at time of writing. Readers should verify current clearance status directly with Keya Medical or the FDA 510(k) database.</p>
+        <p class="coi warn">⚠ Author holds an advisory relationship with Keya Medical. Readers should weigh this when evaluating information about this vendor. All factual claims are sourced to public records.</p>
+      </div>
+    </div>
+
+    <!-- Elucid -->
+    <div class="v-card" data-v="plaque cleared">
+      <div class="v-head"><div><div class="v-name">Elucid</div><div class="v-prod">PlaqueIQ — CT-VH™</div></div><div class="badges"><span class="badge b-fda">FDA</span></div></div>
+      <div class="v-status s-cleared">FDA cleared Oct 1, 2024</div>
+      <div class="v-body">
+        <p>Plaque composition analysis validated against histological ground truth (CT-VH™). First FDA-cleared tool to classify LRNC (lipid-rich necrotic core), IPH, and fibrous components based on histology — methodologically distinct from HU-threshold classification. Limited commercial deployment — in beta/limited release as of Q4 2024. Pursuing FFRCT indication (not yet cleared).</p>
+        <p class="coi">No advisory relationship between author and Elucid.</p>
+      </div>
+    </div>
+
+    <!-- Caristo -->
+    <div class="v-card" data-v="plaque cleared">
+      <div class="v-head"><div><div class="v-name">Caristo Diagnostics</div><div class="v-prod">CaRi-Plaque · CaRi-Heart</div></div><div class="badges"><span class="badge b-fda">FDA</span><span class="badge b-ce">CE</span></div></div>
+      <div class="v-status s-cleared">CaRi-Plaque: FDA Mar 2025. CaRi-Heart: CE 2021, FDA pending.</div>
+      <div class="v-body">
+        <p>Pericoronary fat attenuation index (FAI) — measures coronary inflammation visible even when the artery shows &lt;50% stenosis. Lancet 2024 outcomes data. CPT 0992T/0993T (Category III, Jan 2026). CaRi-Heart FDA clearance pending — verify payer coverage before clinical deployment as Category III codes have lower reimbursement coverage than Category I.</p>
+        <p class="coi">No advisory relationship between author and Caristo.</p>
+      </div>
+    </div>
+
+    <!-- Artrya -->
+    <div class="v-card" data-v="plaque cleared">
+      <div class="v-head"><div><div class="v-name">Artrya</div><div class="v-prod">Salix Anatomy · Salix Coronary Plaque</div></div><div class="badges"><span class="badge b-fda">FDA</span></div></div>
+      <div class="v-status s-cleared">Anatomy: FDA Mar 2025. Plaque: FDA Aug 21, 2025 (K251837).</div>
+      <div class="v-body">
+        <p>Web-based platform (ASX: AYA). Plaque module offers sub-10-minute turnaround without requiring multiple systems. Limited published outcome data — recently cleared. Pursuing Coronary Flow (FFRCT) module — not yet cleared.</p>
+        <p class="coi">No advisory relationship between author and Artrya.</p>
+      </div>
+    </div>
+
+    <!-- Circle CVI -->
+    <div class="v-card" data-v="plaque cleared">
+      <div class="v-head"><div><div class="v-name">Circle CVI</div><div class="v-prod">cvi42 | Plaque</div></div><div class="badges"><span class="badge b-fda">FDA</span><span class="badge b-ce">CE</span></div></div>
+      <div class="v-status s-cleared">FDA cleared Oct 2025. CE marked.</div>
+      <div class="v-body">
+        <p>On-premise plaque analysis — data stays within the institution. Integrates with existing cvi42 platform (1,700+ hospitals, 90 countries). Enables full CPT 75577 physician read fee to be retained in-house. Plaque characterization covers calcified, NCP, and total burden — less granular composition analysis than Cleerly or Elucid (no LAP subtype or histology-based classification). No FFRCT module.</p>
+        <p class="coi">No advisory relationship between author and Circle CVI.</p>
+      </div>
+    </div>
+
+    <!-- Shukun -->
+    <div class="v-card" data-v="ffrct asia">
+      <div class="v-head"><div><div class="v-name">Shukun Technology</div><div class="v-prod">Careverse skCT-FFR</div></div><div class="badges"><span class="badge b-nmpa">NMPA</span></div></div>
+      <div class="v-status s-regional">China NMPA only — no FDA or CE clearance</div>
+      <div class="v-body">
+        <p>ML model trained on reduced-order CFD. Clinically available in China. Published in China CT-FFR study 3 (RCT). Listed in SCCT-SCAI-ACC 2026 Table 1 as clinically available. No global regulatory clearance.</p>
+      </div>
+    </div>
+
+    <!-- United Imaging -->
+    <div class="v-card" data-v="ffrct asia">
+      <div class="v-head"><div><div class="v-name">United Imaging Healthcare</div><div class="v-prod">uAI-FFRCT</div></div><div class="badges"><span class="badge b-nmpa">NMPA</span></div></div>
+      <div class="v-status s-regional">China NMPA + India clearance per SCCT 2026 Table 1</div>
+      <div class="v-body">
+        <p>Reduced-order CFD model. Listed in SCCT-SCAI-ACC 2026 Table 1 as clinically available in China and India. Published in multicenter Chinese trial (Tang et al., JACC CVI 2020). No FDA or CE clearance.</p>
+      </div>
+    </div>
+
+    <!-- Raysight -->
+    <div class="v-card" data-v="ffrct asia">
+      <div class="v-head"><div><div class="v-name">Raysight Medical</div><div class="v-prod">RuiXin-FFR</div></div><div class="badges"><span class="badge b-nmpa">NMPA</span></div></div>
+      <div class="v-status s-regional">China NMPA only per SCCT 2026 Table 1</div>
+      <div class="v-body">
+        <p>Reduced-order CFD model. Listed in SCCT-SCAI-ACC 2026 Table 1 as clinically available. Published accuracy data (Rev Española Cardiol 2024, multicenter). No FDA or CE clearance.</p>
+      </div>
+    </div>
+
+    <!-- ArteryFlow -->
+    <div class="v-card" data-v="ffrct asia">
+      <div class="v-head"><div><div class="v-name">ArteryFlow Technology</div><div class="v-prod">AccuFFRct</div></div><div class="badges"><span class="badge b-nmpa">NMPA</span></div></div>
+      <div class="v-status s-regional">China NMPA only per SCCT 2026 Table 1</div>
+      <div class="v-body">
+        <p>Reduced-order CFD model. Listed in SCCT-SCAI-ACC 2026 Table 1. Published in JACC Cardiovasc Interv 2024 multicenter study. No FDA or CE clearance.</p>
+      </div>
+    </div>
+
+    <!-- HeartMedi+ -->
+    <div class="v-card" data-v="ffrct asia">
+      <div class="v-head"><div><div class="v-name">AiMedic</div><div class="v-prod">HeartMedi+</div></div><div class="badges"><span class="badge b-mfds">MFDS</span></div></div>
+      <div class="v-status s-regional">South Korea MFDS Class III · National reimbursement</div>
+      <div class="v-body">
+        <p>Reduced-order CFD model. MFDS Class III cleared. Listed in SCCT-SCAI-ACC 2026 Table 1. National health insurance reimbursement in South Korea (18,100 KRW). Published in Korean Circ J 2024. No FDA or CE clearance.</p>
+      </div>
+    </div>
+
+    <!-- Spimed-AI -->
+    <div class="v-card research" data-v="ffrct research">
+      <div class="v-head"><div><div class="v-name">Spimed-AI</div><div class="v-prod">CorEx — FFRAI</div></div><div class="badges"><span class="badge b-res">Research only</span></div></div>
+      <div class="v-status s-research">Research only — no clinical clearance per SCCT 2026 Table 1</div>
+      <div class="v-body">
+        <p>French startup (Paris). Deep learning model trained on CCTA + invasive FFR. CE mark held is a software classification mark, not a CT-FFR clinical clearance. Explicitly listed as research-only in SCCT-SCAI-ACC 2026 Table 1. Published Peters et al. Int J Cardiovasc Imaging 2024. No FDA clearance.</p>
+      </div>
+    </div>
+
+    <!-- Siemens -->
+    <div class="v-card research" data-v="ffrct research">
+      <div class="v-head"><div><div class="v-name">Siemens Healthineers</div><div class="v-prod">cFFR · Syngo.CT Coronary Cockpit</div></div><div class="badges"><span class="badge b-res">Research only</span></div></div>
+      <div class="v-status s-research">cFFR: research only per SCCT 2026. Cockpit: 510(k) pending as of RSNA 2025.</div>
+      <div class="v-body">
+        <p>cFFR: ML model trained on synthetic CFD — classified research-only in SCCT-SCAI-ACC 2026 Table 1. HeartFlow commercial partnership (Jan 2024) for FFRCT delivery on Siemens scanners. Syngo.CT Coronary Cockpit: PCI-planning focused, photon-counting CT optimized, displayed at RSNA 2025 with 510(k) pending — not yet cleared.</p>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- EVIDENCE -->
+<div id="pane-evidence" class="pane">
+  <div class="ev-notice"><i class="ti ti-info-circle" aria-hidden="true" style="font-size:12px;flex-shrink:0;margin-top:1px"></i><span>Sponsorship disclosed where known. Independent datasets distinguished from sponsor-funded trials. Weight study quality when drawing conclusions: prospective multicenter RCT &gt; registry &gt; retrospective single-center.</span></div>
+  <div class="filter-bar">
+    <button class="fb active" onclick="fE('all',this)">All</button>
+    <button class="fb" onclick="fE('ffrct',this)">FFR CT</button>
+    <button class="fb" onclick="fE('plaque',this)">Plaque</button>
+    <button class="fb" onclick="fE('h2h',this)">Head-to-head</button>
+    <button class="fb" onclick="fE('guide',this)">Guidelines</button>
+  </div>
+  <div class="ev-list">
+    <div class="ev-card" data-e="ffrct"><div class="ev-top"><div class="ev-name">FISH&CHIPS — NHS England</div><div class="ev-yr">2025 · Nat Med · n=90,553</div></div><div class="ev-txt">Largest real-world FFRCT dataset. 27 NHS hospitals before/after FFRCT availability. FFRCT associated with reduced second-line stress tests and ICA; those proceeding to ICA more likely to be revascularized. <strong>Observational design — not randomized.</strong></div><div class="ev-nums"><span class="ev-num">n=90,553</span><span class="ev-num">27 NHS sites</span><span class="ev-num">Observational</span><span class="ev-num">HeartFlow FFRCT</span></div></div>
+    <div class="ev-card" data-e="ffrct"><div class="ev-top"><div class="ev-name">PRECISE RCT</div><div class="ev-yr">2023 · JAMA Cardiol</div></div><div class="ev-txt">Prospective RCT. CCTA ± FFRCT vs standard care. Fewer catheterizations without obstructive CAD. Safety equivalent at 1 year. <strong>FFRCT used selectively in 39% of CCTAs</strong> — not mandated in all patients.</div><div class="ev-nums"><span class="ev-num">Prospective RCT</span><span class="ev-num">HeartFlow FFRCT</span><span class="ev-num">Safety equivalent</span></div></div>
+    <div class="ev-card" data-e="ffrct"><div class="ev-top"><div class="ev-name">NXT Trial</div><div class="ev-yr">2014 · JACC · n=254</div></div><div class="ev-txt">Prospective multicenter diagnostic accuracy vs invasive FFR. <strong>Per-vessel: sensitivity 84%, specificity 86%, AUC 0.90.</strong> CCTA alone: 91% sensitivity, 41% specificity. Foundational HeartFlow study underpinning regulatory approvals.</div><div class="ev-nums"><span class="ev-num">Sens 84%</span><span class="ev-num">Spec 86%</span><span class="ev-num">AUC 0.90</span><span class="ev-num">HeartFlow</span></div></div>
+    <div class="ev-card" data-e="ffrct"><div class="ev-top"><div class="ev-name">TARGET RCT — DEEPVESSEL FFR</div><div class="ev-yr">2023 · Circulation</div></div><div class="ev-txt">RCT comparing DEEPVESSEL FFR-guided management vs functional testing in intermediate stenosis. DVFFR arm: lower ICA use, higher revascularization rate. <strong>Published evidence for Keya DEEPVESSEL FFR in an RCT setting.</strong></div><div class="ev-nums"><span class="ev-num">RCT</span><span class="ev-num">Keya DEEPVESSEL FFR</span><span class="ev-num">↓ unnecessary ICA</span></div></div>
+    <div class="ev-card" data-e="h2h"><div class="ev-top"><div class="ev-name">CREDENCE — Cleerly vs HeartFlow</div><div class="ev-yr">2024 · JACC CVI · n=868 vessels</div></div><div class="ev-txt">Both platforms analyzed same dataset. Per-vessel: <strong>Cleerly ISCHEMIA AUC 0.86 vs HeartFlow FFRCT 0.76 (p&lt;0.001).</strong> Cleerly only test prognostic for MACE at 8yr in this cohort.</div><div class="ev-caution">⚠ Sponsored by Cleerly. HeartFlow algorithm version used was not current. Do not interpret without reading the PACIFIC independent dataset result below.</div><div class="ev-nums"><span class="ev-num">Cleerly 0.86</span><span class="ev-num">HeartFlow 0.76</span><span class="ev-num">⚠ Cleerly-sponsored</span></div></div>
+    <div class="ev-card" data-e="h2h"><div class="ev-top"><div class="ev-name">PACIFIC sub-study — independent dataset</div><div class="ev-yr">2023 · JACC</div></div><div class="ev-txt">Same patients, independent PACIFIC dataset (not Cleerly-sponsored). Per-patient: <strong>Cleerly 0.91 vs HeartFlow 0.90 — no statistically significant difference.</strong> Both significantly outperform SPECT.</div><div class="ev-nums"><span class="ev-num">Cleerly 0.91 ≈ HeartFlow 0.90</span><span class="ev-num">No sig. difference</span><span class="ev-num">Independent</span></div></div>
+    <div class="ev-card" data-e="plaque"><div class="ev-top"><div class="ev-name">REVEALPLAQUE — HeartFlow Plaque vs IVUS</div><div class="ev-yr">2024 · EHJ CV Imaging</div></div><div class="ev-txt"><strong>95% agreement</strong> in total plaque volume between HeartFlow Plaque Analysis and IVUS. Validates CT-based plaque quantification against an intravascular reference standard. Study conducted prior to Next Gen algorithm update (Sep 2025).</div><div class="ev-nums"><span class="ev-num">95% vs IVUS</span><span class="ev-num">HeartFlow Plaque</span></div></div>
+    <div class="ev-card" data-e="plaque"><div class="ev-top"><div class="ev-name">DECIDE Registry</div><div class="ev-yr">2024 · SCCT</div></div><div class="ev-txt">Adding AI plaque staging to FFRCT changed management in <strong>&gt;50% of cases</strong>. LDL reduced 18.7 mg/dL at 90 days. Combined FFRCT + plaque AUC 0.73 vs CCTA alone 0.63 for 7-year MACE (ADVANCE-DK). <strong>Registry design — not randomized.</strong></div><div class="ev-nums"><span class="ev-num">&gt;50% management change</span><span class="ev-num">LDL ↓18.7 mg/dL</span><span class="ev-num">Registry</span></div></div>
+    <div class="ev-card" data-e="guide"><div class="ev-top"><div class="ev-name">SCCT-SCAI-ACC CT-FFR Consensus</div><div class="ev-yr">May 2026 · JCCT · doi:10.1016/j.jcct.2026.05.006</div></div><div class="ev-txt">CT-FFR <strong>recommended</strong> for 50–90% stenosis (LOE A, stable chest pain). Not appropriate for LM ≥50%, CTO, stents, &lt;1.8mm vessels. Post-lesional measurement 2cm distal = standard. 7 platforms clinically cleared globally as of May 2026. Cleerly ISCHEMIA outside CT-FFR scope. Spimed-AI and Siemens cFFR research-only.</div><div class="ev-nums"><span class="ev-num">LOE A: stable chest pain</span><span class="ev-num">50–90% stenosis</span><span class="ev-num">7 cleared platforms</span></div></div>
+    <div class="ev-card" data-e="guide plaque"><div class="ev-top"><div class="ev-name">ACC Scientific Statement on AI-QCPA</div><div class="ev-yr">Dec 2025 · JACC CVI</div></div><div class="ev-txt">First formal ACC consensus on AI plaque analysis. Appropriate for patients with visual plaque on CCTA for risk stratification. <strong>Not indicated for all CCTA patients.</strong> Cross-vendor reproducibility data still needed.</div><div class="ev-nums"><span class="ev-num">Appropriate use defined</span><span class="ev-num">Not all CCTA patients</span></div></div>
+  </div>
+</div>
+
+<!-- PROTOCOL -->
+<div id="pane-protocol" class="pane">
+  <div class="cl-warn"><i class="ti ti-alert-triangle" aria-hidden="true" style="font-size:16px;flex-shrink:0;margin-top:1px"></i><div><strong>Nitroglycerin is mandatory for FFRCT submission</strong> per SCCT-SCAI-ACC 2026. 400–800 mcg SL immediately pre-scan. Without nitrates, CT-FFR values are systematically higher (falsely reassuring). Hold only if SBP &lt;90 mmHg or severe aortic regurgitation.</div></div>
+  <div class="sec-lbl">Patient preparation</div>
+  <div class="cl-grid">
+    <div class="cl-box"><div class="cl-title"><i class="ti ti-heart-rate-monitor" aria-hidden="true" style="font-size:14px"></i>Heart rate control</div>
+      <div class="cl-item"><span style="color:#3B6D11;flex-shrink:0">✓</span>Target &lt;65 bpm before scanning</div>
+      <div class="cl-item"><span style="color:#3B6D11;flex-shrink:0">✓</span>Metoprolol 50–100mg PO 1hr prior or 5–15mg IV on table</div>
+      <div class="cl-item"><span style="color:#3B6D11;flex-shrink:0">✓</span>No caffeine 12 hours prior</div>
+      <div class="cl-item"><span style="color:#A32D2D;flex-shrink:0">✗</span>No adenosine needed — hyperemia simulated computationally</div>
+    </div>
+    <div class="cl-box"><div class="cl-title"><i class="ti ti-pill" aria-hidden="true" style="font-size:14px"></i>Nitroglycerin (mandatory)</div>
+      <div class="cl-item"><span style="color:#3B6D11;flex-shrink:0">✓</span>400–800 mcg SL immediately pre-scan</div>
+      <div class="cl-item"><span style="color:#3B6D11;flex-shrink:0">✓</span>Safe in severe AS with preserved LV (CAST-FFR)</div>
+      <div class="cl-item"><span style="color:#A32D2D;flex-shrink:0">✗</span>Hold if SBP &lt;90 mmHg</div>
+      <div class="cl-item"><span style="color:#A32D2D;flex-shrink:0">✗</span>Hold if severe aortic regurgitation</div>
+    </div>
+  </div>
+  <div class="sec-lbl">Scanner parameters</div>
+  <div class="cl-grid">
+    <div class="cl-box"><div class="cl-title"><i class="ti ti-adjustments-horizontal" aria-hidden="true" style="font-size:14px"></i>Acquisition</div>
+      <div class="cl-item"><span style="color:#3B6D11;flex-shrink:0">✓</span>Slice thickness ≤0.625mm reconstructed</div>
+      <div class="cl-item"><span style="color:#3B6D11;flex-shrink:0">✓</span>Tube voltage 100–120 kVp (≥120 if high CAC)</div>
+      <div class="cl-item"><span style="color:#3B6D11;flex-shrink:0">✓</span>Cone FOV to heart only</div>
+      <div class="cl-item"><span style="color:#3B6D11;flex-shrink:0">✓</span>ECG-gated prospective preferred</div>
+    </div>
+    <div class="cl-box"><div class="cl-title"><i class="ti ti-droplet" aria-hidden="true" style="font-size:14px"></i>Contrast target</div>
+      <div class="cl-item"><span style="color:#3B6D11;flex-shrink:0">✓</span>Aortic root 300–450 HU</div>
+      <div class="cl-item"><span style="color:#3B6D11;flex-shrink:0">✓</span>300–370 mgI/mL at 5–6 mL/sec</div>
+      <div class="cl-item"><span style="color:#3B6D11;flex-shrink:0">✓</span>Saline flush 40–50 mL after</div>
+      <div class="cl-item"><span style="color:#A32D2D;flex-shrink:0">✗</span>Do not submit if aortic root &lt;250 HU</div>
+    </div>
+  </div>
+  <div class="sec-lbl">Phase selection</div>
+  <div class="cl-grid">
+    <div class="cl-box"><div class="cl-title">Primary — mid-diastolic (preferred)</div>
+      <div class="cl-item"><span style="color:#3B6D11;flex-shrink:0">✓</span>70–80% of R-R interval</div>
+      <div class="cl-item"><span style="color:#3B6D11;flex-shrink:0">✓</span>Lowest coronary motion in most patients</div>
+      <div class="cl-item"><span style="color:#3B6D11;flex-shrink:0">✓</span>Diastolic CT-FFR AUC 0.94 per SCCT 2026</div>
+    </div>
+    <div class="cl-box"><div class="cl-title">Backup — end-systolic</div>
+      <div class="cl-item"><span style="color:#854F0B;flex-shrink:0">→</span>35–45% of R-R interval</div>
+      <div class="cl-item"><span style="color:#854F0B;flex-shrink:0">→</span>Use when diastolic has motion artifact</div>
+      <div class="cl-item"><span style="color:#854F0B;flex-shrink:0">→</span>Higher HR, arrhythmia, diastolic dysfunction</div>
+      <div class="cl-item"><small>Systolic CT-FFR AUC 0.77 — grey zone values 0.70–0.80 on systolic acquisitions must be interpreted with caution</small></div>
+    </div>
+  </div>
+  <div class="sec-lbl">Do not submit if</div>
+  <div class="cl-box" style="max-width:440px">
+    <div class="cl-item"><span style="color:#A32D2D;flex-shrink:0">✗</span>Left main stenosis ≥50%</div>
+    <div class="cl-item"><span style="color:#A32D2D;flex-shrink:0">✗</span>Stenosis &gt;90% or &lt;30%</div>
+    <div class="cl-item"><span style="color:#A32D2D;flex-shrink:0">✗</span>Recent STEMI / ACS</div>
+    <div class="cl-item"><span style="color:#A32D2D;flex-shrink:0">✗</span>CTO vessel for FFRCT</div>
+    <div class="cl-item"><span style="color:#A32D2D;flex-shrink:0">✗</span>Stented vessel for FFRCT</div>
+    <div class="cl-item"><span style="color:#A32D2D;flex-shrink:0">✗</span>Aortic root attenuation &lt;250 HU</div>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<div id="pane-about" class="pane">
+  <div class="about-box"><strong>What this guide is</strong><br>An independent synthesis of published peer-reviewed evidence on CCTA-AI platforms. Built by Nathan Qin — cardiovascular MedTech professional and Founder of Qinnovativ Medtech, Seattle WA — as a personal project. Updated as the landscape changes.</div>
+  <div class="about-box"><strong>What this guide is not</strong><br>Not clinical advice. Not a product recommendation. It summarizes what peer-reviewed literature shows for different clinical scenarios. Platform selection depends on your institution's contracts, workflow, data governance, and patient factors. All clinical decisions are the responsibility of the treating physician.</div>
+  <div class="about-box"><strong>Conflict of interest</strong><br>The author holds advisory relationships with Keya Medical, Heartio, Ligence, and CASIS. Every vendor card discloses whether an advisory relationship exists. All factual claims are sourced to peer-reviewed publications or public FDA/regulatory filings. No vendor has reviewed, paid for, or been given advance notice of any content.</div>
+  <div class="about-box"><strong>Methodology</strong><br>Regulatory clearance dates are sourced to public FDA 510(k) databases and official company press releases only. Where a clearance cannot be independently verified in public records, it is not stated — or explicitly flagged as unconfirmed. No vendor white papers, conference abstracts without peer review, or unverified claims are cited as evidence.</div>
+  <div class="about-box"><strong>Updates and corrections</strong><br>Last updated June 2026. Source and changelog: <a href="https://github.com/aethernusnathan/ccta-ai-guide" style="color:var(--color-text-info)">github.com/aethernusnathan/ccta-ai-guide</a>. Corrections from any party welcome via GitHub issues. Corrections are evaluated on their merits regardless of source.</div>
+</div>
+
+<script>
+const answers={
+  s1:{tag:'FFR — Intermediate Stenosis',col:'#1B3F6E',title:'Does this 50–90% stenosis restrict flow?',context:'This is the core indication for CT-FFR per SCCT-SCAI-ACC 2026 (LOE A, stable chest pain). Published evidence exists for the following platforms in this setting.',pts:['HeartFlow FFRCT','Keya DEEPVESSEL FFR','Shukun skCT-FFR (China only)','Cleerly ISCHEMIA (note: classified outside CT-FFR scope by SCCT 2026)'],key:'HeartFlow NXT: AUC 0.90 per-vessel. PACIFIC: AUC 0.94. FISH&CHIPS: n=90,553 real-world. Keya DEEPVESSEL: TARGET RCT vs functional testing. Cleerly: not a continuous FFR value — provides ischemia probability, not interchangeable with CT-FFR ≤0.80.',lim:'Not appropriate for LM ≥50%, CTO, stented vessels, vessels &lt;1.8mm. Recommended measurement: 2cm distal to stenosis (post-lesional), not distal nadir.',cpt:['CPT 75580 (~$900)']},
+  s2:{tag:'FFR — High Calcium',col:'#1B3F6E',title:'Is CT-FFR valid with CAC ≥400?',context:'Published evidence supports CT-FFR use in high-calcium patients with noted accuracy limitations.',pts:['HeartFlow FFRCT (NXT sub-analysis, FACC study)','Keya DEEPVESSEL FFR (MACHINE registry)'],key:'NXT sub-analysis: diagnostic performance maintained across wide calcium range. FACC study (HeartFlow, CAC ≥400): per-patient accuracy still higher than CCTA alone, though lower than low-calcium cohorts. CT-FFR &gt;0.80 associated with excellent 3-year outcomes even in severe calcification (Madsen et al. 2023).',lim:'Overall accuracy is lower in high-calcium than low-calcium patients. Use kVp ≥120 to reduce blooming. The Chiou et al. finding (Cleerly vs HeartFlow, n=54, single center, high CAC) is hypothesis-generating only — insufficient to draw clinical conclusions.',cpt:['CPT 75580 (~$900)']},
+  s3:{tag:'Plaque — Prevention',col:'#7A3B1E',title:'What is the true atherosclerotic burden?',context:'AI plaque analysis has published evidence for risk stratification and guiding preventive therapy intensity.',pts:['HeartFlow Plaque Analysis (first gen FDA 2022, Next Gen Sep 2025)','Cleerly LABS v2.0 (FDA Mar 2025)','Elucid PlaqueIQ (FDA Oct 2024)','Caristo CaRi-Plaque (FDA Mar 2025)','Artrya Salix Plaque (FDA Aug 2025)'],key:'DECIDE Registry: AI plaque staging changed management in &gt;50% of cases, LDL ↓18.7 mg/dL at 90 days. ADVANCE-DK: combined FFRCT + plaque AUC 0.73 vs CCTA alone 0.63 for 7-year MACE. REVEALPLAQUE: HeartFlow Plaque 95% agreement with IVUS. Caristo FAI: Lancet 2024 outcomes in arteries with &lt;50% stenosis. Elucid: histology-validated LRNC classification.',lim:'ACC 2025: AI-QCPA appropriate for patients with visible plaque on CCTA — not all CCTA patients. Most plaque platforms cleared 2024–2025, outcome data is early. Cross-vendor reproducibility studies not yet published.',cpt:['CPT 75577 (~$951)']},
+  s4:{tag:'Plaque — Serial Monitoring',col:'#7A3B1E',title:'Is plaque progressing or regressing on treatment?',context:'Published evidence for longitudinal serial plaque monitoring is currently limited.',pts:['Cleerly COMPARE (dedicated serial module)','HeartFlow Plaque Analysis (used in serial studies)'],key:'Cleerly COMPARE: purpose-built serial comparison output tracking NCP and LAP changes across CCTA timepoints. Only product with a dedicated structured serial module. HeartFlow Plaque used in Yang et al. Eur Radiol 2021 serial study. No other cleared vendor has published equivalent longitudinal data.',lim:'Requires consistent acquisition protocols across timepoints. Long-term outcome data from serial plaque monitoring still emerging across all platforms.',cpt:['CPT 75577 (~$951)']},
+  s5:{tag:'Combined — Pre-PCI',col:'#1A5C36',title:'Which lesion to treat, and how?',context:'CT-FFR has published evidence for guiding revascularization decisions.',pts:['HeartFlow FFRCT + Plaque Analysis + PCI Planner','Keya DEEPVESSEL FFR'],key:'SYNTAX III REVOLUTION: CCTA + FFRCT decisions agreed with ICA-based decisions at 5 years. FASTTRACK CABG: feasible in 99% of cases, 90% graft patency at 30 days. HeartFlow PCI Planner (virtual stent simulation): CE + FDA cleared.',lim:'IVUS/OCT remains standard for detailed lesion characterization in complex PCI. CT-FFR identifies functional significance — definitive procedural planning typically still requires invasive imaging in complex cases.',cpt:['CPT 75580 (~$900)','CPT 75577 (~$951)']},
+  s6:{tag:'Combined — Reimbursement',col:'#1A5C36',title:'Which platforms have clearance for both CPT 75580 and 75577?',context:'As of May 2026, two vendors have confirmed FDA clearance for both FFRCT and plaque analysis.',pts:['HeartFlow (FFRCT FDA 2014 + Plaque FDA 2022/2025)','Cleerly (LABS for 75577 + ISCHEMIA — verify 75580 eligibility with payer)'],key:'CPT 75580 (FFRCT): ~$900, Category I Jan 2025. CPT 75577 (Plaque): ~$951 OPPS, Category I Jan 2026. Both billable from same CCTA scan when using a dual-cleared platform. HeartFlow has confirmed clearances for both products.',lim:'Cleerly ISCHEMIA is outside CT-FFR scope per SCCT 2026 — verify CPT 75580 eligibility with your specific payer. Keya Medical has announced a plaque product but a separate FDA plaque clearance has not been independently confirmed in public records at time of writing — verify with FDA 510(k) database before billing.',cpt:['CPT 75580 (~$900)','CPT 75577 (~$951)','Combined ~$1,850']},
+  s7:{tag:'FFR — TAVR Workup',col:'#1B3F6E',title:'CT-FFR in pre-TAVR CAD evaluation',context:'CT-FFR has been studied in TAVR workup with emerging evidence.',pts:['HeartFlow FFRCT (most published TAVR data)'],key:'CAST-FFR (n=42): nitroglycerin safe in severe AS with preserved LV, AUC 0.81 vs invasive FFR. Retrospective n=196: abnormal CT-FFR predicted 4× risk of nonfatal MI or cardiac death post-TAVR. Jensen et al. 2025: CCTA + FFRCT feasible pre-TAVR.',lim:'SCCT-SCAI-ACC 2026 classifies TAVR use as reasonable (LOE C) — limited prospective data. Published evidence primarily from HeartFlow. Apply standard acquisition protocol.',cpt:['CPT 75580 (~$900)']},
+  s8:{tag:'Plaque — On-Premise',col:'#7A3B1E',title:'Plaque analysis when data cannot leave the institution',context:'One cleared platform supports on-premise deployment as of May 2026.',pts:['Circle CVI cvi42 | Plaque (FDA Oct 2025 — only cleared on-premise option)'],key:'Circle CVI cvi42 | Plaque: FDA cleared Oct 2025, on-premise deployment, data stays within institution firewall. Integrates with existing cvi42 platform (1,700+ hospitals). Retains full CPT 75577 physician read fee in-house. Siemens Syngo.CT Coronary Cockpit (510(k) pending as of RSNA 2025) would be the second on-premise option when cleared.',lim:'No FFRCT module available on-premise in any cleared platform. Circle CVI plaque characterization covers calcified and NCP burden but does not provide LAP subtype breakdown or histology-based classification.',cpt:['CPT 75577 (~$951)']},
+  s9:{tag:'Combined — Multivessel',col:'#1A5C36',title:'3-vessel disease: CT-FFR to guide CABG vs PCI?',context:'CT-FFR has published evidence for multivessel revascularization planning.',pts:['HeartFlow FFRCT + PCI Planner','Keya DEEPVESSEL FFR'],key:'SYNTAX III REVOLUTION: CCTA + FFRCT treatment decisions agreed with ICA + FFR decisions at 5 years. FASTTRACK CABG: CCTA + FFRCT surgical planning feasible in 99%, 90% graft patency at 30 days. SCCT-SCAI-ACC 2026: CT-FFR reasonable for 3-vessel disease (LOE B).',lim:'Complex multivessel decisions benefit from heart team discussion. CFD-based HeartFlow accounts for increased flow around CTO; reduced-order models may underestimate flow limitation in this setting.',cpt:['CPT 75580 (~$900)','CPT 75577 (~$951)']}
+};
+
+function showAns(id){
+  const d=answers[id];
+  const c=document.getElementById('ans-container');
+  const g=document.getElementById('sc-grid');
+  const pts=d.pts.map(p=>`<span class="pt-pill">${p}</span>`).join('');
+  const cpts=d.cpt.map(p=>`<span class="cpt-pill">${p}</span>`).join('');
+  c.innerHTML=`<div class="ans-panel active">
+    <button class="ans-back" onclick="closeAns()"><i class="ti ti-arrow-left" aria-hidden="true"></i> All scenarios</button>
+    <div class="ev-notice"><i class="ti ti-info-circle" aria-hidden="true" style="font-size:12px;flex-shrink:0;margin-top:1px"></i><span>Evidence summary only — not a product recommendation. Platform selection depends on your institution's contracts, workflow, data governance, and patient-specific factors. All clinical decisions are the responsibility of the treating physician.</span></div>
+    <div class="ans-tag" style="color:${d.col}">${d.tag}</div>
+    <div class="ans-title">${d.title}</div>
+    <div class="platforms-box"><div class="pt-label">Platforms with published evidence in this setting</div><div class="pt-list">${pts}</div></div>
+    <div class="ans-grid">
+      <div class="ans-cell"><div class="cell-lbl">Key published data</div><div class="cell-val">${d.key}</div></div>
+      <div class="ans-cell"><div class="cell-lbl">Limitations and caveats</div><div class="cell-val">${d.lim}</div></div>
+    </div>
+    <div class="cpt-row">${cpts}</div>
+    <div class="ans-footer">All data sourced to peer-reviewed publications or public FDA/regulatory filings. Author advisory disclosures: Keya Medical, Heartio, Ligence, CASIS. See About tab for full methodology and conflict of interest statement.</div>
+  </div>`;
+  g.style.display='none';
+  document.querySelector('.legend').style.display='none';
+  document.querySelector('.sc-intro').style.display='none';
+}
+
+function closeAns(){
+  document.getElementById('ans-container').innerHTML='';
+  document.getElementById('sc-grid').style.display='grid';
+  document.querySelector('.legend').style.display='flex';
+  document.querySelector('.sc-intro').style.display='block';
+}
+
+function showPane(id,btn){
+  document.querySelectorAll('.pane').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.nav-btn').forEach(b=>b.classList.remove('active'));
+  document.getElementById('pane-'+id).classList.add('active');
+  btn.classList.add('active');
+}
+
+function fV(type,btn){
+  document.querySelectorAll('.fb').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  document.querySelectorAll('.v-card').forEach(c=>{
+    if(type==='all'){c.style.display='block';return;}
+    if(type==='cleared'){c.style.display=(c.dataset.v.includes('cleared')&&!c.classList.contains('research'))?'block':'none';return;}
+    if(type==='research'){c.style.display=c.classList.contains('research')?'block':'none';return;}
+    c.style.display=c.dataset.v.includes(type)?'block':'none';
+  });
+}
+
+function fE(type,btn){
+  document.querySelectorAll('.fb').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  document.querySelectorAll('.ev-card').forEach(c=>{
+    c.style.display=(type==='all'||c.dataset.e.includes(type))?'block':'none';
+  });
+}
+</script>
+</body>
+</html>
