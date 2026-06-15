@@ -120,7 +120,7 @@ const CCTA_CHAT_API = 'https://ccta-ai-guide.vercel.app/api/chat';
 .cai-msg.assistant { align-items: flex-start; }
 .cai-bubble {
   max-width: 87%; padding: .6rem .9rem; border-radius: 16px;
-  font-size: .83rem; line-height: 1.65; word-break: break-word; white-space: pre-wrap;
+  font-size: .83rem; line-height: 1.65; word-break: break-word;
 }
 .cai-msg.user .cai-bubble {
   background: #1B3F6E; color: #fff; border-bottom-right-radius: 4px;
@@ -402,10 +402,20 @@ const CCTA_CHAT_API = 'https://ccta-ai-guide.vercel.app/api/chat';
     wrap.className = `cai-msg ${role}`;
     const bubble = document.createElement('div');
     bubble.className = 'cai-bubble';
-    bubble.innerHTML = escapeHtml(text).replace(/\[(\d+)\]/g, '<sup>[$1]</sup>');
+    bubble.innerHTML = role === 'assistant' ? renderMarkdown(text) : escapeHtml(text);
     wrap.appendChild(bubble);
     msgs.appendChild(wrap);
     return { el: bubble, wrap };
+  }
+
+  function renderMarkdown(text) {
+    return escapeHtml(text)
+      .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
+      .replace(/\*(.+?)\*/g, '<em>$1</em>')
+      .replace(/^---+$/gm, '<hr style="border:none;border-top:1px solid rgba(0,0,0,.1);margin:.6rem 0">')
+      .replace(/\[(\d+)\]/g, '<sup style="font-size:.65em;font-weight:600;color:#0071E3">[$1]</sup>')
+      .replace(/\n\n/g, '<br><br>')
+      .replace(/\n/g, '<br>');
   }
 
   function appendSkeleton() {
