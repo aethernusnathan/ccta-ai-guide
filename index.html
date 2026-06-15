@@ -408,6 +408,10 @@ body{font-family:var(--font);background:linear-gradient(145deg,#EAEDF8 0%,#EEF0F
 .ft a{color:var(--text-2);text-decoration:none;}
 .ft a:hover{color:var(--text-1);}
 
+/* ─── INLINE CHAT SECTION ─── */
+.chat-inline-wrap{max-width:720px;margin:0 auto;padding:0 1.5rem 4rem;}
+@media(max-width:600px){.chat-inline-wrap{padding-left:1rem;padding-right:1rem;padding-bottom:3rem;}}
+
 /* ─── RESPONSIVE ─── */
 @media(max-width:600px){
   .hero{padding:3rem 1.25rem 2.5rem;}
@@ -499,6 +503,11 @@ body{font-family:var(--font);background:linear-gradient(145deg,#EAEDF8 0%,#EEF0F
     </a>
 
   </div>
+</section>
+
+<!-- ═══ INLINE CHAT ═══ -->
+<section class="chat-inline-wrap">
+  <div id="cai-inline"></div>
 </section>
 
 <!-- ═══ FORM CARD ═══ -->
