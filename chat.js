@@ -130,6 +130,15 @@ const CCTA_CHAT_API = 'https://ccta-ai-guide.vercel.app/api/chat';
 .cai-skel:nth-child(1) { width: 84%; }
 .cai-skel:nth-child(2) { width: 70%; }
 .cai-skel:nth-child(3) { width: 56%; }
+.cai-timer {
+  display: flex; align-items: center; gap: .35rem;
+  margin-top: .25rem; font-size: .68rem; color: #8E8E93; font-weight: 500;
+}
+.cai-timer-dot {
+  width: 5px; height: 5px; border-radius: 50%; background: #8E8E93; flex-shrink: 0;
+  animation: caiPulse 1s ease infinite;
+}
+@keyframes caiPulse { 0%,100%{opacity:1;} 50%{opacity:.25;} }
 
 /* Citations */
 .cai-cites { display: flex; flex-direction: column; gap: .22rem; max-width: 92%; padding-left: .1rem; }
@@ -355,8 +364,14 @@ const CCTA_CHAT_API = 'https://ccta-ai-guide.vercel.app/api/chat';
     appendBubble('user', question);
     history.push({ role: 'user', content: question });
 
-    // Skeleton
+    // Skeleton + elapsed timer
     const skelEl = appendSkeleton();
+    const timerLabel = skelEl.querySelector('.cai-timer-label');
+    let elapsed = 0;
+    const timerInterval = setInterval(() => {
+      elapsed++;
+      if (timerLabel) timerLabel.textContent = `Searching sources · ${elapsed}s`;
+    }, 1000);
     loading = true;
     sendBtn.disabled = true;
     scrollBottom();
@@ -383,6 +398,7 @@ const CCTA_CHAT_API = 'https://ccta-ai-guide.vercel.app/api/chat';
         : 'Something went wrong — please try again.';
       appendBubble('assistant', errMsg);
     } finally {
+      clearInterval(timerInterval);
       loading = false;
       sendBtn.disabled = false;
       input.focus();
@@ -411,6 +427,7 @@ const CCTA_CHAT_API = 'https://ccta-ai-guide.vercel.app/api/chat';
       <div class="cai-skel"></div>
       <div class="cai-skel"></div>
       <div class="cai-skel"></div>
+      <div class="cai-timer"><span class="cai-timer-dot"></span><span class="cai-timer-label">Searching sources · 0s</span></div>
     </div>`;
     msgs.appendChild(wrap);
     return wrap;
