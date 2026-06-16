@@ -863,7 +863,7 @@ body{font-family:var(--font);background:linear-gradient(145deg,#EAEDF8 0%,#EEF0F
         <div class="wf-n">1</div>
         <div>
           <div class="wf-title">Ask your vendor's reimbursement team first (fastest path)</div>
-          <div class="wf-body">HeartFlow maintains a live payer coverage map updated by state for CPT 75580 and has dedicated reimbursement staff. <strong>Ask your HeartFlow rep: "Show me the current coverage policy status for 75580 and 75577 for our top 10 payers by name in our region."</strong><br><br>For 75577 (effective Jan 2026), vendor coverage maps are less mature — independently verify even if the vendor claims coverage. Keya, Cleerly, Elucid, and other vendors have less developed payer infrastructure than HeartFlow for this specific reimbursement support function.</div>
+          <div class="wf-body">Most vendors maintain payer coverage maps by state and have dedicated reimbursement staff who track policy updates in real time. This is the fastest starting point — ask your vendor rep: <em>"Can you show me the current coverage policy status for 75580 and 75577 for our top 10 payers by volume in our region?"</em><br><br>Maturity varies: some vendors have established reimbursement support teams; others are earlier-stage. For 75577 (Category I effective Jan 2026), payer adoption is still building across all vendors — use the vendor map as a starting point, then verify independently with the payer portals in step 2.</div>
         </div>
       </div>
       <div class="wf-step">
@@ -876,39 +876,46 @@ body{font-family:var(--font);background:linear-gradient(145deg,#EAEDF8 0%,#EEF0F
               <thead>
                 <tr>
                   <th>Payer</th>
-                  <th>Where to find policies</th>
+                  <th>Direct policy link</th>
+                  <th>Status (June 2026)</th>
                   <th>Search terms</th>
                 </tr>
               </thead>
               <tbody>
                 <tr>
                   <td><div class="payer-name">UnitedHealthcare</div></td>
-                  <td style="font-size:12px">uhcprovider.com → Policies &amp; Protocols → Medical &amp; Drug Policies</td>
+                  <td style="font-size:12px"><a href="https://www.uhcprovider.com/content/dam/provider/docs/public/policies/medadv-mp/noninvasive-fractional-flow-reserve-ffr-ischemic-heart-disease.pdf" target="_blank" rel="noopener" style="color:#1B3F6E">MA: FFR Policy PDF ↗</a><br><a href="https://www.uhcprovider.com/en/policies-protocols/commercial-policies/commercial-medical-drug-policies.html" target="_blank" rel="noopener" style="color:#1B3F6E">Commercial policies search ↗</a></td>
+                  <td style="font-size:12px;color:#1A5C36">✓ Covered<br><span style="color:var(--text-3)">75580 + 75577; criteria apply</span></td>
                   <td style="font-size:12px">"75580" or "coronary CT fractional flow reserve"</td>
                 </tr>
                 <tr>
                   <td><div class="payer-name">Aetna</div></td>
-                  <td style="font-size:12px">aetna.com/cpb — Clinical Policy Bulletins (public, no login)</td>
+                  <td style="font-size:12px"><a href="https://www.aetna.com/cpb/medical/data/200_299/0228.html" target="_blank" rel="noopener" style="color:#1B3F6E">CPB #0228 — Cardiac CT ↗</a><br><span style="color:var(--text-3)">Public, no login required</span></td>
+                  <td style="font-size:12px;color:#1A5C36">✓ Covered<br><span style="color:var(--text-3)">75580 ✓ · 75577 ✓ (CAD-RADS 1–3, FDA-cleared platform)</span></td>
                   <td style="font-size:12px">"CPT 75580" or "CCTA plaque" or "CT angiography FFR"</td>
                 </tr>
                 <tr>
                   <td><div class="payer-name">Cigna</div></td>
-                  <td style="font-size:12px">cigna.com → Healthcare Professionals → Coverage Policies → Medical Coverage Policies</td>
+                  <td style="font-size:12px"><a href="https://www.cigna.com/health-care-providers/coverage-and-claims/policies" target="_blank" rel="noopener" style="color:#1B3F6E">Provider coverage policies ↗</a><br><a href="https://www.evicore.com/sites/default/files/clinical-guidelines/2025-02/Cigna_Cardiac%20Imaging%20Guidelines_V1.0.2025_Eff03.01.2025_pub11.26.24_upd02.04.25.pdf" target="_blank" rel="noopener" style="color:#1B3F6E">Cardiac Imaging Guidelines (EviCore) ↗</a></td>
+                  <td style="font-size:12px;color:#1A5C36">✓ Covered<br><span style="color:var(--text-3)">Prior auth removed for FFR-CT (2025); cardiac imaging via EviCore</span></td>
                   <td style="font-size:12px">"coronary CTA" or "75577" or "coronary plaque"</td>
                 </tr>
                 <tr>
                   <td><div class="payer-name">BCBS / Anthem</div><div class="payer-path">Each affiliate is independent — not nationally unified</div></td>
-                  <td style="font-size:12px">Find your regional affiliate (Anthem, Premera, BCBS TX, BCBS IL, etc.) and search their individual provider portal</td>
+                  <td style="font-size:12px"><a href="https://www.anthem.com/provider/" target="_blank" rel="noopener" style="color:#1B3F6E">Anthem provider portal ↗</a><br><a href="https://www.southcarolinablues.com/web/public/brands/medicalpolicy/external-policies/fractional-flow-reserve-ct/" target="_blank" rel="noopener" style="color:#1B3F6E">BCBS SC policy example ↗</a><br><span style="color:var(--text-3)">Search your regional affiliate separately</span></td>
+                  <td style="font-size:12px;color:#92400E">⚠ Varies by affiliate<br><span style="color:var(--text-3)">Check your specific regional plan; not nationally unified</span></td>
                   <td style="font-size:12px">"CT-FFR" or "coronary plaque analysis" or "fractional flow reserve"</td>
                 </tr>
                 <tr>
                   <td><div class="payer-name">Humana</div></td>
-                  <td style="font-size:12px">humana.com → Provider → Medical Policy Search</td>
-                  <td style="font-size:12px">"75580" or "75577" or "coronary CT AI"</td>
+                  <td style="font-size:12px"><a href="https://provider.humana.com/" target="_blank" rel="noopener" style="color:#1B3F6E">Humana provider portal ↗</a><br><a href="https://www.humana.com/provider/medical-resources/claims-payments/claims-payment-policies" target="_blank" rel="noopener" style="color:#1B3F6E">Medical Coverage Policies ↗</a></td>
+                  <td style="font-size:12px;color:#1A5C36">✓ Covered<br><span style="color:var(--text-3)">75577 confirmed 2026; 75580 — verify in portal</span></td>
+                  <td style="font-size:12px">"fractional flow reserve CT" or "coronary plaque" or "75580"</td>
                 </tr>
                 <tr>
                   <td><div class="payer-name">Medicaid</div><div class="payer-path">State-by-state — not uniform</div></td>
-                  <td style="font-size:12px">Your state's Medicaid program website → fee schedule or covered services lookup</td>
+                  <td style="font-size:12px">Find your state: <a href="https://www.medicaid.gov/state-overviews/index.html" target="_blank" rel="noopener" style="color:#1B3F6E">medicaid.gov state overviews ↗</a><br><span style="color:var(--text-3)">Navigate to your state's fee schedule or covered services lookup</span></td>
+                  <td style="font-size:12px;color:#92400E">⚠ State-specific<br><span style="color:var(--text-3)">Not uniform; check individual state fee schedule</span></td>
                   <td style="font-size:12px">CPT code number in state fee schedule PDF</td>
                 </tr>
               </tbody>
@@ -977,7 +984,7 @@ body{font-family:var(--font);background:linear-gradient(145deg,#EAEDF8 0%,#EEF0F
       <div class="cfo-card">
         <div class="cfo-card-label">Prior authorization — practical guidance</div>
         <div class="cfo-card-title">Plan for it, especially in year 1</div>
-        <div class="cfo-card-body">CPT 75580 has required prior auth from some commercial payers historically. With Category I status this is easing — but not gone. 75577 is newer, so expect more friction in 2026.<br><br><strong>HeartFlow</strong> offers dedicated prior auth support services — a meaningful competitive differentiator worth factoring into vendor evaluation if your revenue cycle team is lean.<br><br>Track denial reasons weekly in the first 90 days. The most common deniable reasons: missing prior auth documentation, incorrect ICD-10 pairing, and payer "investigational" policy not yet updated to reflect Category I status. Each is appealable — but appeals take staff time.</div>
+        <div class="cfo-card-body">CPT 75580 has required prior auth from some commercial payers historically. With Category I status this is easing — Cigna removed prior auth requirements for FFR-CT in 2025. 75577 is newer, so expect more friction in 2026.<br><br>Ask each vendor whether they offer prior auth support services — this varies by vendor maturity. Prior auth support from the vendor can meaningfully reduce the burden on your revenue cycle team, especially in the first 90 days.<br><br>Track denial reasons weekly in the first 90 days. The most common deniable reasons: missing prior auth documentation, incorrect ICD-10 pairing, and payer "investigational" policy not yet updated to reflect Category I status. Each is appealable — but appeals take staff time.</div>
       </div>
       <div class="cfo-card">
         <div class="cfo-card-label">Medicare Advantage</div>
@@ -1004,7 +1011,7 @@ body{font-family:var(--font);background:linear-gradient(145deg,#EAEDF8 0%,#EEF0F
       <div class="cfo-card">
         <div class="cfo-card-label">Dual-platform billing</div>
         <div class="cfo-card-title">~$1,851 from one scan — one vendor</div>
-        <div class="cfo-card-body">Only <strong>HeartFlow</strong> currently has confirmed FDA clearances for both CT-FFR (75580) and plaque analysis (75577) from a single platform — enabling combined billing of ~$1,851 per eligible case from one vendor contract and one DICOM submission workflow.<br><br>Verify Cleerly's 75580 eligibility per payer before assuming combined billing — SCCT 2026 classifies Cleerly ISCHEMIA outside CT-FFR scope, which may affect payer coverage for that code specifically. A single-vendor approach also simplifies IT integration, training, and contract management.</div>
+        <div class="cfo-card-body">Combined billing of ~$1,851 per eligible CCTA case is possible when using a single platform with confirmed FDA clearance for both CPT 75580 (CT-FFR) and 75577 (plaque analysis). This simplifies the workflow: one vendor contract, one DICOM submission, two billable codes from one scan.<br><br>As of June 2026, confirm which vendors in your shortlist hold cleared status for both codes — FDA clearance scope varies and changes; verify in the public 510(k) database at procurement. Note: SCCT 2026 classifies Cleerly ISCHEMIA outside CT-FFR scope, which may affect 75580 payer coverage eligibility for that product specifically.</div>
       </div>
       <div class="cfo-card">
         <div class="cfo-card-label">Use realistic covered-case assumptions</div>
@@ -1033,7 +1040,7 @@ body{font-family:var(--font);background:linear-gradient(145deg,#EAEDF8 0%,#EEF0F
       <div class="checklist-col-title fin" style="margin-bottom:16px">Before go-live</div>
       <ul class="cl-check-list">
         <li><span class="cl-num">01</span>Pull payer mix report ranked by annual revenue from your revenue cycle team — identify your top 10 payers before any other research step</li>
-        <li><span class="cl-num">02</span>Get vendor payer coverage map for 75580 and 75577 specific to your region's top 10 payers (HeartFlow has the most complete map for 75580)</li>
+        <li><span class="cl-num">02</span>Get each vendor's payer coverage map for 75580 and 75577 in your region's top 10 payers — then verify independently against payer portals (see the 4-layer verification framework)</li>
         <li><span class="cl-num">03</span>Verify coverage independently via payer portals (Aetna CPB, UHC medical policies, Cigna coverage policies) for your top 5 payers</li>
         <li><span class="cl-num">04</span>Call provider services for the top 5 payers — use the verification script above — document the reference number and rep name for each call</li>
         <li><span class="cl-num">05</span>Confirm prior authorization requirements per payer and per CPT code; establish prior auth workflow in Availity (or CoverMyMeds/Cohere) before first live case</li>
@@ -1213,7 +1220,7 @@ body{font-family:var(--font);background:linear-gradient(145deg,#EAEDF8 0%,#EEF0F
           <li><span style="color:#1A5C36">→</span><strong>Philips IntelliSpace</strong> and <strong>Sectra:</strong> native vendor connector programs — ask vendors for validated connector version</li>
           <li><span style="color:#1A5C36">→</span><strong>GE Centricity:</strong> requires AE title config; confirm PACS version on vendor compatibility list</li>
           <li><span style="color:#1A5C36">→</span>Routing middleware options: Intelerad Intelliroute (rules-based, no coding), Nuance AI Marketplace (pre-built connectors), RamSoft PowerServer</li>
-          <li><span style="color:#92400E">→</span>HeartFlow has the most validated PACS integrations; for others, confirm PACS version compatibility before signing</li>
+          <li><span style="color:#92400E">→</span>PACS integration depth varies by vendor — confirm your PACS version is on each vendor's compatibility list before signing</li>
         </ul>
       </div>
       <div class="it-req-card">
@@ -1221,7 +1228,7 @@ body{font-family:var(--font);background:linear-gradient(145deg,#EAEDF8 0%,#EEF0F
         <div class="it-req-title">EHR integration</div>
         <ul class="it-req-list">
           <li><span style="color:#1A5C36">→</span>AI reports as PDF available from all vendors — attach to EHR encounter note via document management</li>
-          <li><span style="color:#1A5C36">→</span><strong>Epic:</strong> HeartFlow has a validated App Orchard integration for FFRCT order + result — request current version documentation from HeartFlow before contracting</li>
+          <li><span style="color:#1A5C36">→</span><strong>Epic:</strong> some vendors have validated App Orchard integrations for FFRCT order + result — request current integration documentation from each vendor before contracting</li>
           <li><span style="color:#1A5C36">→</span><strong>Cerner (Oracle Health):</strong> HeartFlow has HL7 2.x integration — verify current FHIR roadmap status</li>
           <li><span style="color:#1A5C36">→</span>HL7 FHIR: emerging across all vendors — verify current status with each vendor; do not assume</li>
           <li><span style="color:#92400E">→</span>CDM must be updated: 75580 and 75577 added as chargeable items linked to imaging encounter type — involves revenue cycle IT, not just IT operations</li>
@@ -1269,14 +1276,14 @@ body{font-family:var(--font);background:linear-gradient(145deg,#EAEDF8 0%,#EEF0F
       <div class="cfo-card">
         <div class="cfo-card-label">PHI Handling &amp; AI Training</div>
         <div class="cfo-card-title">Ask explicitly if your PHI trains the model</div>
-        <div class="cfo-card-body"><strong>Most FDA-cleared vendors use inference-only deployments</strong> — your DICOM data is processed for analysis but not used to retrain the production AI model. Confirm this in writing: "Is patient data from our institution used to train or fine-tune your production AI model?"<br><br><strong>Retention after report:</strong> HeartFlow has published PHI deletion policies. For all other vendors, get the specific retention timeline in the BAA — do not rely on verbal assurances.<br><br><strong>Research de-identification:</strong> before any de-identified data is shared, confirm the vendor's de-id methodology meets HIPAA Safe Harbor or Expert Determination standard — not just "de-identified." This is separate from the clinical deployment BAA and requires a separate agreement.</div>
+        <div class="cfo-card-body"><strong>Most FDA-cleared vendors use inference-only deployments</strong> — your DICOM data is processed for analysis but not used to retrain the production AI model. Confirm this in writing: "Is patient data from our institution used to train or fine-tune your production AI model?"<br><br><strong>Retention after report:</strong> Vendor PHI retention policies vary. Get the specific timeline in the BAA for every vendor — do not rely on verbal assurances.<br><br><strong>Research de-identification:</strong> before any de-identified data is shared, confirm the vendor's de-id methodology meets HIPAA Safe Harbor or Expert Determination standard — not just "de-identified." This is separate from the clinical deployment BAA and requires a separate agreement.</div>
       </div>
       <div class="cfo-card">
         <div class="cfo-card-label">Security Certifications — Procurement checklist</div>
         <div class="cfo-card-title">Read the exceptions, not just the summary</div>
         <div class="cfo-card-body">Standard documents to request during procurement:</div>
         <ul class="baa-list">
-          <li class="baa-bullet"><strong>SOC 2 Type II:</strong> request report dated within the last 12 months; read the "exceptions" section, not just the auditor summary — HeartFlow ✓, Cleerly ✓, others: verify</li>
+          <li class="baa-bullet"><strong>SOC 2 Type II:</strong> request report dated within the last 12 months; read the "exceptions" section, not just the auditor summary — availability varies by vendor; confirm directly during procurement</li>
           <li class="baa-bullet"><strong>ISO 27001:</strong> not universal across vendors — request certificate and verify expiry date is current</li>
           <li class="baa-bullet"><strong>Penetration test:</strong> request most recent report and evidence that critical/high findings were remediated; ask for remediation timeline</li>
           <li class="baa-bullet"><strong>Minimum TLS version:</strong> require TLS 1.2 minimum in contract language; TLS 1.3 preferred for new deployments</li>
@@ -1312,9 +1319,9 @@ body{font-family:var(--font);background:linear-gradient(145deg,#EAEDF8 0%,#EEF0F
             <td style="font-size:12px">75580 ✓<br>75577 ✓</td>
             <td style="font-size:12px">US + EU (CE)</td>
             <td style="font-size:12px;color:#1A5C36">✓ Standard</td>
-            <td style="font-size:12px;color:#1A5C36">✓ Published</td>
+            <td style="font-size:12px;color:#1A5C36">✓ Confirmed<br><span style="color:var(--text-3);font-size:11px">HITRUST + SOC 2 Type II per HeartFlow IR</span></td>
             <td style="font-size:12px">45–90 min<br>Priority avail.</td>
-            <td style="font-size:12px">Epic (App Orchard) · Cerner · major PACS. Most mature.</td>
+            <td style="font-size:12px">Epic (App Orchard) · Cerner · major PACS</td>
           </tr>
           <tr>
             <td><div class="it-vname">Cleerly</div><div class="it-vprod">LABS v2.0 + ISCHEMIA</div></td>
@@ -1322,7 +1329,7 @@ body{font-family:var(--font);background:linear-gradient(145deg,#EAEDF8 0%,#EEF0F
             <td style="font-size:12px">75577 ✓<br>75580 — verify*</td>
             <td style="font-size:12px">US</td>
             <td style="font-size:12px;color:#1A5C36">✓ Standard</td>
-            <td style="font-size:12px;color:#1A5C36">✓ Published</td>
+            <td style="font-size:12px;color:#92400E">Verify<br><span style="color:var(--text-3);font-size:11px">Working toward SOC 2 (2023); confirm current status</span></td>
             <td style="font-size:12px">~1–2 hrs</td>
             <td style="font-size:12px">DICOM SR · PDF · payer portals</td>
           </tr>
@@ -1331,7 +1338,7 @@ body{font-family:var(--font);background:linear-gradient(145deg,#EAEDF8 0%,#EEF0F
             <td><span class="d-cloud">Cloud only</span></td>
             <td style="font-size:12px">75580 ✓<br>75577 — verify 510(k)</td>
             <td style="font-size:12px">US (cloud only)</td>
-            <td style="font-size:12px;color:#92400E">Verify</td>
+            <td style="font-size:12px;color:#1A5C36">✓ Standard</td>
             <td style="font-size:12px;color:#92400E">Verify</td>
             <td style="font-size:12px">~1–2 hrs</td>
             <td style="font-size:12px">DICOM SR · vendor portal</td>
@@ -1502,7 +1509,7 @@ body{font-family:var(--font);background:linear-gradient(145deg,#EAEDF8 0%,#EEF0F
           <tr>
             <td class="fail-name">Prior auth denial on submission</td>
             <td style="font-size:13px">Payer medical policy not yet updated for Category I code; missing clinical indication in order</td>
-            <td style="font-size:13px">Appeal with CMS Category I designation letter + clinical indication documentation. Ensure clinical indication is documented at CCTA order time (not added retroactively). For recurring denials by one payer, escalate through HeartFlow's reimbursement team or submit a coverage determination request to the payer.</td>
+            <td style="font-size:13px">Appeal with CMS Category I designation letter + clinical indication documentation. Ensure clinical indication is documented at CCTA order time (not added retroactively). For recurring denials by one payer, escalate through your vendor's reimbursement team or submit a formal coverage determination request directly to the payer.</td>
           </tr>
           <tr>
             <td class="fail-name">Silent submission failures (no error, no report)</td>
@@ -1529,7 +1536,7 @@ body{font-family:var(--font);background:linear-gradient(145deg,#EAEDF8 0%,#EEF0F
             <li><span class="cl-num">05</span>Configure PACS DICOM AE Title for both forward send (PACS → vendor) and return receive (vendor → PACS) — two separate configurations</li>
             <li><span class="cl-num">06</span>Open outbound firewall rules for vendor DICOM/HTTPS endpoints (vendor provides IP allowlist); for on-prem, verify PACS accepts inbound DICOM from cvi42 server</li>
             <li><span class="cl-num">07</span>Run full round-trip test with one de-identified case — confirm DICOM SR appears in PACS viewer, not vendor portal only</li>
-            <li><span class="cl-num">08</span>Confirm EHR order/result workflow with Epic/Cerner IT team; request HeartFlow's current App Orchard integration documentation before assuming compatibility</li>
+            <li><span class="cl-num">08</span>Confirm EHR order/result workflow with Epic/Cerner IT team; request each vendor's current EHR integration documentation before assuming compatibility</li>
             <li><span class="cl-num">09</span>Establish daily monitoring for failed DICOM submissions — a silent failure means no report, a missed clinical result, and lost revenue</li>
             <li><span class="cl-num">10</span>On-prem (Circle CVI): size GPU server per current Circle CVI spec sheet; plan recurring maintenance windows; include cvi42 DB and DICOM output in hospital backup schedule</li>
             <li><span class="cl-num">11</span>Confirm with vendor in writing: is patient PHI used to train or fine-tune the production AI model? Get "inference-only" commitment written into BAA or vendor agreement</li>
@@ -1559,7 +1566,7 @@ const answers={
   s4:{tag:'Plaque — Serial Monitoring',col:'#7A3B1E',title:'Is plaque progressing or regressing on treatment?',context:'Published evidence for longitudinal serial plaque monitoring is currently limited.',pts:['Cleerly COMPARE (dedicated serial module)','HeartFlow Plaque Analysis (used in serial studies)'],key:'Cleerly COMPARE: purpose-built serial comparison output tracking NCP and LAP changes across CCTA timepoints. Only product with a dedicated structured serial module. HeartFlow Plaque used in Yang et al. Eur Radiol 2021 serial study. No other cleared vendor has published equivalent longitudinal data.',lim:'Requires consistent acquisition protocols across timepoints. Long-term outcome data from serial plaque monitoring still emerging across all platforms.',cpt:['CPT 75577 (~$951)']},
   s5:{tag:'Combined — Pre-PCI',col:'#1A5C36',title:'Which lesion to treat, and how?',context:'CT-FFR has published evidence for guiding revascularization decisions.',pts:['HeartFlow FFRCT + Plaque Analysis + PCI Planner','Keya DEEPVESSEL FFR'],key:'SYNTAX III REVOLUTION: CCTA + FFRCT decisions agreed with ICA-based decisions at 5 years. FASTTRACK CABG: feasible in 99% of cases, 90% graft patency at 30 days. HeartFlow PCI Planner (virtual stent simulation): CE + FDA cleared.',lim:'IVUS/OCT remains standard for detailed lesion characterization in complex PCI. CT-FFR identifies functional significance — definitive procedural planning typically still requires invasive imaging in complex cases.',cpt:['CPT 75580 (~$900)','CPT 75577 (~$951)']},
   s6:{tag:'Combined — Reimbursement',col:'#1A5C36',title:'Which platforms have clearance for both CPT 75580 and 75577?',context:'As of May 2026, two vendors have confirmed FDA clearance for both FFRCT and plaque analysis.',pts:['HeartFlow (FFRCT FDA 2014 + Plaque FDA 2022/2025)','Cleerly (LABS for 75577 + ISCHEMIA — verify 75580 eligibility with payer)'],key:'CPT 75580 (FFRCT): ~$900, Category I Jan 2025. CPT 75577 (Plaque): ~$951 OPPS, Category I Jan 2026. Both billable from same CCTA scan when using a dual-cleared platform. HeartFlow has confirmed clearances for both products.',lim:'Cleerly ISCHEMIA is outside CT-FFR scope per SCCT 2026 — verify CPT 75580 eligibility with your specific payer. Keya Medical has announced a plaque product but a separate FDA plaque clearance has not been independently confirmed in public records at time of writing — verify with FDA 510(k) database before billing.',cpt:['CPT 75580 (~$900)','CPT 75577 (~$951)','Combined ~$1,850']},
-  s7:{tag:'FFR — TAVR Workup',col:'#1B3F6E',title:'CT-FFR in pre-TAVR CAD evaluation',context:'CT-FFR has been studied in TAVR workup with emerging evidence.',pts:['HeartFlow FFRCT (most published TAVR data)'],key:'CAST-FFR (n=42): nitroglycerin safe in severe AS with preserved LV, AUC 0.81 vs invasive FFR. Retrospective n=196: abnormal CT-FFR predicted 4× risk of nonfatal MI or cardiac death post-TAVR. Jensen et al. 2025: CCTA + FFRCT feasible pre-TAVR.',lim:'SCCT-SCAI-ACC 2026 classifies TAVR use as reasonable (LOE C) — limited prospective data. Published evidence primarily from HeartFlow. Apply standard acquisition protocol.',cpt:['CPT 75580 (~$900)']},
+  s7:{tag:'FFR — TAVR Workup',col:'#1B3F6E',title:'CT-FFR in pre-TAVR CAD evaluation',context:'CT-FFR has been studied in TAVR workup with emerging evidence.',pts:['HeartFlow FFRCT (available TAVR evidence is primarily from HeartFlow studies)'],key:'CAST-FFR (n=42): nitroglycerin safe in severe AS with preserved LV, AUC 0.81 vs invasive FFR. Retrospective n=196: abnormal CT-FFR predicted 4× risk of nonfatal MI or cardiac death post-TAVR. Jensen et al. 2025: CCTA + FFRCT feasible pre-TAVR.',lim:'SCCT-SCAI-ACC 2026 classifies TAVR use as reasonable (LOE C) — limited prospective data. Published evidence primarily from HeartFlow. Apply standard acquisition protocol.',cpt:['CPT 75580 (~$900)']},
   s8:{tag:'Plaque — On-Premise',col:'#7A3B1E',title:'Plaque analysis when data cannot leave the institution',context:'One cleared platform supports on-premise deployment as of May 2026.',pts:['Circle CVI cvi42 | Plaque (FDA Oct 2025 — only cleared on-premise option)'],key:'Circle CVI cvi42 | Plaque: FDA cleared Oct 2025, on-premise deployment, data stays within institution firewall. Integrates with existing cvi42 platform (1,700+ hospitals). Retains full CPT 75577 physician read fee in-house. Siemens Syngo.CT Coronary Cockpit (510(k) pending as of RSNA 2025) would be the second on-premise option when cleared.',lim:'No FFRCT module available on-premise in any cleared platform. Circle CVI plaque characterization covers calcified and NCP burden but does not provide LAP subtype breakdown or histology-based classification.',cpt:['CPT 75577 (~$951)']},
   s9:{tag:'Combined — Multivessel',col:'#1A5C36',title:'3-vessel disease: CT-FFR to guide CABG vs PCI?',context:'CT-FFR has published evidence for multivessel revascularization planning.',pts:['HeartFlow FFRCT + PCI Planner','Keya DEEPVESSEL FFR'],key:'SYNTAX III REVOLUTION: CCTA + FFRCT treatment decisions agreed with ICA + FFR decisions at 5 years. FASTTRACK CABG: CCTA + FFRCT surgical planning feasible in 99%, 90% graft patency at 30 days. SCCT-SCAI-ACC 2026: CT-FFR reasonable for 3-vessel disease (LOE B).',lim:'Complex multivessel decisions benefit from heart team discussion. CFD-based HeartFlow accounts for increased flow around CTO; reduced-order models may underestimate flow limitation in this setting.',cpt:['CPT 75580 (~$900)','CPT 75577 (~$951)']}
 };
