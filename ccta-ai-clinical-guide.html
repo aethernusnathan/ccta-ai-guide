@@ -379,9 +379,10 @@ body{font-family:var(--font);background:linear-gradient(145deg,#EAEDF8 0%,#EEF0F
     <p><strong>Educational resource only — not clinical guidance.</strong> This guide summarizes published peer-reviewed evidence and publicly available regulatory data. It does not constitute medical advice or a product recommendation. All clinical decisions remain the responsibility of the treating physician.</p>
     <p><strong>Conflict of interest:</strong> The author holds advisory relationships with Keya Medical, Heartio, Ligence, and CASIS. All content is sourced solely to peer-reviewed literature and public regulatory filings. No vendor has reviewed or sponsored any content. The Keya Medical entry includes an explicit advisory disclosure.</p>
     <p>Regulatory clearance dates are sourced to public FDA databases and official company announcements. Where a clearance cannot be independently verified, it is not stated.</p>
-    <button class="disc-btn" onclick="document.getElementById('disc').style.display='none'">I understand — continue</button>
+    <button class="disc-btn" onclick="localStorage.setItem('ccta_disc_v1','1');document.getElementById('disc').style.display='none'">I understand — continue</button>
   </div>
 </div>
+<script>if(localStorage.getItem('ccta_disc_v1')==='1'){document.getElementById('disc').style.display='none';}</script>
 
 <div class="amber-bar"><i class="ti ti-info-circle" aria-hidden="true" style="font-size:13px;flex-shrink:0"></i><span><strong>Educational resource.</strong> Not clinical advice. Author advises Keya Medical, Heartio, Ligence, CASIS. All claims sourced to peer-reviewed literature or public regulatory filings. No vendor sponsorship. · Nathan Qin 2026</span></div>
 
