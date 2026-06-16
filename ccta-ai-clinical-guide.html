@@ -57,6 +57,19 @@ body{font-family:var(--font);background:linear-gradient(145deg,#EAEDF8 0%,#EEF0F
 .nav-btn{font-family:var(--font);font-size:13px;color:var(--text-2);padding:0 14px;height:54px;cursor:pointer;border:none;background:transparent;border-bottom:2px solid transparent;white-space:nowrap;transition:color var(--t) var(--ease),border-color var(--t) var(--ease);display:flex;align-items:center}
 .nav-btn:hover{color:var(--text-1)}
 .nav-btn.active{color:var(--text-1);font-weight:500;border-bottom-color:var(--text-1)}
+/* Contact Author button */
+.nav-contact-wrap{flex-shrink:0;margin-left:auto;padding-left:10px;display:flex;align-items:center}
+.nav-contact-btn{font-family:var(--font);font-size:12px;font-weight:500;color:var(--text-2);background:rgba(0,0,0,.055);border:1px solid rgba(0,0,0,.09);border-radius:7px;padding:0 11px;height:30px;white-space:nowrap;cursor:pointer;display:flex;align-items:center;gap:5px;transition:background 140ms,color 140ms}
+.nav-contact-btn:hover{background:rgba(0,0,0,.10);color:var(--text-1)}
+/* Contact dropdown — rendered as fixed portal, not inside nav */
+.nav-contact-dd{position:fixed;background:#fff;border:1px solid rgba(0,0,0,.09);border-radius:11px;box-shadow:0 8px 32px rgba(0,0,0,.13),0 1px 4px rgba(0,0,0,.07);min-width:172px;padding:6px;display:none;z-index:10000}
+.nav-contact-dd.open{display:block}
+.nav-contact-link{display:flex;align-items:center;gap:9px;padding:8px 10px;border-radius:7px;font-size:13px;color:var(--text-1);text-decoration:none;font-family:var(--font);transition:background 110ms}
+.nav-contact-link:hover{background:rgba(0,0,0,.045)}
+.nc-icon{width:28px;height:28px;border-radius:7px;display:flex;align-items:center;justify-content:center;flex-shrink:0;color:#fff}
+.nc-icon.li{background:#0A66C2}
+.nc-icon.em{background:#1B3F6E}
+.nc-icon.gh{background:#1C1C1E}
 /* Pane */
 .pane{display:none;padding:32px 24px 80px;max-width:1120px;margin:0 auto}
 .pane.active{display:block}
@@ -388,7 +401,26 @@ body{font-family:var(--font);background:linear-gradient(145deg,#EAEDF8 0%,#EEF0F
   <button class="nav-btn" onclick="showPane('cfo',this)">CFO &amp; Billing</button>
   <button class="nav-btn" onclick="showPane('it',this)">IT &amp; Integration</button>
   <button class="nav-btn" onclick="showPane('about',this)">About</button>
+  <div class="nav-contact-wrap">
+    <button class="nav-contact-btn" id="nav-contact-btn" onclick="toggleContactMenu(event)">Contact author ▾</button>
+  </div>
 </nav>
+
+<!-- Contact dropdown portal (outside nav to avoid overflow-x clipping) -->
+<div class="nav-contact-dd" id="nav-contact-dd">
+  <a class="nav-contact-link" href="https://www.linkedin.com/in/nathanqin" target="_blank" rel="noopener">
+    <span class="nc-icon li"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7H10V9h4v2a6 6 0 0 1 6-3zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg></span>
+    LinkedIn
+  </a>
+  <a class="nav-contact-link" href="mailto:qinmingyang2000@gmail.com">
+    <span class="nc-icon em"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg></span>
+    Email
+  </a>
+  <a class="nav-contact-link" href="https://github.com/aethernusnathan" target="_blank" rel="noopener">
+    <span class="nc-icon gh"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12c0 4.42 2.87 8.17 6.84 9.5.5.08.66-.23.66-.5v-1.69c-2.77.6-3.36-1.34-3.36-1.34-.46-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.87 1.52 2.34 1.07 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.92 0-1.11.38-2 1.03-2.71-.1-.25-.45-1.29.1-2.64 0 0 .84-.27 2.75 1.02A9.56 9.56 0 0 1 12 6.8c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.743 0 .267.18.578.688.48C19.138 20.167 22 16.418 22 12c0-5.52-4.48-10-10-10z"/></svg></span>
+    GitHub
+  </a>
+</div>
 
 <!-- OVERVIEW -->
 <div id="pane-overview" class="pane active">
@@ -1768,6 +1800,22 @@ function fE(type,btn){
     }
   });
 })();
+</script>
+
+<!-- Contact Author dropdown -->
+<script>
+function toggleContactMenu(e) {
+  e.stopPropagation();
+  var btn  = document.getElementById('nav-contact-btn');
+  var dd   = document.getElementById('nav-contact-dd');
+  var rect = btn.getBoundingClientRect();
+  dd.style.top   = (rect.bottom + 6) + 'px';
+  dd.style.right = (window.innerWidth - rect.right) + 'px';
+  dd.classList.toggle('open');
+}
+document.addEventListener('click', function() {
+  document.getElementById('nav-contact-dd').classList.remove('open');
+});
 </script>
 
 <!-- CCTA KNOWLEDGE ASSISTANT -->
