@@ -440,7 +440,7 @@ body{font-family:var(--font);background:linear-gradient(145deg,#EAEDF8 0%,#EEF0F
   </div>
   <div class="nav-actions">
     <span class="nav-pill">No vendor sponsorship</span>
-    <a href="#get-guide" class="nav-cta">Get Access →</a>
+    <a href="/guide" class="nav-cta">Open the Guide →</a>
   </div>
 </nav>
 
@@ -498,8 +498,8 @@ body{font-family:var(--font);background:linear-gradient(145deg,#EAEDF8 0%,#EEF0F
       <span>Updated June 2026</span>
     </div>
 
-    <a href="#get-guide" class="hero-cta">
-      Get the free guide <span class="hero-arr">→</span>
+    <a href="/guide" class="hero-cta">
+      Open the free guide <span class="hero-arr">→</span>
     </a>
 
   </div>
@@ -575,136 +575,30 @@ body{font-family:var(--font);background:linear-gradient(145deg,#EAEDF8 0%,#EEF0F
   </div>
 </section>
 
-<!-- ═══ FORM CARD ═══ -->
+<!-- ═══ ACCESS CARD ═══ -->
 <section class="form-section" id="get-guide">
   <div class="form-card">
+    <div class="form-card-head">
+      <div class="form-overline">Free · No paywall · Open source</div>
+      <h2 class="form-title">The guide is open — no sign-up needed</h2>
+      <p class="form-sub">Five chapters, all twelve vendors, head-to-head evidence data, and clinical decision support for nine patient scenarios.</p>
 
-    <!-- FORM PANEL -->
-    <div id="form-panel">
-      <div class="form-card-head">
-        <div class="form-overline">Free · No paywall · Open source</div>
-        <h2 class="form-title">Get the guide &amp; stay updated</h2>
-        <p class="form-sub">Five chapters, all twelve vendors, head-to-head evidence data, and clinical decision support for nine patient scenarios.</p>
-
-        <div class="chips">
-          <div class="chip"><span class="chip-ico">〽️</span><span class="chip-txt">Technology primer — what FFR<sub>CT</sub> and AI-QCPA actually answer</span></div>
-          <div class="chip"><span class="chip-ico">⚖</span><span class="chip-txt">Vendor scorecards — evidence-ranked strengths &amp; weaknesses</span></div>
-          <div class="chip"><span class="chip-ico">📊</span><span class="chip-txt">Head-to-head: Cleerly vs HeartFlow AUC — sponsored vs independent data</span></div>
-          <div class="chip"><span class="chip-ico">🩺</span><span class="chip-txt">9 clinical scenarios with specific platform recommendations</span></div>
-        </div>
-      </div>
-
-      <div class="form-body">
-        <form
-          class="signup-form"
-          id="signup-form"
-          action="https://formspree.io/f/mlgkabdl"
-          method="POST"
-          onsubmit="handleSubmit(event)">
-
-          <input type="hidden" name="_subject" value="New CCTA Guide signup">
-          <input type="hidden" name="_next" value="">
-          <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off">
-
-          <div class="frow">
-            <div class="fg">
-              <label class="flabel" for="f-first">First name</label>
-              <input class="finput" type="text" id="f-first" name="first_name" placeholder="Sarah" required autocomplete="given-name">
-            </div>
-            <div class="fg">
-              <label class="flabel" for="f-last">Last name</label>
-              <input class="finput" type="text" id="f-last" name="last_name" placeholder="Chen" required autocomplete="family-name">
-            </div>
-          </div>
-
-          <div class="fg">
-            <label class="flabel" for="f-email">Email</label>
-            <input class="finput" type="email" id="f-email" name="email" placeholder="you@hospital.org" required autocomplete="email">
-          </div>
-
-          <div class="frow">
-            <div class="fg">
-              <label class="flabel" for="f-role">Clinical role</label>
-              <div class="fselect-wrap">
-                <select class="fselect" id="f-role" name="role" required>
-                  <option value="" disabled selected>Select role</option>
-                  <option>Interventional Cardiologist</option>
-                  <option>General Cardiologist</option>
-                  <option>Cardiac Imager / Radiologist</option>
-                  <option>Cardiology Fellow</option>
-                  <option>Preventive Cardiologist</option>
-                  <option>Cardiovascular Surgeon</option>
-                  <option>Researcher / Academic</option>
-                  <option>Health System Administrator</option>
-                  <option>Industry / MedTech</option>
-                  <option>Other</option>
-                </select>
-              </div>
-            </div>
-            <div class="fg">
-              <label class="flabel" for="f-region">Region</label>
-              <div class="fselect-wrap">
-                <select class="fselect" id="f-region" name="region" required>
-                  <option value="" disabled selected>Select region</option>
-                  <option>United States</option>
-                  <option>United Kingdom</option>
-                  <option>Germany</option>
-                  <option>France</option>
-                  <option>Netherlands</option>
-                  <option>Scandinavia</option>
-                  <option>Japan</option>
-                  <option>South Korea</option>
-                  <option>China</option>
-                  <option>India</option>
-                  <option>Australia / NZ</option>
-                  <option>Canada</option>
-                  <option>Middle East</option>
-                  <option>Latin America</option>
-                  <option>Other</option>
-                </select>
-              </div>
-            </div>
-          </div>
-
-          <div class="fg">
-            <label class="flabel" for="f-obstacle">
-              What's the biggest obstacle your institution faces in adopting CCTA-AI?
-              <span class="opt">&nbsp;(optional — genuinely curious)</span>
-            </label>
-            <textarea class="ftextarea" id="f-obstacle" name="biggest_obstacle" placeholder="e.g. reimbursement uncertainty, vendor lock-in, radiology workflow integration, lack of outcome data..." rows="2"></textarea>
-          </div>
-
-          <div class="disclosure">
-            <strong>Disclosure:</strong> I advise Keya Medical and several other cardiovascular AI companies. These vendors appear in this guide. All content is based solely on peer-reviewed literature and public regulatory filings. No vendor has reviewed or sponsored any content.
-          </div>
-
-          <button class="cta-btn" type="submit" id="submit-btn">
-            <span id="btn-label">Send me the guide</span>
-            <span class="btn-arr" id="btn-arr">→</span>
-            <div class="bspinner" id="btn-spinner"></div>
-          </button>
-
-          <div class="privacy">
-            <span>🔒</span>
-            Your email is used only to send you this guide and updates. Never shared. Unsubscribe anytime.
-          </div>
-        </form>
+      <div class="chips">
+        <div class="chip"><span class="chip-ico">〽️</span><span class="chip-txt">Technology primer — what FFR<sub>CT</sub> and AI-QCPA actually answer</span></div>
+        <div class="chip"><span class="chip-ico">⚖</span><span class="chip-txt">Vendor scorecards — evidence-ranked strengths &amp; weaknesses</span></div>
+        <div class="chip"><span class="chip-ico">📊</span><span class="chip-txt">Head-to-head: Cleerly vs HeartFlow AUC — sponsored vs independent data</span></div>
+        <div class="chip"><span class="chip-ico">🩺</span><span class="chip-txt">9 clinical scenarios with specific platform recommendations</span></div>
       </div>
     </div>
 
-    <!-- SUCCESS PANE -->
-    <div id="success-pane">
-      <div class="smark">
-        <svg class="scheck" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+    <div class="form-body">
+      <div class="disclosure" style="margin-bottom:1.25rem;">
+        <strong>Disclosure:</strong> I advise Keya Medical and several other cardiovascular AI companies. These vendors appear in this guide. All content is based solely on peer-reviewed literature and public regulatory filings. No vendor has reviewed or sponsored any content.
       </div>
-      <div class="stitle" id="s-name">You're in.</div>
-      <div class="sbody" id="s-body">The guide is ready. Five chapters, all twelve vendors, head-to-head evidence data, and clinical decision support for nine patient scenarios.</div>
-      <a href="ccta-ai-clinical-guide.html" class="access-link" target="_blank">Open the Clinical Guide →</a>
-      <div class="sgithub">
-        Or browse the source on <a href="https://github.com/aethernusnathan/ccta-ai-guide" target="_blank" rel="noopener">GitHub →</a>
-      </div>
+      <a href="/guide" class="cta-btn" style="text-decoration:none;">
+        Open the Clinical Guide →
+      </a>
     </div>
-
   </div>
 </section>
 
@@ -803,62 +697,5 @@ body{font-family:var(--font);background:linear-gradient(145deg,#EAEDF8 0%,#EEF0F
 })();
 </script>
 
-<!-- FORM HANDLER -->
-<script>
-async function handleSubmit(e) {
-  e.preventDefault();
-
-  const first  = document.getElementById('f-first').value.trim();
-  const last   = document.getElementById('f-last').value.trim();
-  const email  = document.getElementById('f-email').value.trim();
-  const role   = document.getElementById('f-role').value;
-  const region = document.getElementById('f-region').value;
-  if (!first||!last||!email||!role||!region) {
-    shake(document.getElementById('submit-btn'));
-    return;
-  }
-
-  const btn=document.getElementById('submit-btn');
-  const lbl=document.getElementById('btn-label');
-  const arr=document.getElementById('btn-arr');
-  const spn=document.getElementById('btn-spinner');
-  btn.disabled=true;lbl.style.display='none';arr.style.display='none';spn.style.display='block';
-
-  try {
-    const fd=new FormData(e.target);
-    await fetch(e.target.action,{method:'POST',body:fd,headers:{Accept:'application/json'}});
-  } catch(_){}
-
-  let msg='The guide is ready — five chapters, all twelve vendors, with head-to-head evidence data and clinical decision support for nine patient scenarios.';
-  try {
-    const prompt=`You are Nathan Qin, a cardiovascular MedTech professional who built a free CCTA-AI clinical guide as a personal project.
-A clinician just signed up: ${first}, a ${role} in ${region}.
-Write a warm, specific 2-sentence message acknowledging them and briefly connecting what they'll find in the guide to their world.
-Under 35 words. Start with their first name. No generic phrases. Sound like a person, not a product.`;
-    const r=await fetch('https://api.anthropic.com/v1/messages',{
-      method:'POST',
-      headers:{'Content-Type':'application/json'},
-      body:JSON.stringify({model:'claude-sonnet-4-6',max_tokens:1000,messages:[{role:'user',content:prompt}]})
-    });
-    if(r.ok){const d=await r.json();msg=d.content?.[0]?.text?.trim()||msg;}
-  } catch(_){}
-
-  btn.disabled=false;lbl.style.display='inline';arr.style.display='inline';spn.style.display='none';
-  document.getElementById('form-panel').style.display='none';
-  const sp=document.getElementById('success-pane');
-  sp.style.display='flex';
-  document.getElementById('s-name').textContent=`Welcome, ${first}.`;
-  document.getElementById('s-body').textContent=msg;
-}
-
-function shake(el){
-  el.style.animation='none';void el.offsetHeight;el.style.animation='shake .35s ease';
-  setTimeout(()=>el.style.animation='',400);
-}
-
-const s=document.createElement('style');
-s.textContent=`@keyframes shake{0%,100%{transform:translateX(0);}20%{transform:translateX(-4px);}40%{transform:translateX(4px);}60%{transform:translateX(-3px);}80%{transform:translateX(3px);}}`;
-document.head.appendChild(s);
-</script>
 </body>
 </html>
