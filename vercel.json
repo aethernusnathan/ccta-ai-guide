@@ -4,5 +4,8 @@
     "api/chat.js": {
       "maxDuration": 30
     }
-  }
+  },
+  "rewrites": [
+    { "source": "/guide", "destination": "/ccta-ai-clinical-guide.html" }
+  ]
 }

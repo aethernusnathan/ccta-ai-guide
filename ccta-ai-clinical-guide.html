@@ -44,6 +44,11 @@ body{font-family:var(--font);background:linear-gradient(145deg,#EAEDF8 0%,#EEF0F
 .disc-box p strong{color:var(--text-1)}
 .disc-btn{width:100%;padding:13px;background:var(--text-1);color:#fff;border:none;border-radius:var(--r-pill);font-family:var(--font);font-size:14px;font-weight:500;cursor:pointer;margin-top:8px;transition:opacity var(--t) var(--ease)}
 .disc-btn:hover{opacity:.8}
+/* Bookmark nudge toast */
+.bm-toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(12px);z-index:9000;background:#1C1C1E;color:#fff;border-radius:12px;padding:11px 16px 11px 14px;font-family:var(--font);font-size:13px;display:flex;align-items:center;gap:10px;box-shadow:0 6px 24px rgba(0,0,0,.22);opacity:0;transition:opacity 350ms ease,transform 350ms ease;pointer-events:none;white-space:nowrap}
+.bm-toast.show{opacity:1;transform:translateX(-50%) translateY(0);pointer-events:auto}
+.bm-toast-icon{font-size:16px}
+.bm-toast kbd{background:rgba(255,255,255,.15);border-radius:5px;padding:2px 6px;font-size:11px;font-family:monospace;letter-spacing:.02em}
 /* Amber bar */
 .amber-bar{background:rgba(255,251,235,.85);backdrop-filter:blur(8px);border-bottom:1px solid rgba(245,158,11,.15);padding:8px 24px;font-size:11.5px;color:#92400E;display:flex;align-items:center;gap:8px;letter-spacing:.01em}
 /* Nav — frosted glass */
@@ -379,10 +384,26 @@ body{font-family:var(--font);background:linear-gradient(145deg,#EAEDF8 0%,#EEF0F
     <p><strong>Educational resource only — not clinical guidance.</strong> This guide summarizes published peer-reviewed evidence and publicly available regulatory data. It does not constitute medical advice or a product recommendation. All clinical decisions remain the responsibility of the treating physician.</p>
     <p><strong>Conflict of interest:</strong> The author holds advisory relationships with Keya Medical, Heartio, Ligence, and CASIS. All content is sourced solely to peer-reviewed literature and public regulatory filings. No vendor has reviewed or sponsored any content. The Keya Medical entry includes an explicit advisory disclosure.</p>
     <p>Regulatory clearance dates are sourced to public FDA databases and official company announcements. Where a clearance cannot be independently verified, it is not stated.</p>
-    <button class="disc-btn" onclick="localStorage.setItem('ccta_disc_v1','1');document.getElementById('disc').style.display='none'">I understand — continue</button>
+    <button class="disc-btn" onclick="acceptDisclaimer()">I understand — continue</button>
   </div>
 </div>
-<script>if(localStorage.getItem('ccta_disc_v1')==='1'){document.getElementById('disc').style.display='none';}</script>
+<div class="bm-toast" id="bm-toast">
+  <span class="bm-toast-icon">☆</span>
+  Bookmark this page for quick access &nbsp;<kbd>⌘D</kbd>
+</div>
+<script>
+if(localStorage.getItem('ccta_disc_v1')==='1'){document.getElementById('disc').style.display='none';}
+function acceptDisclaimer(){
+  var firstVisit=!localStorage.getItem('ccta_disc_v1');
+  localStorage.setItem('ccta_disc_v1','1');
+  document.getElementById('disc').style.display='none';
+  if(firstVisit){
+    var t=document.getElementById('bm-toast');
+    setTimeout(function(){t.classList.add('show');},400);
+    setTimeout(function(){t.classList.remove('show');},5000);
+  }
+}
+</script>
 
 <div class="amber-bar"><i class="ti ti-info-circle" aria-hidden="true" style="font-size:13px;flex-shrink:0"></i><span><strong>Educational resource.</strong> Not clinical advice. Author advises Keya Medical, Heartio, Ligence, CASIS. All claims sourced to peer-reviewed literature or public regulatory filings. No vendor sponsorship. · Nathan Qin 2026</span></div>
 
