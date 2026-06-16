@@ -258,7 +258,7 @@ const CCTA_CHAT_API = (
       <div class="cai-hdr">
         <div class="cai-hdr-mark">${ICON_BRAIN}</div>
         <div class="cai-hdr-text">
-          <div class="cai-hdr-title">Chat with the CCTA AI Assistant</div>
+          <div class="cai-hdr-title">CCTA Research Assistant</div>
           <div class="cai-hdr-sub">PubMed · ClinicalTrials.gov · Guidelines · Claude · β</div>
         </div>
       </div>
@@ -285,12 +285,12 @@ const CCTA_CHAT_API = (
     const panel = document.createElement('div');
     panel.className = 'cai-panel';
     panel.setAttribute('role', 'dialog');
-    panel.setAttribute('aria-label', 'CCTA Knowledge Assistant');
+    panel.setAttribute('aria-label', 'CCTA Research Assistant');
     panel.innerHTML = `
       <div class="cai-hdr">
         <div class="cai-hdr-mark">${ICON_BRAIN}</div>
         <div class="cai-hdr-text">
-          <div class="cai-hdr-title">CCTA Assistant</div>
+          <div class="cai-hdr-title">CCTA Research Assistant</div>
           <div class="cai-hdr-sub">PubMed · Trials · Guidelines · β</div>
         </div>
         <button class="cai-close" aria-label="Close">${ICON_CLOSE}</button>
@@ -372,9 +372,18 @@ const CCTA_CHAT_API = (
     const skelEl = appendSkeleton();
     const timerLabel = skelEl.querySelector('.cai-timer-label');
     let elapsed = 0;
+    const PHASES = [
+      'Searching PubMed & guidelines…',
+      'Searching PubMed & guidelines…',
+      'Searching PubMed & guidelines…',
+      'Synthesizing evidence…',
+      'Synthesizing evidence…',
+      'Synthesizing evidence…',
+      'Almost done…',
+    ];
     const timerInterval = setInterval(() => {
       elapsed++;
-      if (timerLabel) timerLabel.textContent = `Searching sources · ${elapsed}s`;
+      if (timerLabel) timerLabel.textContent = PHASES[Math.min(elapsed - 1, PHASES.length - 1)] + ` (${elapsed}s)`;
     }, 1000);
     loading = true;
     sendBtn.disabled = true;
@@ -384,8 +393,15 @@ const CCTA_CHAT_API = (
       const res = await fetch(CCTA_CHAT_API, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
+        credentials: 'include',
         body: JSON.stringify({ question, history: history.slice(0, -1) }),
       });
+      if (res.status === 429) {
+        const data = await res.json().catch(() => ({}));
+        skelEl.remove();
+        appendBubble('assistant', data.error || 'Daily query limit reached. Please try again tomorrow.');
+        return;
+      }
       if (!res.ok) throw new Error(`HTTP ${res.status}`);
       const data = await res.json();
       skelEl.remove();

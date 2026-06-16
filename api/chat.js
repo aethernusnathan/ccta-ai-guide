@@ -9,6 +9,32 @@
 
 export const config = { maxDuration: 30 };
 
+// ── Rate limiting (cookie-based) ───────────────────────────────────────────
+const RL_COOKIE   = 'ccta_rl';
+const RL_LIMIT    = 20;              // max requests per window per browser
+const RL_WINDOW   = 24 * 3600000;   // 24-hour rolling window
+
+function parseRLCookie(cookieHeader) {
+  const m = (cookieHeader || '').match(/ccta_rl=([A-Za-z0-9+/=]+)/);
+  if (!m) return { count: 0, windowStart: Date.now() };
+  try {
+    const [ts, cnt] = Buffer.from(m[1], 'base64').toString().split(':').map(Number);
+    if (isNaN(ts) || isNaN(cnt)) throw new Error();
+    if (Date.now() - ts > RL_WINDOW) return { count: 0, windowStart: Date.now() };
+    return { count: cnt, windowStart: ts };
+  } catch {
+    return { count: 0, windowStart: Date.now() };
+  }
+}
+
+function setRLCookie(res, windowStart, count) {
+  const val  = Buffer.from(`${windowStart}:${count}`).toString('base64');
+  const age  = Math.ceil((windowStart + RL_WINDOW - Date.now()) / 1000);
+  // SameSite=None;Secure required for cross-origin (GitHub Pages → Vercel)
+  res.setHeader('Set-Cookie',
+    `${RL_COOKIE}=${val}; Path=/api/chat; HttpOnly; Secure; SameSite=None; Max-Age=${age}`);
+}
+
 export default async function handler(req, res) {
   // ── CORS ──────────────────────────────────────────────────────────────────
   const origin = req.headers.origin || '';
@@ -26,6 +52,16 @@ export default async function handler(req, res) {
   if (req.method === 'OPTIONS') return res.status(200).end();
   if (req.method !== 'POST') return res.status(405).json({ error: 'Method not allowed' });
 
+  // ── Rate limit check ──────────────────────────────────────────────────────
+  const { count, windowStart } = parseRLCookie(req.headers.cookie);
+  if (count >= RL_LIMIT) {
+    const resetIn = Math.ceil((windowStart + RL_WINDOW - Date.now()) / 3600000);
+    return res.status(429).json({
+      error: `Daily limit of ${RL_LIMIT} queries reached. Resets in ~${resetIn} hour${resetIn !== 1 ? 's' : ''}.`,
+    });
+  }
+  setRLCookie(res, windowStart, count + 1);
+
   const { question, history = [] } = req.body || {};
   if (!question || typeof question !== 'string' || question.trim().length === 0) {
     return res.status(400).json({ error: 'Missing question' });
@@ -36,14 +72,27 @@ export default async function handler(req, res) {
   if (!ANTHROPIC_KEY) return res.status(500).json({ error: 'Server not configured' });
 
   try {
-    // ── Step 1: Route — classify intent and extract optimised search queries ──
-    const routing = await route(question.trim(), ANTHROPIC_KEY);
+    const q = question.trim();
+
+    // ── Step 1: Fast keyword routing (no LLM call) ─────────────────────────
+    const qLow = q.toLowerCase();
+    const wantsTrials = /trial|recruiting|ongoing|active stud|registered|nct\d/i.test(qLow);
+    const wantsWeb    = /guideline|consensus|fda|approved|cleared|coverage|reimburs|vendor|news|latest|2025|2026/i.test(qLow);
+    const pubmedQ = q.length > 80 ? q.substring(0, 80) : q;
+    const routing = {
+      sources: ['pubmed', ...(wantsTrials ? ['trials'] : []), ...(wantsWeb ? ['web'] : [])],
+      queries: {
+        pubmed: `${pubmedQ} CCTA coronary CT`,
+        trials: q,
+        web:    `${pubmedQ} cardiology guidelines 2025 2026`,
+      },
+    };
 
     // ── Step 2: Parallel fetch from relevant sources ───────────────────────
     const [pubmedResult, trialsResult, webResult] = await Promise.all([
-      routing.sources.includes('pubmed') ? fetchPubMed(routing.queries.pubmed) : { cites: [], text: '' },
-      routing.sources.includes('trials') ? fetchTrials(routing.queries.trials) : { cites: [], text: '' },
-      (routing.sources.includes('web') && TAVILY_KEY) ? fetchTavily(routing.queries.web, TAVILY_KEY) : { cites: [], text: '' },
+      fetchPubMed(routing.queries.pubmed),
+      wantsTrials ? fetchTrials(routing.queries.trials) : { cites: [], text: '' },
+      (wantsWeb && TAVILY_KEY) ? fetchTavily(routing.queries.web, TAVILY_KEY) : { cites: [], text: '' },
     ]);
 
     // Merge and number all citations
@@ -79,49 +128,6 @@ export default async function handler(req, res) {
   }
 }
 
-// ── Router ─────────────────────────────────────────────────────────────────
-
-async function route(question, apiKey) {
-  const defaultRouting = {
-    sources: ['pubmed', 'web'],
-    queries: {
-      pubmed: question + ' CCTA FFRCT coronary',
-      trials: question,
-      web: question + ' CCTA guidelines 2024 2025',
-    },
-  };
-  try {
-    const res = await anthropic(apiKey, {
-      model: 'claude-haiku-4-5-20251001',
-      max_tokens: 300,
-      system: 'You route CCTA/cardiology literature queries. Respond ONLY with valid JSON, no markdown, no explanation.',
-      messages: [{
-        role: 'user',
-        content: `Question: "${question}"
-
-Return JSON with these exact keys:
-{
-  "sources": ["pubmed"],              // array — include only relevant: "pubmed", "trials", "web"
-  "queries": {
-    "pubmed": "optimised PubMed search string (MeSH-style if possible)",
-    "trials": "ClinicalTrials.gov search string",
-    "web": "web search string for guidelines, consensus, vendor news"
-  }
-}
-
-Rules:
-- Always include "pubmed" unless the question is purely about ongoing trial status.
-- Include "trials" if the question asks about active/ongoing/recruiting studies.
-- Include "web" if about guidelines, consensus statements, recent vendor news, or regulatory approvals.
-- Keep each query string under 10 words.`,
-      }],
-    });
-    return JSON.parse(res.content[0].text);
-  } catch (_) {
-    return defaultRouting;
-  }
-}
-
 // ── PubMed ─────────────────────────────────────────────────────────────────
 
 async function fetchPubMed(query) {
@@ -130,7 +136,7 @@ async function fetchPubMed(query) {
     const base = 'https://eutils.ncbi.nlm.nih.gov/entrez/eutils';
 
     // Search
-    const searchRes  = await fetch(`${base}/esearch.fcgi?db=pubmed&term=${term}&retmax=5&retmode=json&sort=relevance`);
+    const searchRes  = await fetch(`${base}/esearch.fcgi?db=pubmed&term=${term}&retmax=4&retmode=json&sort=relevance`);
     const searchData = await searchRes.json();
     const ids        = searchData.esearchresult?.idlist || [];
     if (ids.length === 0) return { cites: [], text: '' };
@@ -248,7 +254,7 @@ async function synthesize(question, history, context, apiKey) {
   const prior = history.slice(-6).map(m => ({ role: m.role, content: m.content }));
   const res = await anthropic(apiKey, {
     model:      'claude-sonnet-4-6',
-    max_tokens: 600,
+    max_tokens: 450,
     system:     SYSTEM,
     messages:   [
       ...prior,
