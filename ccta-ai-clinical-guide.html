@@ -166,6 +166,147 @@ body{font-family:var(--font);background:linear-gradient(145deg,#EAEDF8 0%,#EEF0F
   .sc-intro h2,.ans-title{font-size:20px}
 }
 
+/* ===== CFO & IT pane ===== */
+.cfo-hero{background:var(--surface);border-radius:22px;box-shadow:var(--sh-sm);padding:44px 40px;margin-bottom:28px}
+.cfo-eyebrow{font-size:10px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--text-3);margin-bottom:16px}
+.cfo-h1{font-size:32px;font-weight:700;letter-spacing:-.8px;line-height:1.15;color:var(--text-1);margin-bottom:14px;max-width:640px}
+.cfo-lead{font-size:15px;color:var(--text-2);line-height:1.75;max-width:580px}
+.cfo-aud-row{display:flex;gap:8px;margin-top:18px;flex-wrap:wrap}
+.aud-pill{font-size:12px;padding:5px 14px;border-radius:var(--r-pill);font-weight:500}
+.aud-cfo{background:#DBEAFE;color:#1D4ED8}
+.aud-it{background:#F3E8FF;color:#6B21A8}
+.cfo-section{margin-bottom:36px}
+.cfo-sec-lbl{font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:4px 12px;border-radius:var(--r-pill);display:inline-block;margin-bottom:18px}
+.lbl-fin{background:#DBEAFE;color:#1D4ED8}
+.lbl-it{background:#F3E8FF;color:#6B21A8}
+.lbl-both{background:#DCFCE7;color:#166534}
+.rev-banner{background:linear-gradient(135deg,#1B3F6E 0%,#1A5C36 100%);border-radius:var(--r);padding:28px 32px;margin-bottom:14px;color:#fff;display:grid;grid-template-columns:1fr auto;gap:20px;align-items:center}
+.rev-eyebrow{font-size:10px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;opacity:.65;margin-bottom:6px}
+.rev-amount{font-size:46px;font-weight:700;letter-spacing:-2px;line-height:1;margin-bottom:4px}
+.rev-desc{font-size:13px;opacity:.75;max-width:380px;line-height:1.55}
+.rev-right{display:flex;flex-direction:column;gap:8px;flex-shrink:0}
+.rev-box{background:rgba(255,255,255,.13);border-radius:10px;padding:12px 16px;min-width:160px}
+.rev-box-code{font-size:10px;font-weight:600;opacity:.65;letter-spacing:.05em;margin-bottom:3px}
+.rev-box-amt{font-size:20px;font-weight:700;letter-spacing:-.4px}
+.rev-box-desc{font-size:11px;opacity:.65;margin-top:2px;line-height:1.35}
+.cfo-cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(255px,1fr));gap:12px;margin-bottom:16px}
+.cfo-card{background:var(--surface);border-radius:var(--r);box-shadow:var(--sh-sm);padding:22px}
+.cfo-card-label{font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.06em;color:var(--text-3);margin-bottom:8px}
+.cfo-card-title{font-size:15px;font-weight:600;letter-spacing:-.2px;color:var(--text-1);margin-bottom:8px}
+.cfo-card-body{font-size:13px;color:var(--text-2);line-height:1.7}
+.cfo-card-body strong{color:var(--text-1);font-weight:500}
+.cfo-caution{background:#FEF3C7;border-radius:var(--r-sm);padding:14px 18px;font-size:13px;color:#92400E;line-height:1.65;display:flex;gap:10px;align-items:flex-start;margin-bottom:16px}
+.cpt-wrap{overflow-x:auto;border-radius:var(--r);box-shadow:var(--sh-sm);margin-bottom:14px}
+.cpt-tbl{width:100%;border-collapse:collapse;background:var(--surface);font-size:13px}
+.cpt-tbl th{font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.06em;color:var(--text-3);padding:12px 16px;text-align:left;border-bottom:1px solid var(--border);white-space:nowrap}
+.cpt-tbl td{padding:14px 16px;border-bottom:1px solid var(--border);color:var(--text-2);line-height:1.5;vertical-align:top}
+.cpt-tbl tr:last-child td{border-bottom:none}
+.cpt-tbl tr:hover td{background:rgba(0,0,0,.018)}
+.cpt-code{font-family:ui-monospace,monospace;font-size:14px;font-weight:600;color:var(--text-1);white-space:nowrap}
+.cpt-rate{font-weight:600;color:#1A5C36;font-size:15px;white-space:nowrap}
+.badge-cat1{background:#DCFCE7;color:#166534;font-size:10px;padding:2px 8px;border-radius:var(--r-pill);font-weight:600;display:inline-block}
+.badge-cat3{background:#FEF3C7;color:#92400E;font-size:10px;padding:2px 8px;border-radius:var(--r-pill);font-weight:600;display:inline-block}
+.deploy-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:16px}
+.deploy-card{background:var(--surface);border-radius:var(--r);box-shadow:var(--sh-sm);padding:24px;border-top:4px solid transparent}
+.deploy-card.cloud{border-top-color:#1B3F6E}
+.deploy-card.onprem{border-top-color:#6B21A8}
+.deploy-hd{font-size:16px;font-weight:600;letter-spacing:-.2px;color:var(--text-1);margin-bottom:4px}
+.deploy-sub{font-size:12px;color:var(--text-3);margin-bottom:16px}
+.deploy-items{list-style:none;padding:0}
+.deploy-items li{font-size:13px;color:var(--text-2);padding:7px 0;border-bottom:1px solid var(--border);display:flex;gap:8px;line-height:1.5}
+.deploy-items li:last-child{border-bottom:none}
+.d-chk{color:#1A5C36;flex-shrink:0;margin-top:1px}
+.d-note{color:#92400E;flex-shrink:0;margin-top:1px}
+.deploy-vendors{display:flex;flex-wrap:wrap;gap:5px;margin-top:14px;padding-top:14px;border-top:1px solid var(--border)}
+.dv-lbl{font-size:10px;color:var(--text-3);width:100%;text-transform:uppercase;letter-spacing:.05em;margin-bottom:4px}
+.dv-chip{font-size:11px;padding:3px 9px;border-radius:var(--r-pill);background:rgba(0,0,0,.05);color:var(--text-2)}
+.wf-steps{background:var(--surface);border-radius:var(--r);box-shadow:var(--sh-sm);overflow:hidden;margin-bottom:16px}
+.wf-step{display:flex;gap:14px;padding:16px 22px;border-bottom:1px solid var(--border);align-items:flex-start}
+.wf-step:last-child{border-bottom:none}
+.wf-n{width:24px;height:24px;border-radius:50%;background:#1B3F6E;color:#fff;font-size:11px;font-weight:600;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:2px}
+.wf-title{font-size:13px;font-weight:600;color:var(--text-1);margin-bottom:2px}
+.wf-body{font-size:13px;color:var(--text-2);line-height:1.6}
+.it-req-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(265px,1fr));gap:12px;margin-bottom:16px}
+.it-req-card{background:var(--surface);border-radius:var(--r);box-shadow:var(--sh-sm);padding:20px}
+.it-req-icon{font-size:18px;margin-bottom:10px}
+.it-req-title{font-size:14px;font-weight:600;letter-spacing:-.1px;color:var(--text-1);margin-bottom:8px}
+.it-req-list{list-style:none;padding:0}
+.it-req-list li{font-size:12.5px;color:var(--text-2);padding:5px 0;border-bottom:1px solid var(--border);line-height:1.5;display:flex;gap:6px}
+.it-req-list li:last-child{border-bottom:none}
+.it-wrap{overflow-x:auto;border-radius:var(--r);box-shadow:var(--sh-sm);margin-bottom:16px}
+.it-tbl{width:100%;border-collapse:collapse;background:var(--surface);font-size:12.5px}
+.it-tbl th{font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.06em;color:var(--text-3);padding:11px 14px;text-align:left;border-bottom:1px solid var(--border);white-space:nowrap}
+.it-tbl td{padding:12px 14px;border-bottom:1px solid var(--border);color:var(--text-2);line-height:1.45;vertical-align:top}
+.it-tbl tr:last-child td{border-bottom:none}
+.it-tbl tr:hover td{background:rgba(0,0,0,.015)}
+.it-vname{font-size:13px;font-weight:600;color:var(--text-1)}
+.it-vprod{font-size:11px;color:var(--text-3)}
+.d-cloud{background:#DBEAFE;color:#1D4ED8;font-size:10px;padding:2px 8px;border-radius:var(--r-pill);font-weight:600;display:inline-block;white-space:nowrap}
+.d-onprem{background:#F3E8FF;color:#6B21A8;font-size:10px;padding:2px 8px;border-radius:var(--r-pill);font-weight:600;display:inline-block;white-space:nowrap}
+.checklist-box{background:var(--surface);border-radius:var(--r);box-shadow:var(--sh-sm);padding:28px;margin-bottom:16px}
+.checklist-cols{display:grid;grid-template-columns:1fr 1fr;gap:28px}
+.checklist-col-title{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;margin-bottom:14px}
+.checklist-col-title.fin{color:#1D4ED8}
+.checklist-col-title.it{color:#6B21A8}
+.cl-check-list{list-style:none;padding:0}
+.cl-check-list li{font-size:13px;color:var(--text-2);padding:7px 0;border-bottom:1px solid var(--border);display:flex;gap:8px;line-height:1.5;align-items:flex-start}
+.cl-check-list li:last-child{border-bottom:none}
+.cl-num{font-size:10px;font-weight:700;color:var(--text-3);min-width:18px;margin-top:2px;flex-shrink:0}
+/* IT hero (purple-tinted variant) */
+.it-hero{background:linear-gradient(135deg,rgba(107,33,168,.05) 0%,rgba(107,33,168,.015) 100%);border:1px solid rgba(107,33,168,.12);border-radius:22px;padding:44px 40px;margin-bottom:28px}
+/* Payer portal lookup table */
+.payer-wrap{overflow-x:auto;border-radius:var(--r);box-shadow:var(--sh-sm);margin-bottom:14px}
+.payer-tbl{width:100%;border-collapse:collapse;background:var(--surface);font-size:13px}
+.payer-tbl th{font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.06em;color:var(--text-3);padding:11px 16px;text-align:left;border-bottom:1px solid var(--border);white-space:nowrap}
+.payer-tbl td{padding:13px 16px;border-bottom:1px solid var(--border);color:var(--text-2);line-height:1.5;vertical-align:top}
+.payer-tbl tr:last-child td{border-bottom:none}
+.payer-tbl tr:hover td{background:rgba(0,0,0,.018)}
+.payer-name{font-size:13px;font-weight:600;color:var(--text-1)}
+.payer-path{font-size:11px;color:var(--text-3);margin-top:2px}
+/* Coverage timeline table */
+.timeline-wrap{overflow-x:auto;border-radius:var(--r);box-shadow:var(--sh-sm);margin-bottom:14px}
+.timeline-tbl{width:100%;border-collapse:collapse;background:var(--surface);font-size:12.5px}
+.timeline-tbl th{font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.06em;color:var(--text-3);padding:11px 14px;text-align:left;border-bottom:1px solid var(--border)}
+.timeline-tbl td{padding:12px 14px;border-bottom:1px solid var(--border);color:var(--text-2);line-height:1.45;vertical-align:top}
+.timeline-tbl tr:last-child td{border-bottom:none}
+.timeline-tbl tr:hover td{background:rgba(0,0,0,.015)}
+.t-code{font-family:ui-monospace,monospace;font-size:13px;font-weight:600;color:var(--text-1);white-space:nowrap}
+.t-covered{color:#166534;font-weight:500}
+.t-partial{color:#92400E;font-weight:500}
+.t-not{color:#6B7280;font-weight:500}
+/* Call script box */
+.call-script{background:rgba(0,0,0,.04);border-left:3px solid var(--text-3);border-radius:0 var(--r-sm) var(--r-sm) 0;padding:12px 16px;font-size:13px;color:var(--text-1);font-style:italic;line-height:1.65;margin:10px 0}
+/* BAA clause list */
+.baa-list{list-style:none;padding:0;margin-top:10px}
+.baa-list li{font-size:13px;color:var(--text-2);padding:6px 0;border-bottom:1px solid var(--border);display:flex;gap:8px;line-height:1.5}
+.baa-list li:last-child{border-bottom:none}
+.baa-bullet{color:#6B21A8;flex-shrink:0;font-weight:600}
+/* Implementation timeline */
+.impl-wrap{overflow-x:auto;border-radius:var(--r);box-shadow:var(--sh-sm);margin-bottom:14px}
+.impl-tbl{width:100%;border-collapse:collapse;background:var(--surface);font-size:12.5px}
+.impl-tbl th{font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.06em;color:var(--text-3);padding:11px 16px;text-align:left;border-bottom:1px solid var(--border)}
+.impl-tbl td{padding:12px 16px;border-bottom:1px solid var(--border);color:var(--text-2);line-height:1.45;vertical-align:top}
+.impl-tbl tr:last-child td{border-bottom:none}
+.impl-tbl tr:hover td{background:rgba(0,0,0,.015)}
+.impl-milestone{font-size:13px;color:var(--text-1);font-weight:500}
+.impl-cloud{color:#1B3F6E;font-weight:500}
+.impl-onprem{color:#6B21A8;font-weight:500}
+.impl-na{color:var(--text-3);font-style:italic}
+/* Failure modes table */
+.fail-wrap{overflow-x:auto;border-radius:var(--r);box-shadow:var(--sh-sm);margin-bottom:14px}
+.fail-tbl{width:100%;border-collapse:collapse;background:var(--surface);font-size:12.5px}
+.fail-tbl th{font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.06em;color:var(--text-3);padding:11px 14px;text-align:left;border-bottom:1px solid var(--border)}
+.fail-tbl td{padding:13px 14px;border-bottom:1px solid var(--border);color:var(--text-2);line-height:1.55;vertical-align:top}
+.fail-tbl tr:last-child td{border-bottom:none}
+.fail-tbl tr:hover td{background:rgba(0,0,0,.015)}
+.fail-name{font-size:13px;font-weight:600;color:#92400E}
+@media(max-width:768px){
+  .deploy-grid,.checklist-cols,.rev-banner{grid-template-columns:1fr}
+  .cfo-hero,.it-hero{padding:28px 22px}
+  .cfo-h1{font-size:24px}
+  .rev-amount{font-size:34px}
+}
+
 /* Overview */
 .ov-hero{background:var(--surface);border-radius:22px;box-shadow:var(--sh-sm);padding:44px 40px;margin-bottom:28px}
 .ov-eyebrow{font-size:10px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--text-3);margin-bottom:16px}
@@ -201,6 +342,18 @@ body{font-family:var(--font);background:linear-gradient(145deg,#EAEDF8 0%,#EEF0F
 .ov-cta:hover{opacity:.82}
 .ov-cta.ov-cta-sec{background:var(--surface);color:var(--text-1);border:1px solid var(--border-s);box-shadow:var(--sh-sm)}
 .ov-cta.ov-cta-sec:hover{box-shadow:var(--sh-md);opacity:1}
+/* PubMed live evidence */
+.ev-pubmed-bar{display:flex;align-items:center;justify-content:space-between;gap:12px;background:var(--surface);border-radius:var(--r);box-shadow:var(--sh-sm);padding:11px 16px;margin-bottom:12px;font-size:12.5px;color:var(--text-2);flex-wrap:wrap}
+.ev-pubmed-bar strong{color:var(--text-1)}
+.ev-refresh-btn{display:inline-flex;align-items:center;gap:5px;background:none;border:1px solid var(--border);border-radius:20px;padding:4px 12px;font-size:11.5px;color:var(--text-2);cursor:pointer;font-family:var(--font);transition:background .15s,color .15s;flex-shrink:0}
+.ev-refresh-btn:hover{background:var(--bg);color:var(--text-1)}
+.ev-loading{display:flex;align-items:center;gap:12px;padding:48px 20px;justify-content:center;color:var(--text-3);font-size:13px}
+@keyframes ev-spin{to{transform:rotate(360deg)}}
+.ev-spinner{width:20px;height:20px;border:2px solid var(--border);border-top-color:#1B3F6E;border-radius:50%;animation:ev-spin .75s linear infinite;flex-shrink:0}
+@media(prefers-reduced-motion:reduce){.ev-spinner{animation:none}}
+.ev-pmid-link{font-size:11px;color:var(--text-3);text-decoration:none;border:1px solid var(--border);border-radius:10px;padding:2px 7px;white-space:nowrap;transition:color .12s,border-color .12s}
+.ev-pmid-link:hover{color:#1B3F6E;border-color:#1B3F6E}
+.ev-error-card{background:var(--surface);border-radius:var(--r);padding:28px 24px;color:var(--text-2);font-size:13.5px;line-height:1.6;box-shadow:var(--sh-sm)}
 </style>
 </head>
 <body>
@@ -232,6 +385,8 @@ body{font-family:var(--font);background:linear-gradient(145deg,#EAEDF8 0%,#EEF0F
   <button class="nav-btn" onclick="showPane('vendors',this)">All vendors</button>
   <button class="nav-btn" onclick="showPane('evidence',this)">Evidence</button>
   <button class="nav-btn" onclick="showPane('protocol',this)">Acquisition protocol</button>
+  <button class="nav-btn" onclick="showPane('cfo',this)">CFO &amp; Billing</button>
+  <button class="nav-btn" onclick="showPane('it',this)">IT &amp; Integration</button>
   <button class="nav-btn" onclick="showPane('about',this)">About</button>
 </nav>
 
@@ -509,7 +664,11 @@ body{font-family:var(--font);background:linear-gradient(145deg,#EAEDF8 0%,#EEF0F
 
 <!-- EVIDENCE -->
 <div id="pane-evidence" class="pane">
-  <div class="ev-notice"><i class="ti ti-info-circle" aria-hidden="true" style="font-size:12px;flex-shrink:0;margin-top:1px"></i><span>Sponsorship disclosed where known. Independent datasets distinguished from sponsor-funded trials. Weight study quality when drawing conclusions: prospective multicenter RCT &gt; registry &gt; retrospective single-center.</span></div>
+  <div class="ev-pubmed-bar">
+    <span id="ev-pubmed-status"><i class="ti ti-database" aria-hidden="true" style="margin-right:5px"></i>Loading latest publications from PubMed…</span>
+    <button class="ev-refresh-btn" onclick="refreshPubMedEvidence()"><i class="ti ti-refresh" aria-hidden="true"></i> Refresh</button>
+  </div>
+  <div class="ev-notice"><i class="ti ti-info-circle" aria-hidden="true" style="font-size:12px;flex-shrink:0;margin-top:1px"></i><span>Live data from PubMed · Sorted newest first · Auto-categorized by keyword · Cached 24 hrs · Assess study independence: prospective multicenter RCT &gt; registry &gt; retrospective. Sponsorship disclosed where known.</span></div>
   <div class="filter-bar">
     <button class="fb active" onclick="fE('all',this)">All</button>
     <button class="fb" onclick="fE('ffrct',this)">FFR CT</button>
@@ -517,17 +676,8 @@ body{font-family:var(--font);background:linear-gradient(145deg,#EAEDF8 0%,#EEF0F
     <button class="fb" onclick="fE('h2h',this)">Head-to-head</button>
     <button class="fb" onclick="fE('guide',this)">Guidelines</button>
   </div>
-  <div class="ev-list">
-    <div class="ev-card" data-e="ffrct"><div class="ev-top"><div class="ev-name">FISH&CHIPS — NHS England</div><div class="ev-yr">2025 · Nat Med · n=90,553</div></div><div class="ev-txt">Largest real-world FFRCT dataset. 27 NHS hospitals before/after FFRCT availability. FFRCT associated with reduced second-line stress tests and ICA; those proceeding to ICA more likely to be revascularized. <strong>Observational design — not randomized.</strong></div><div class="ev-nums"><span class="ev-num">n=90,553</span><span class="ev-num">27 NHS sites</span><span class="ev-num">Observational</span><span class="ev-num">HeartFlow FFRCT</span></div></div>
-    <div class="ev-card" data-e="ffrct"><div class="ev-top"><div class="ev-name">PRECISE RCT</div><div class="ev-yr">2023 · JAMA Cardiol</div></div><div class="ev-txt">Prospective RCT. CCTA ± FFRCT vs standard care. Fewer catheterizations without obstructive CAD. Safety equivalent at 1 year. <strong>FFRCT used selectively in 39% of CCTAs</strong> — not mandated in all patients.</div><div class="ev-nums"><span class="ev-num">Prospective RCT</span><span class="ev-num">HeartFlow FFRCT</span><span class="ev-num">Safety equivalent</span></div></div>
-    <div class="ev-card" data-e="ffrct"><div class="ev-top"><div class="ev-name">NXT Trial</div><div class="ev-yr">2014 · JACC · n=254</div></div><div class="ev-txt">Prospective multicenter diagnostic accuracy vs invasive FFR. <strong>Per-vessel: sensitivity 84%, specificity 86%, AUC 0.90.</strong> CCTA alone: 91% sensitivity, 41% specificity. Foundational HeartFlow study underpinning regulatory approvals.</div><div class="ev-nums"><span class="ev-num">Sens 84%</span><span class="ev-num">Spec 86%</span><span class="ev-num">AUC 0.90</span><span class="ev-num">HeartFlow</span></div></div>
-    <div class="ev-card" data-e="ffrct"><div class="ev-top"><div class="ev-name">TARGET RCT — DEEPVESSEL FFR</div><div class="ev-yr">2023 · Circulation</div></div><div class="ev-txt">RCT comparing DEEPVESSEL FFR-guided management vs functional testing in intermediate stenosis. DVFFR arm: lower ICA use, higher revascularization rate. <strong>Published evidence for Keya DEEPVESSEL FFR in an RCT setting.</strong></div><div class="ev-nums"><span class="ev-num">RCT</span><span class="ev-num">Keya DEEPVESSEL FFR</span><span class="ev-num">↓ unnecessary ICA</span></div></div>
-    <div class="ev-card" data-e="h2h"><div class="ev-top"><div class="ev-name">CREDENCE — Cleerly vs HeartFlow</div><div class="ev-yr">2024 · JACC CVI · n=868 vessels</div></div><div class="ev-txt">Both platforms analyzed same dataset. Per-vessel: <strong>Cleerly ISCHEMIA AUC 0.86 vs HeartFlow FFRCT 0.76 (p&lt;0.001).</strong> Cleerly only test prognostic for MACE at 8yr in this cohort.</div><div class="ev-caution">⚠ Sponsored by Cleerly. HeartFlow algorithm version used was not current. Do not interpret without reading the PACIFIC independent dataset result below.</div><div class="ev-nums"><span class="ev-num">Cleerly 0.86</span><span class="ev-num">HeartFlow 0.76</span><span class="ev-num">⚠ Cleerly-sponsored</span></div></div>
-    <div class="ev-card" data-e="h2h"><div class="ev-top"><div class="ev-name">PACIFIC sub-study — independent dataset</div><div class="ev-yr">2023 · JACC</div></div><div class="ev-txt">Same patients, independent PACIFIC dataset (not Cleerly-sponsored). Per-patient: <strong>Cleerly 0.91 vs HeartFlow 0.90 — no statistically significant difference.</strong> Both significantly outperform SPECT.</div><div class="ev-nums"><span class="ev-num">Cleerly 0.91 ≈ HeartFlow 0.90</span><span class="ev-num">No sig. difference</span><span class="ev-num">Independent</span></div></div>
-    <div class="ev-card" data-e="plaque"><div class="ev-top"><div class="ev-name">REVEALPLAQUE — HeartFlow Plaque vs IVUS</div><div class="ev-yr">2024 · EHJ CV Imaging</div></div><div class="ev-txt"><strong>95% agreement</strong> in total plaque volume between HeartFlow Plaque Analysis and IVUS. Validates CT-based plaque quantification against an intravascular reference standard. Study conducted prior to Next Gen algorithm update (Sep 2025).</div><div class="ev-nums"><span class="ev-num">95% vs IVUS</span><span class="ev-num">HeartFlow Plaque</span></div></div>
-    <div class="ev-card" data-e="plaque"><div class="ev-top"><div class="ev-name">DECIDE Registry</div><div class="ev-yr">2024 · SCCT</div></div><div class="ev-txt">Adding AI plaque staging to FFRCT changed management in <strong>&gt;50% of cases</strong>. LDL reduced 18.7 mg/dL at 90 days. Combined FFRCT + plaque AUC 0.73 vs CCTA alone 0.63 for 7-year MACE (ADVANCE-DK). <strong>Registry design — not randomized.</strong></div><div class="ev-nums"><span class="ev-num">&gt;50% management change</span><span class="ev-num">LDL ↓18.7 mg/dL</span><span class="ev-num">Registry</span></div></div>
-    <div class="ev-card" data-e="guide"><div class="ev-top"><div class="ev-name">SCCT-SCAI-ACC CT-FFR Consensus</div><div class="ev-yr">May 2026 · JCCT · doi:10.1016/j.jcct.2026.05.006</div></div><div class="ev-txt">CT-FFR <strong>recommended</strong> for 50–90% stenosis (LOE A, stable chest pain). Not appropriate for LM ≥50%, CTO, stents, &lt;1.8mm vessels. Post-lesional measurement 2cm distal = standard. 2 FDA/CE-cleared platforms (HeartFlow, Keya); 5 Asia-cleared only. Cleerly ISCHEMIA outside CT-FFR scope. Spimed-AI and Siemens cFFR research-only.</div><div class="ev-nums"><span class="ev-num">LOE A: stable chest pain</span><span class="ev-num">50–90% stenosis</span><span class="ev-num">2 FDA/CE cleared</span></div></div>
-    <div class="ev-card" data-e="guide plaque"><div class="ev-top"><div class="ev-name">ACC Scientific Statement on AI-QCPA</div><div class="ev-yr">Dec 2025 · JACC CVI</div></div><div class="ev-txt">First formal ACC consensus on AI plaque analysis. Appropriate for patients with visual plaque on CCTA for risk stratification. <strong>Not indicated for all CCTA patients.</strong> Cross-vendor reproducibility data still needed.</div><div class="ev-nums"><span class="ev-num">Appropriate use defined</span><span class="ev-num">Not all CCTA patients</span></div></div>
+  <div id="ev-list-dynamic" class="ev-list">
+    <div class="ev-loading"><div class="ev-spinner"></div><span>Fetching from PubMed…</span></div>
   </div>
 </div>
 
@@ -589,6 +739,809 @@ body{font-family:var(--font);background:linear-gradient(145deg,#EAEDF8 0%,#EEF0F
   </div>
 </div>
 
+<!-- CFO & BILLING -->
+<div id="pane-cfo" class="pane">
+
+  <div class="cfo-hero">
+    <div class="cfo-eyebrow">REIMBURSEMENT · CPT BILLING · PAYER COVERAGE · FINANCIAL MODELING</div>
+    <h1 class="cfo-h1">Know exactly what you'll collect before you sign.</h1>
+    <p class="cfo-lead">CPT reimbursement mechanics, how to verify which of the ~650 US payers covers which code, financial modeling assumptions, and billing workflow — for CFOs and revenue cycle leaders evaluating CCTA AI adoption.</p>
+    <div class="cfo-aud-row">
+      <span class="aud-pill aud-cfo">Hospital CFO</span>
+      <span class="aud-pill aud-cfo" style="background:#EDE9FE;color:#5B21B6">Revenue Cycle Director</span>
+    </div>
+  </div>
+
+  <!-- Section 1: Revenue opportunity -->
+  <div class="cfo-section">
+    <div class="cfo-sec-lbl lbl-fin">FINANCIAL — Revenue opportunity</div>
+    <div class="rev-banner">
+      <div>
+        <div class="rev-eyebrow">Maximum combined CPT reimbursement · per CCTA case</div>
+        <div class="rev-amount">~$1,851</div>
+        <div class="rev-desc">Both AI add-ons are billable from a single coronary CT scan — no additional radiation, contrast, or imaging appointment required. Both codes are now Category I (highest coverage tier).</div>
+      </div>
+      <div class="rev-right">
+        <div class="rev-box">
+          <div class="rev-box-code">CPT 75580</div>
+          <div class="rev-box-amt">~$900</div>
+          <div class="rev-box-desc">CT-FFR · Category I<br>Effective Jan 2025</div>
+        </div>
+        <div class="rev-box">
+          <div class="rev-box-code">CPT 75577</div>
+          <div class="rev-box-amt">~$951</div>
+          <div class="rev-box-desc">AI Plaque · Category I<br>Effective Jan 2026</div>
+        </div>
+      </div>
+    </div>
+    <div class="cfo-cards" style="margin-top:14px">
+      <div class="cfo-card">
+        <div class="cfo-card-label">Indirect financial benefit</div>
+        <div class="cfo-card-title">Catheterization avoidance</div>
+        <div class="cfo-card-body">Up to 40% of intermediate-stenosis referrals to the cath lab are hemodynamically non-significant when tested invasively. CT-FFR allows these patients to safely avoid catheterization — reducing downstream cost, procedure risk, and liability exposure. In value-based or bundled payment contracts, this avoidance is directly captured as margin.</div>
+      </div>
+      <div class="cfo-card">
+        <div class="cfo-card-label">Indirect financial benefit</div>
+        <div class="cfo-card-title">Value-based contract upside</div>
+        <div class="cfo-card-body">MACE reduction through plaque-directed prevention therapy (DECIDE registry: LDL ↓18.7 mg/dL at 90 days) reduces downstream cardiovascular events. Fewer readmissions and acute events translate directly into shared-savings in ACO, MSSP, and Medicare Advantage risk arrangements.</div>
+      </div>
+    </div>
+    <div class="ev-notice"><i class="ti ti-info-circle" aria-hidden="true" style="font-size:12px;flex-shrink:0;margin-top:1px"></i><span>Medicare facility fee estimates based on CMS OPPS published rates. The professional (physician) component is billed separately by the interpreting cardiologist or radiologist. Rates update annually — confirm current values in CMS OPPS Addendum B. Commercial payer rates vary; negotiate explicit rates in payer contracts.</span></div>
+  </div>
+
+  <!-- CPT code breakdown -->
+  <div class="cfo-section">
+    <div class="cfo-sec-lbl lbl-fin">FINANCIAL — CPT code breakdown</div>
+    <div class="cpt-wrap">
+      <table class="cpt-tbl">
+        <thead>
+          <tr>
+            <th>CPT Code</th>
+            <th>Service</th>
+            <th>Category</th>
+            <th>Effective</th>
+            <th>Est. Medicare rate</th>
+            <th>US-cleared platforms</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><span class="cpt-code">75580</span></td>
+            <td>AI-derived CT fractional flow reserve (CT-FFR) — hemodynamic ischemia assessment from CCTA without adenosine or catheterization</td>
+            <td><span class="badge-cat1">Category I</span></td>
+            <td>Jan 2025</td>
+            <td><span class="cpt-rate">~$900</span><br><small style="color:var(--text-3);font-size:11px">OPPS facility fee</small></td>
+            <td style="font-size:12px">HeartFlow FFRCT · Keya DEEPVESSEL FFR<br><span style="color:var(--text-3)">Verify 75580 eligibility for other platforms with each payer before billing.</span></td>
+          </tr>
+          <tr>
+            <td><span class="cpt-code">75577</span></td>
+            <td>AI quantitative coronary atherosclerotic plaque analysis — plaque volume, composition, and burden stratification from CCTA data</td>
+            <td><span class="badge-cat1">Category I</span></td>
+            <td>Jan 2026</td>
+            <td><span class="cpt-rate">~$951</span><br><small style="color:var(--text-3);font-size:11px">OPPS facility fee</small></td>
+            <td style="font-size:12px">HeartFlow Plaque · Cleerly LABS · Elucid PlaqueIQ · Caristo CaRi-Plaque · Artrya Salix · Circle CVI cvi42|Plaque · Keya DEEPVESSEL Plaque (verify FDA 510(k))</td>
+          </tr>
+          <tr>
+            <td><span class="cpt-code">0992T<br>0993T</span></td>
+            <td>Pericoronary adipose tissue attenuation analysis (FAI) — coronary inflammation marker derived from CCTA; separate from plaque quantification</td>
+            <td><span class="badge-cat3">Category III</span></td>
+            <td>Jan 2026</td>
+            <td><span style="color:#92400E;font-weight:500">Payer-by-payer</span><br><small style="color:var(--text-3);font-size:11px">Lower coverage than Cat I</small></td>
+            <td style="font-size:12px">Caristo CaRi-Heart — FDA clearance pending as of guide update. Verify in FDA 510(k) database before any clinical billing.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="cfo-caution"><i class="ti ti-alert-triangle" aria-hidden="true" style="font-size:14px;flex-shrink:0;margin-top:1px"></i><span><strong>Category III codes (0992T/0993T) carry substantially lower payer coverage than Category I.</strong> Many commercial plans and some Medicare Advantage plans do not reimburse Category III codes, or require case-by-case prior authorization. Confirm coverage per payer before clinical deployment of any FAI product. Do not assume 0992T/0993T will be covered because 75577 is.</span></div>
+  </div>
+
+  <!-- Payer coverage: How to verify -->
+  <div class="cfo-section">
+    <div class="cfo-sec-lbl lbl-fin">FINANCIAL — How to verify payer coverage</div>
+
+    <div class="cfo-cards" style="margin-bottom:20px">
+      <div class="cfo-card">
+        <div class="cfo-card-label">The payer universe</div>
+        <div class="cfo-card-title">~650 US payers — but you don't need all of them</div>
+        <div class="cfo-card-body">There are roughly 650 commercial payers in the US, plus Medicare, Medicare Advantage plans, and Medicaid programs in each state. Your top <strong>5 payers by volume typically account for 70–80% of your commercial revenue</strong>, and your top 10 cover 85–90%.<br><br>The long tail of ~640 smaller payers largely follows the top 10 with a 12–18 month lag. Focus coverage verification on your top 10. Do not sign a vendor contract or project revenue until you have confirmed coverage status for each of those 10.</div>
+      </div>
+      <div class="cfo-card">
+        <div class="cfo-card-label">First move</div>
+        <div class="cfo-card-title">Pull your payer mix report before anything else</div>
+        <div class="cfo-card-body">Ask your revenue cycle team for a <strong>payer mix report ranked by annual revenue</strong> — not by claim volume. You want to know which payers represent the most dollars, not just the most patients.<br><br>Take the top 10. Those are the only payers that matter for initial coverage verification. Do not start any other research steps until you have this list.</div>
+      </div>
+      <div class="cfo-card">
+        <div class="cfo-card-label">What "Category I" means commercially</div>
+        <div class="cfo-card-title">CMS coverage ≠ commercial coverage</div>
+        <div class="cfo-card-body">Category I status means <strong>CMS covers it under Medicare OPPS nationally — that's it.</strong> Commercial payers are not automatically bound. Each runs its own medical policy committee and issues independent coverage determinations.<br><br>Most major commercials reference Medicare fee schedules for <em>rates</em> (paying X% of Medicare). But they make completely independent <em>coverage</em> decisions — and typically lag CMS by 12–24 months.</div>
+      </div>
+    </div>
+
+    <div class="sec-lbl">4-layer verification framework</div>
+    <div class="wf-steps" style="margin-bottom:20px">
+      <div class="wf-step">
+        <div class="wf-n">1</div>
+        <div>
+          <div class="wf-title">Ask your vendor's reimbursement team first (fastest path)</div>
+          <div class="wf-body">HeartFlow maintains a live payer coverage map updated by state for CPT 75580 and has dedicated reimbursement staff. <strong>Ask your HeartFlow rep: "Show me the current coverage policy status for 75580 and 75577 for our top 10 payers by name in our region."</strong><br><br>For 75577 (effective Jan 2026), vendor coverage maps are less mature — independently verify even if the vendor claims coverage. Keya, Cleerly, Elucid, and other vendors have less developed payer infrastructure than HeartFlow for this specific reimbursement support function.</div>
+        </div>
+      </div>
+      <div class="wf-step">
+        <div class="wf-n">2</div>
+        <div>
+          <div class="wf-title">Check payer medical policy portals directly</div>
+          <div class="wf-body">Every major payer publishes its medical policies online. If no policy is found, the code is generally not covered or is processed as investigational — neither means you can bill freely.
+          <div class="payer-wrap" style="margin-top:12px">
+            <table class="payer-tbl">
+              <thead>
+                <tr>
+                  <th>Payer</th>
+                  <th>Where to find policies</th>
+                  <th>Search terms</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><div class="payer-name">UnitedHealthcare</div></td>
+                  <td style="font-size:12px">uhcprovider.com → Policies &amp; Protocols → Medical &amp; Drug Policies</td>
+                  <td style="font-size:12px">"75580" or "coronary CT fractional flow reserve"</td>
+                </tr>
+                <tr>
+                  <td><div class="payer-name">Aetna</div></td>
+                  <td style="font-size:12px">aetna.com/cpb — Clinical Policy Bulletins (public, no login)</td>
+                  <td style="font-size:12px">"CPT 75580" or "CCTA plaque" or "CT angiography FFR"</td>
+                </tr>
+                <tr>
+                  <td><div class="payer-name">Cigna</div></td>
+                  <td style="font-size:12px">cigna.com → Healthcare Professionals → Coverage Policies → Medical Coverage Policies</td>
+                  <td style="font-size:12px">"coronary CTA" or "75577" or "coronary plaque"</td>
+                </tr>
+                <tr>
+                  <td><div class="payer-name">BCBS / Anthem</div><div class="payer-path">Each affiliate is independent — not nationally unified</div></td>
+                  <td style="font-size:12px">Find your regional affiliate (Anthem, Premera, BCBS TX, BCBS IL, etc.) and search their individual provider portal</td>
+                  <td style="font-size:12px">"CT-FFR" or "coronary plaque analysis" or "fractional flow reserve"</td>
+                </tr>
+                <tr>
+                  <td><div class="payer-name">Humana</div></td>
+                  <td style="font-size:12px">humana.com → Provider → Medical Policy Search</td>
+                  <td style="font-size:12px">"75580" or "75577" or "coronary CT AI"</td>
+                </tr>
+                <tr>
+                  <td><div class="payer-name">Medicaid</div><div class="payer-path">State-by-state — not uniform</div></td>
+                  <td style="font-size:12px">Your state's Medicaid program website → fee schedule or covered services lookup</td>
+                  <td style="font-size:12px">CPT code number in state fee schedule PDF</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          </div>
+        </div>
+      </div>
+      <div class="wf-step">
+        <div class="wf-n">3</div>
+        <div>
+          <div class="wf-title">Use Availity for prior auth requirements</div>
+          <div class="wf-body">Availity is the payer portal aggregator most US hospitals already use for eligibility verification and prior authorization. It lets you check prior auth requirements by CPT code across multiple payers from one login — without calling each payer individually.<br><br>Check your top 10 payers in Availity: does 75580 or 75577 appear as requiring prior auth? If yes, you need an established prior auth workflow before the first live case. Also useful: <strong>CoverMyMeds</strong> and <strong>Cohere Health</strong> for automated prior auth submission and tracking.</div>
+        </div>
+      </div>
+      <div class="wf-step">
+        <div class="wf-n">4</div>
+        <div>
+          <div class="wf-title">Call provider services directly for your top 5</div>
+          <div class="wf-body">For the payers representing the most revenue, a direct call is worth the time. Use this script:
+          <div class="call-script">"Does CPT [75580 / 75577] require prior authorization for outpatient hospital claims? Is there an active coverage policy for this code? Can you confirm whether it is covered or considered investigational? Can you give me a reference number for this call?"</div>
+          <strong>Always get a reference number.</strong> Verbal confirmations do not survive denial appeals. If the representative says it's covered, request written confirmation by fax or secure message referencing the CPT code and call date. This documentation is your first line of defense if that claim is later denied as investigational.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="sec-lbl">Coverage timeline by payer tier</div>
+    <div class="timeline-wrap">
+      <table class="timeline-tbl">
+        <thead>
+          <tr>
+            <th>CPT Code</th>
+            <th>Medicare (traditional)</th>
+            <th>Major commercial<br>(UHC, Aetna, Cigna)</th>
+            <th>BCBS affiliates</th>
+            <th>Smaller payers</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><span class="t-code">75580</span><br><small style="color:var(--text-3)">CT-FFR · Cat I Jan 2025</small></td>
+            <td><span class="t-covered">Covered</span></td>
+            <td><span class="t-partial">Mixed</span><br><small>~50–60% have positive policies by mid-2026. Prior auth still common.</small></td>
+            <td><span class="t-partial">Variable by affiliate</span><br><small>Some major affiliates have policies; check each independently — BCBS is not nationally unified.</small></td>
+            <td><span class="t-not">Lagging</span><br><small>Mostly pend or deny; follow major payer decisions with 12–18 month delay.</small></td>
+          </tr>
+          <tr>
+            <td><span class="t-code">75577</span><br><small style="color:var(--text-3)">AI Plaque · Cat I Jan 2026</small></td>
+            <td><span class="t-covered">Covered</span></td>
+            <td><span class="t-partial">Policies being written</span><br><small>Many "under review" in 2026. Expect broader coverage 2027.</small></td>
+            <td><span class="t-not">Early stages</span><br><small>Most affiliates have not published 75577 policies as of mid-2026.</small></td>
+            <td><span class="t-not">1–2 years behind</span><br><small>Do not project 75577 revenue from smaller payers in year 1.</small></td>
+          </tr>
+          <tr>
+            <td><span class="t-code">0992T / 0993T</span><br><small style="color:var(--text-3)">FAI · Cat III Jan 2026</small></td>
+            <td><span class="t-not">Limited / pend</span><br><small>Category III = lower Medicare coverage than Cat I.</small></td>
+            <td><span class="t-not">Unlikely 2026–2027</span><br><small>Category III codes rarely covered by commercial payers without active lobbying and outcome data.</small></td>
+            <td><span class="t-not">Not meaningful</span></td>
+            <td><span class="t-not">Not meaningful</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="cfo-cards" style="margin-top:14px">
+      <div class="cfo-card">
+        <div class="cfo-card-label">Prior authorization — practical guidance</div>
+        <div class="cfo-card-title">Plan for it, especially in year 1</div>
+        <div class="cfo-card-body">CPT 75580 has required prior auth from some commercial payers historically. With Category I status this is easing — but not gone. 75577 is newer, so expect more friction in 2026.<br><br><strong>HeartFlow</strong> offers dedicated prior auth support services — a meaningful competitive differentiator worth factoring into vendor evaluation if your revenue cycle team is lean.<br><br>Track denial reasons weekly in the first 90 days. The most common deniable reasons: missing prior auth documentation, incorrect ICD-10 pairing, and payer "investigational" policy not yet updated to reflect Category I status. Each is appealable — but appeals take staff time.</div>
+      </div>
+      <div class="cfo-card">
+        <div class="cfo-card-label">Medicare Advantage</div>
+        <div class="cfo-card-title">Separate from traditional Medicare</div>
+        <div class="cfo-card-body">Medicare Advantage (MA) plans are commercial plans contracted with CMS — they are <strong>not</strong> traditional Medicare and can impose their own prior auth requirements and coverage limitations even for Category I codes.<br><br>If MA represents a significant share of your payer mix, treat each MA plan as a separate commercial payer for coverage verification purposes. Major MA plans (UHC Medicare Advantage, Humana Medicare Advantage, Aetna MA) often follow traditional Medicare coverage but with their own prior auth overlays.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Financial modeling -->
+  <div class="cfo-section">
+    <div class="cfo-sec-lbl lbl-fin">FINANCIAL — Cost &amp; financial modeling</div>
+    <div class="cfo-cards">
+      <div class="cfo-card">
+        <div class="cfo-card-label">Cloud per-case model (most vendors)</div>
+        <div class="cfo-card-title">Variable cost, zero capital outlay</div>
+        <div class="cfo-card-body">HeartFlow, Cleerly, Keya, Elucid, Artrya, and Caristo all use cloud per-case pricing. The institution pays a per-submission fee to the vendor; CPT reimbursement partially or fully offsets this depending on payer mix and volume. Vendor per-case fees are not publicly disclosed — request detailed pricing from each vendor and model net margin before contracting.<br><br><strong>Key variable:</strong> the ratio of fully covered (Category I) to denied or non-covered cases determines realized net margin. Model at low, mid, and high annual case volume projections.</div>
+      </div>
+      <div class="cfo-card">
+        <div class="cfo-card-label">On-premise model (Circle CVI)</div>
+        <div class="cfo-card-title">Fixed cost, volume-independent margin</div>
+        <div class="cfo-card-body">Circle CVI cvi42 uses a platform license model. Once licensed, per-case marginal cost is near zero — the institution retains the full CPT 75577 reimbursement on every covered case. Capital: server hardware if not using existing cvi42. Software: annual license fee.<br><br><strong>Break-even is reached faster</strong> at institutions already running cvi42 (1,700+ hospitals globally). On-premise also eliminates PHI-off-site risk, which may have additional CFO value if your institution carries elevated cyber risk posture or strict data residency requirements.</div>
+      </div>
+      <div class="cfo-card">
+        <div class="cfo-card-label">Dual-platform billing</div>
+        <div class="cfo-card-title">~$1,851 from one scan — one vendor</div>
+        <div class="cfo-card-body">Only <strong>HeartFlow</strong> currently has confirmed FDA clearances for both CT-FFR (75580) and plaque analysis (75577) from a single platform — enabling combined billing of ~$1,851 per eligible case from one vendor contract and one DICOM submission workflow.<br><br>Verify Cleerly's 75580 eligibility per payer before assuming combined billing — SCCT 2026 classifies Cleerly ISCHEMIA outside CT-FFR scope, which may affect payer coverage for that code specifically. A single-vendor approach also simplifies IT integration, training, and contract management.</div>
+      </div>
+      <div class="cfo-card">
+        <div class="cfo-card-label">Use realistic covered-case assumptions</div>
+        <div class="cfo-card-title">Do not model 100% collection rate</div>
+        <div class="cfo-card-body"><strong>Build in conservative covered-case percentages for year 1:</strong><br><br>
+          <strong>75580:</strong> 70–80% covered-case rate (varies by payer mix)<br>
+          <strong>75577:</strong> 40–60% covered-case rate (too new for full commercial adoption)<br>
+          <strong>Denial overhead:</strong> budget 1–2 FTE-hours per denial for first 90 days<br><br>
+          Common denial reasons: missing prior auth, incorrect ICD-10 pairing, payer "investigational" policy not yet updated to reflect Category I status. Each is appealable — but appeals take staff time. Review denial reasons weekly and build appeal templates early.</div>
+      </div>
+      <div class="cfo-card">
+        <div class="cfo-card-label">TC/26 split billing</div>
+        <div class="cfo-card-title">Facility and physician bill separately</div>
+        <div class="cfo-card-body">75580 and 75577 both bill as split technical/professional components:<br><br>
+          <strong>TC (technical component):</strong> billed by the facility on UB-04 (hospital outpatient claim)<br>
+          <strong>26 (professional component):</strong> billed by the interpreting physician on CMS-1500<br><br>
+          Both must reference the same date of service and patient encounter. Ensure your interpreting cardiologists and radiologists understand the billing pathway — some payers require specific subspecialty credential documentation with the 26 modifier. Coordinate with your physician group or hospitalist billing team to avoid duplicate billing errors.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CFO checklist -->
+  <div class="cfo-section">
+    <div class="cfo-sec-lbl lbl-fin">FINANCIAL — CFO &amp; revenue cycle checklist</div>
+    <div class="checklist-box">
+      <div class="checklist-col-title fin" style="margin-bottom:16px">Before go-live</div>
+      <ul class="cl-check-list">
+        <li><span class="cl-num">01</span>Pull payer mix report ranked by annual revenue from your revenue cycle team — identify your top 10 payers before any other research step</li>
+        <li><span class="cl-num">02</span>Get vendor payer coverage map for 75580 and 75577 specific to your region's top 10 payers (HeartFlow has the most complete map for 75580)</li>
+        <li><span class="cl-num">03</span>Verify coverage independently via payer portals (Aetna CPB, UHC medical policies, Cigna coverage policies) for your top 5 payers</li>
+        <li><span class="cl-num">04</span>Call provider services for the top 5 payers — use the verification script above — document the reference number and rep name for each call</li>
+        <li><span class="cl-num">05</span>Confirm prior authorization requirements per payer and per CPT code; establish prior auth workflow in Availity (or CoverMyMeds/Cohere) before first live case</li>
+        <li><span class="cl-num">06</span>Negotiate vendor per-case fee before signing — model net margin at conservative/base/optimistic case volumes using 70–80% covered-case rate for 75580 and 40–60% for 75577</li>
+        <li><span class="cl-num">07</span>If considering Circle CVI on-prem: model fixed license + server cost vs per-case CPT revenue at projected annual volume to find break-even point</li>
+        <li><span class="cl-num">08</span>Confirm TC/26 billing pathway with physician group — who bills the 26, under what credentials, on which claim form (CMS-1500)</li>
+        <li><span class="cl-num">09</span>Work with revenue cycle IT to add CPT 75580 and 75577 to your CDM (charge description master) linked to the imaging encounter type before go-live</li>
+        <li><span class="cl-num">10</span>Confirm Medicaid coverage if Medicaid represents &gt;15% of your payer mix — check your state's Medicaid fee schedule directly</li>
+        <li><span class="cl-num">11</span>Do not project revenue from 0992T/0993T (FAI) until FDA clearance is verified in the public 510(k) database and payer coverage is confirmed per-payer in writing</li>
+        <li><span class="cl-num">12</span>Designate a reimbursement coordinator for the first 90 days — establish a denial tracking log (payer name, reason code, CPT code, resolution) reviewed weekly</li>
+      </ul>
+    </div>
+  </div>
+
+</div>
+
+<!-- IT & INTEGRATION -->
+<div id="pane-it" class="pane">
+
+  <div class="it-hero">
+    <div class="cfo-eyebrow" style="color:#6B21A8;opacity:.75">DICOM · PACS · SECURITY · DATA GOVERNANCE · IMPLEMENTATION</div>
+    <h1 class="cfo-h1">Every integration point, security requirement, and go-live decision your team needs.</h1>
+    <p class="cfo-lead">Deployment architecture, DICOM workflow, infrastructure requirements, data governance, security certifications, implementation timelines, and common failure modes — for IT directors, CISOs, and PACS administrators.</p>
+    <div class="cfo-aud-row">
+      <span class="aud-pill aud-it">IT Director</span>
+      <span class="aud-pill aud-it">CISO</span>
+      <span class="aud-pill aud-it">PACS Administrator</span>
+    </div>
+  </div>
+
+  <!-- IT Section 1: Deployment architecture -->
+  <div class="cfo-section">
+    <div class="cfo-sec-lbl lbl-it">IT — Deployment architecture</div>
+    <div class="deploy-grid">
+      <div class="deploy-card cloud">
+        <div class="deploy-hd">Cloud deployment</div>
+        <div class="deploy-sub">DICOM data leaves institution network for AI processing</div>
+        <ul class="deploy-items">
+          <li><span class="d-chk">✓</span>Zero on-premise hardware required</li>
+          <li><span class="d-chk">✓</span>Vendor manages compute, scaling, and uptime</li>
+          <li><span class="d-chk">✓</span>AI model updates automatic — no IT maintenance window</li>
+          <li><span class="d-chk">✓</span>Typically deployable in weeks, not months</li>
+          <li><span class="d-note">→</span>PHI leaves hospital network — HIPAA BAA mandatory before go-live</li>
+          <li><span class="d-note">→</span>Requires firewall outbound rules to vendor DICOM/HTTPS endpoints</li>
+          <li><span class="d-note">→</span>Turnaround: typically 45 min–2 hrs per case (internet-dependent)</li>
+          <li><span class="d-note">→</span>Data residency must be confirmed (US vs EU data center)</li>
+        </ul>
+        <div class="deploy-vendors">
+          <div class="dv-lbl">US-cleared cloud vendors</div>
+          <span class="dv-chip">HeartFlow</span>
+          <span class="dv-chip">Cleerly</span>
+          <span class="dv-chip">Keya (cloud-only)</span>
+          <span class="dv-chip">Elucid</span>
+          <span class="dv-chip">Artrya</span>
+          <span class="dv-chip">Caristo</span>
+        </div>
+      </div>
+      <div class="deploy-card onprem">
+        <div class="deploy-hd">On-premise deployment</div>
+        <div class="deploy-sub">Data stays entirely within institutional firewall</div>
+        <ul class="deploy-items">
+          <li><span class="d-chk" style="color:#6B21A8">✓</span>PHI never leaves hospital network</li>
+          <li><span class="d-chk" style="color:#6B21A8">✓</span>No external internet dependency for AI processing</li>
+          <li><span class="d-chk" style="color:#6B21A8">✓</span>Full CPT 75577 margin retained — no per-case vendor fee</li>
+          <li><span class="d-chk" style="color:#6B21A8">✓</span>Integrates with existing cvi42 at 1,700+ installed hospitals</li>
+          <li><span class="d-note">→</span>Dedicated server with GPU required (NVIDIA recommended)</li>
+          <li><span class="d-note">→</span>IT team owns local uptime, backups, and maintenance</li>
+          <li><span class="d-note">→</span>Software updates require vendor coordination</li>
+          <li><span class="d-note">→</span>Plaque analysis only — no cleared on-premise CT-FFR as of June 2026</li>
+        </ul>
+        <div class="deploy-vendors">
+          <div class="dv-lbl">US-cleared on-premise vendor</div>
+          <span class="dv-chip">Circle CVI cvi42 | Plaque (FDA Oct 2025)</span>
+          <span class="dv-chip" style="opacity:.6">Siemens Coronary Cockpit (510(k) pending)</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- DICOM workflow -->
+  <div class="cfo-section">
+    <div class="cfo-sec-lbl lbl-it">IT — DICOM workflow: cloud vendors</div>
+    <div class="wf-steps">
+      <div class="wf-step">
+        <div class="wf-n">1</div>
+        <div>
+          <div class="wf-title">CT acquisition &amp; reconstruction</div>
+          <div class="wf-body">CCTA acquired per protocol (≤0.625 mm slice thickness, ECG-gated, contrast within target HU). DICOM series generated on CT workstation. No changes to existing CT workflow — the AI pipeline starts after reconstruction is complete and the series is pushed to PACS.</div>
+        </div>
+      </div>
+      <div class="wf-step">
+        <div class="wf-n">2</div>
+        <div>
+          <div class="wf-title">PACS routes series to vendor DICOM endpoint</div>
+          <div class="wf-body">A DICOM routing rule (configured once at implementation) automatically sends the designated CCTA series from PACS to the vendor's DICOM receiver (AE Title). This is a standard DICOM C-Store operation — same mechanism used to send studies between PACS nodes. Study size: 500 MB–2 GB typical. Transit: TLS-encrypted DICOM or HTTPS. No manual file handling, no staff action required per case after setup.</div>
+        </div>
+      </div>
+      <div class="wf-step">
+        <div class="wf-n">3</div>
+        <div>
+          <div class="wf-title">AI processing in vendor cloud</div>
+          <div class="wf-body">Vendor ingests the series, runs coronary segmentation, and applies the CT-FFR or plaque AI model on their cloud infrastructure. <strong>HeartFlow:</strong> typically 45–90 min (priority submission available for urgent cases). Other vendors: similar range. Processing time is independent of your local infrastructure once the DICOM upload completes — a slow upload only delays the start, not processing speed.</div>
+        </div>
+      </div>
+      <div class="wf-step">
+        <div class="wf-n">4</div>
+        <div>
+          <div class="wf-title">Report returned to your PACS</div>
+          <div class="wf-body">AI report delivered as a DICOM Structured Report (SR) and/or PDF, pushed back to your PACS via a preconfigured return DICOM C-Store. The DICOM SR appears in any DICOM-compliant viewer without additional software installation on reading workstations.<br><br><strong>Critical configuration point:</strong> the return DICOM send (vendor → your PACS) must be configured separately from the forward send (your PACS → vendor). These are two independent DICOM associations — omitting the return path is the most common setup error (see Failure Modes below).</div>
+        </div>
+      </div>
+      <div class="wf-step">
+        <div class="wf-n">5</div>
+        <div>
+          <div class="wf-title">Physician interpretation &amp; billing trigger</div>
+          <div class="wf-body">Interpreting physician reviews AI output in PACS viewer or vendor portal and issues a signed report. CPT 75580 or 75577 billing is initiated from RIS/EHR by the revenue cycle team — the AI platform does not auto-generate charges. The CDM must have 75580/75577 configured as chargeable items linked to the imaging encounter type before this step works.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="sec-lbl" style="margin-top:24px">On-premise workflow (Circle CVI cvi42)</div>
+    <div class="wf-steps">
+      <div class="wf-step">
+        <div class="wf-n">1</div>
+        <div>
+          <div class="wf-title">CT acquisition &amp; reconstruction</div>
+          <div class="wf-body">Identical to cloud workflow — CCTA acquired per protocol, DICOM series generated on CT workstation and pushed to PACS.</div>
+        </div>
+      </div>
+      <div class="wf-step">
+        <div class="wf-n">2</div>
+        <div>
+          <div class="wf-title">PACS routes to local cvi42 server AE Title</div>
+          <div class="wf-body">A DICOM routing rule sends the CCTA series from PACS to the local cvi42 server's AE Title. <strong>Data stays entirely within the hospital network</strong> — no internet transit for the DICOM study. This routing rule is configured once at implementation, identical to cloud vendors from a PACS configuration perspective.</div>
+        </div>
+      </div>
+      <div class="wf-step">
+        <div class="wf-n">3</div>
+        <div>
+          <div class="wf-title">Local GPU processes plaque analysis</div>
+          <div class="wf-body">The cvi42 server's GPU processes the plaque analysis entirely on-site. Typical turnaround: <strong>minutes, not hours</strong> — local GPU is significantly faster than waiting for cloud queue position and round-trip network transfer. No internet dependency for this step.</div>
+        </div>
+      </div>
+      <div class="wf-step">
+        <div class="wf-n">4</div>
+        <div>
+          <div class="wf-title">Results in cvi42 viewer + PACS export</div>
+          <div class="wf-body">Analysis results viewable directly in the cvi42 reading interface. Export to PACS as a DICOM SR for review in standard PACS viewer. Physician interprets and issues signed report. Billing triggered from RIS/EHR same as cloud workflow.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Infrastructure requirements -->
+  <div class="cfo-section">
+    <div class="cfo-sec-lbl lbl-it">IT — Infrastructure requirements</div>
+    <div class="it-req-grid">
+      <div class="it-req-card">
+        <div class="it-req-icon"><i class="ti ti-network" aria-hidden="true" style="font-size:20px;color:#1B3F6E"></i></div>
+        <div class="it-req-title">Network &amp; bandwidth</div>
+        <ul class="it-req-list">
+          <li><span style="color:#1A5C36">→</span>Standard hospital gigabit LAN sufficient for local DICOM transfer</li>
+          <li><span style="color:#1A5C36">→</span>Dedicated internet: 100 Mbps recommended for concurrent cloud submissions</li>
+          <li><span style="color:#1A5C36">→</span><strong>Sizing formula:</strong> concurrent_cases × avg_study_GB × 8 ÷ upload_window_min = Mbps. Example: 3 cases × 1.5 GB × 8 ÷ 10 min = 36 Mbps needed; 100 Mbps gives comfortable headroom</li>
+          <li><span style="color:#1A5C36">→</span>Outbound ports: DICOM (104 / 11112) or HTTPS (443) to vendor endpoints</li>
+          <li><span style="color:#1A5C36">→</span>Firewall whitelist: vendor provides specific IP ranges or domain-based allowlist rules</li>
+          <li><span style="color:#92400E">→</span>DICOM compression: JPEG 2000 lossless can reduce study size 30–50% — confirm vendor accepts compressed DICOM before enabling</li>
+          <li><span style="color:#92400E">→</span>Site-to-site VPN: some vendors offer or require it — confirm during procurement</li>
+        </ul>
+      </div>
+      <div class="it-req-card">
+        <div class="it-req-icon"><i class="ti ti-server" aria-hidden="true" style="font-size:20px;color:#1B3F6E"></i></div>
+        <div class="it-req-title">PACS integration</div>
+        <ul class="it-req-list">
+          <li><span style="color:#1A5C36">→</span>DICOM AE Title configured in PACS for both send (to vendor) and receive (from vendor) separately</li>
+          <li><span style="color:#1A5C36">→</span>Major PACS tested: GE Centricity, Philips IntelliSpace, Fujifilm Synapse, Sectra, Merge, Intelerad</li>
+          <li><span style="color:#1A5C36">→</span><strong>Philips IntelliSpace</strong> and <strong>Sectra:</strong> native vendor connector programs — ask vendors for validated connector version</li>
+          <li><span style="color:#1A5C36">→</span><strong>GE Centricity:</strong> requires AE title config; confirm PACS version on vendor compatibility list</li>
+          <li><span style="color:#1A5C36">→</span>Routing middleware options: Intelerad Intelliroute (rules-based, no coding), Nuance AI Marketplace (pre-built connectors), RamSoft PowerServer</li>
+          <li><span style="color:#92400E">→</span>HeartFlow has the most validated PACS integrations; for others, confirm PACS version compatibility before signing</li>
+        </ul>
+      </div>
+      <div class="it-req-card">
+        <div class="it-req-icon"><i class="ti ti-heart-rate-monitor" aria-hidden="true" style="font-size:20px;color:#1B3F6E"></i></div>
+        <div class="it-req-title">EHR integration</div>
+        <ul class="it-req-list">
+          <li><span style="color:#1A5C36">→</span>AI reports as PDF available from all vendors — attach to EHR encounter note via document management</li>
+          <li><span style="color:#1A5C36">→</span><strong>Epic:</strong> HeartFlow has a validated App Orchard integration for FFRCT order + result — request current version documentation from HeartFlow before contracting</li>
+          <li><span style="color:#1A5C36">→</span><strong>Cerner (Oracle Health):</strong> HeartFlow has HL7 2.x integration — verify current FHIR roadmap status</li>
+          <li><span style="color:#1A5C36">→</span>HL7 FHIR: emerging across all vendors — verify current status with each vendor; do not assume</li>
+          <li><span style="color:#92400E">→</span>CDM must be updated: 75580 and 75577 added as chargeable items linked to imaging encounter type — involves revenue cycle IT, not just IT operations</li>
+          <li><span style="color:#92400E">→</span>AI platform does not auto-generate charges — billing is a separate RIS/EHR workflow step</li>
+        </ul>
+      </div>
+      <div class="it-req-card">
+        <div class="it-req-icon"><i class="ti ti-cpu" aria-hidden="true" style="font-size:20px;color:#6B21A8"></i></div>
+        <div class="it-req-title">On-premise server spec (Circle CVI)</div>
+        <ul class="it-req-list">
+          <li><span style="color:#6B21A8">→</span>Dedicated server within hospital network — no cloud dependency for AI processing</li>
+          <li><span style="color:#6B21A8">→</span><strong>GPU:</strong> NVIDIA RTX or A-series; minimum 16 GB VRAM — confirm current spec with Circle CVI at time of procurement</li>
+          <li><span style="color:#6B21A8">→</span><strong>OS:</strong> Windows Server or Linux — verify supported versions with Circle CVI</li>
+          <li><span style="color:#6B21A8">→</span><strong>Storage:</strong> RAID array for input DICOM archive; local SSD for active processing queue</li>
+          <li><span style="color:#6B21A8">→</span><strong>Backup:</strong> include cvi42 database and DICOM output in standard hospital backup schedule</li>
+          <li><span style="color:#6B21A8">→</span>Internet required for license validation only — not for AI processing</li>
+          <li><span style="color:#6B21A8">→</span>Maintenance windows: coordinate cvi42 software updates with Circle CVI; schedule during off-peak hours</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- Data governance & security -->
+  <div class="cfo-section">
+    <div class="cfo-sec-lbl lbl-it">IT — Data governance &amp; security</div>
+    <div class="cfo-cards">
+      <div class="cfo-card">
+        <div class="cfo-card-label">HIPAA BAA — Required clauses</div>
+        <div class="cfo-card-title">Execute before any PHI is transmitted — no exceptions</div>
+        <div class="cfo-card-body">A HIPAA Business Associate Agreement (BAA) is legally required before the first DICOM case is sent. A BAA that is missing or that lacks these specific provisions is insufficient.<br><br><strong>Require these clauses in writing:</strong></div>
+        <ul class="baa-list">
+          <li class="baa-bullet"><strong>Permitted purposes:</strong> PHI use limited to AI analysis service delivery only — not model training, marketing, or secondary research</li>
+          <li class="baa-bullet"><strong>Sub-processors:</strong> vendor must list all third-party processors (cloud providers, subcontractors); updates require your approval</li>
+          <li class="baa-bullet"><strong>Breach notification:</strong> ≤60 days per HIPAA §164.410 — negotiate for 24-hour discovery notification to your CISO as an additional contractual obligation</li>
+          <li class="baa-bullet"><strong>PHI deletion timeline:</strong> specify days post-report delivery (e.g., 30 days); confirm this is documented and auditable</li>
+          <li class="baa-bullet"><strong>Audit rights:</strong> your institution retains the right to audit vendor HIPAA compliance annually</li>
+          <li class="baa-bullet"><strong>Return of PHI:</strong> in the event of contract termination, vendor must return or certifiably destroy all PHI within a defined window (typically 60 days)</li>
+        </ul>
+      </div>
+      <div class="cfo-card">
+        <div class="cfo-card-label">Data Residency</div>
+        <div class="cfo-card-title">Name the specific cloud region in the contract</div>
+        <div class="cfo-card-body"><strong>US institutions:</strong> require vendor to contractually name specific cloud regions (e.g., "AWS us-east-1 and us-west-2"). "US data centers" without specific region names is not contractually enforceable.<br><br>Ask: do backups replicate cross-region or cross-border? For multi-site systems: confirm all facilities' data stays in same-country data centers.<br><br><strong>EU/UK:</strong> CE-cleared vendors should have separate GDPR-compliant EU cloud instances — verify this is a separate instance, not a cross-border transfer from a US primary region.<br><br><strong>Keya Medical</strong> is cloud-only (no on-site option). Confirm US data center region contractually.</div>
+      </div>
+      <div class="cfo-card">
+        <div class="cfo-card-label">PHI Handling &amp; AI Training</div>
+        <div class="cfo-card-title">Ask explicitly if your PHI trains the model</div>
+        <div class="cfo-card-body"><strong>Most FDA-cleared vendors use inference-only deployments</strong> — your DICOM data is processed for analysis but not used to retrain the production AI model. Confirm this in writing: "Is patient data from our institution used to train or fine-tune your production AI model?"<br><br><strong>Retention after report:</strong> HeartFlow has published PHI deletion policies. For all other vendors, get the specific retention timeline in the BAA — do not rely on verbal assurances.<br><br><strong>Research de-identification:</strong> before any de-identified data is shared, confirm the vendor's de-id methodology meets HIPAA Safe Harbor or Expert Determination standard — not just "de-identified." This is separate from the clinical deployment BAA and requires a separate agreement.</div>
+      </div>
+      <div class="cfo-card">
+        <div class="cfo-card-label">Security Certifications — Procurement checklist</div>
+        <div class="cfo-card-title">Read the exceptions, not just the summary</div>
+        <div class="cfo-card-body">Standard documents to request during procurement:</div>
+        <ul class="baa-list">
+          <li class="baa-bullet"><strong>SOC 2 Type II:</strong> request report dated within the last 12 months; read the "exceptions" section, not just the auditor summary — HeartFlow ✓, Cleerly ✓, others: verify</li>
+          <li class="baa-bullet"><strong>ISO 27001:</strong> not universal across vendors — request certificate and verify expiry date is current</li>
+          <li class="baa-bullet"><strong>Penetration test:</strong> request most recent report and evidence that critical/high findings were remediated; ask for remediation timeline</li>
+          <li class="baa-bullet"><strong>Minimum TLS version:</strong> require TLS 1.2 minimum in contract language; TLS 1.3 preferred for new deployments</li>
+          <li class="baa-bullet"><strong>DICOM encryption:</strong> confirm vendor uses TLS-wrapped DICOM (DICOM over TLS / DICOMTLS), not plain-text DICOM over the internet</li>
+          <li class="baa-bullet"><strong>Encryption at rest:</strong> AES-256 for stored DICOM data and reports</li>
+          <li class="baa-bullet"><strong>Vulnerability management:</strong> ask for patching SLA (e.g., critical CVEs patched within 30 days)</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- Vendor IT reference table -->
+  <div class="cfo-section">
+    <div class="cfo-sec-lbl lbl-it">IT — Vendor IT reference table</div>
+    <div class="it-wrap">
+      <table class="it-tbl">
+        <thead>
+          <tr>
+            <th>Vendor / Product</th>
+            <th>Deployment</th>
+            <th>CPT codes</th>
+            <th>Data residency</th>
+            <th>BAA available</th>
+            <th>SOC 2 Type II</th>
+            <th>Turnaround</th>
+            <th>EHR / PACS</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><div class="it-vname">HeartFlow</div><div class="it-vprod">FFRCT + Plaque + PCI Planner</div></td>
+            <td><span class="d-cloud">Cloud</span></td>
+            <td style="font-size:12px">75580 ✓<br>75577 ✓</td>
+            <td style="font-size:12px">US + EU (CE)</td>
+            <td style="font-size:12px;color:#1A5C36">✓ Standard</td>
+            <td style="font-size:12px;color:#1A5C36">✓ Published</td>
+            <td style="font-size:12px">45–90 min<br>Priority avail.</td>
+            <td style="font-size:12px">Epic (App Orchard) · Cerner · major PACS. Most mature.</td>
+          </tr>
+          <tr>
+            <td><div class="it-vname">Cleerly</div><div class="it-vprod">LABS v2.0 + ISCHEMIA</div></td>
+            <td><span class="d-cloud">Cloud</span></td>
+            <td style="font-size:12px">75577 ✓<br>75580 — verify*</td>
+            <td style="font-size:12px">US</td>
+            <td style="font-size:12px;color:#1A5C36">✓ Standard</td>
+            <td style="font-size:12px;color:#1A5C36">✓ Published</td>
+            <td style="font-size:12px">~1–2 hrs</td>
+            <td style="font-size:12px">DICOM SR · PDF · payer portals</td>
+          </tr>
+          <tr>
+            <td><div class="it-vname">Keya Medical</div><div class="it-vprod">DEEPVESSEL FFR + Plaque</div></td>
+            <td><span class="d-cloud">Cloud only</span></td>
+            <td style="font-size:12px">75580 ✓<br>75577 — verify 510(k)</td>
+            <td style="font-size:12px">US (cloud only)</td>
+            <td style="font-size:12px;color:#92400E">Verify</td>
+            <td style="font-size:12px;color:#92400E">Verify</td>
+            <td style="font-size:12px">~1–2 hrs</td>
+            <td style="font-size:12px">DICOM SR · vendor portal</td>
+          </tr>
+          <tr>
+            <td><div class="it-vname">Elucid</div><div class="it-vprod">PlaqueIQ</div></td>
+            <td><span class="d-cloud">Cloud</span></td>
+            <td style="font-size:12px">75577 ✓</td>
+            <td style="font-size:12px">US</td>
+            <td style="font-size:12px;color:#92400E">Verify</td>
+            <td style="font-size:12px;color:#92400E">Verify</td>
+            <td style="font-size:12px">Verify w/ vendor</td>
+            <td style="font-size:12px">DICOM SR · PDF</td>
+          </tr>
+          <tr>
+            <td><div class="it-vname">Caristo</div><div class="it-vprod">CaRi-Plaque + CaRi-Heart</div></td>
+            <td><span class="d-cloud">Cloud</span></td>
+            <td style="font-size:12px">75577 ✓<br>0992T/0993T (Cat III)</td>
+            <td style="font-size:12px">US + UK/EU</td>
+            <td style="font-size:12px;color:#92400E">Verify</td>
+            <td style="font-size:12px;color:#92400E">Verify</td>
+            <td style="font-size:12px">Verify w/ vendor</td>
+            <td style="font-size:12px">DICOM SR · PDF · portal</td>
+          </tr>
+          <tr>
+            <td><div class="it-vname">Artrya</div><div class="it-vprod">Salix Plaque</div></td>
+            <td><span class="d-cloud">Cloud</span></td>
+            <td style="font-size:12px">75577 ✓</td>
+            <td style="font-size:12px">US + Australia</td>
+            <td style="font-size:12px;color:#92400E">Verify</td>
+            <td style="font-size:12px;color:#92400E">Verify</td>
+            <td style="font-size:12px">Verify w/ vendor</td>
+            <td style="font-size:12px">DICOM SR · portal</td>
+          </tr>
+          <tr>
+            <td><div class="it-vname">Circle CVI</div><div class="it-vprod">cvi42 | Plaque</div></td>
+            <td><span class="d-onprem">On-premise</span></td>
+            <td style="font-size:12px">75577 ✓</td>
+            <td style="font-size:12px">On-site only<br>PHI never leaves</td>
+            <td style="font-size:12px;color:#6B21A8">N/A (on-prem)</td>
+            <td style="font-size:12px;color:#92400E">Verify</td>
+            <td style="font-size:12px">Minutes<br>(local GPU)</td>
+            <td style="font-size:12px">cvi42 viewer · PACS DICOM export</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="ev-notice"><i class="ti ti-info-circle" aria-hidden="true" style="font-size:12px;flex-shrink:0;margin-top:1px"></i><span>This table reflects publicly available information as of June 2026. SOC 2 and BAA status changes with vendor updates — request current documentation directly during procurement. Author advisory disclosures: Keya Medical, Heartio, Ligence, CASIS. *Cleerly ISCHEMIA: SCCT 2026 classifies outside CT-FFR scope — verify 75580 eligibility per payer.</span></div>
+  </div>
+
+  <!-- Implementation timeline -->
+  <div class="cfo-section">
+    <div class="cfo-sec-lbl lbl-it">IT — Implementation timeline: cloud vs on-premise</div>
+    <div class="impl-wrap">
+      <table class="impl-tbl">
+        <thead>
+          <tr>
+            <th>Milestone</th>
+            <th>Cloud vendor (e.g., HeartFlow)</th>
+            <th>On-premise (Circle CVI)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="impl-milestone">Contract signed</td>
+            <td class="impl-cloud">Week 0</td>
+            <td class="impl-onprem">Week 0</td>
+          </tr>
+          <tr>
+            <td class="impl-milestone">HIPAA BAA executed</td>
+            <td class="impl-cloud">Week 0–1 (required before any PHI)</td>
+            <td class="impl-na">N/A — no PHI leaves site</td>
+          </tr>
+          <tr>
+            <td class="impl-milestone">Hardware procurement</td>
+            <td class="impl-na">N/A — vendor infrastructure</td>
+            <td class="impl-onprem">Week 1–4 (GPU server order lead time)</td>
+          </tr>
+          <tr>
+            <td class="impl-milestone">PACS AE title configured</td>
+            <td class="impl-cloud">Week 1–2</td>
+            <td class="impl-onprem">Week 1–2 (after server arrives)</td>
+          </tr>
+          <tr>
+            <td class="impl-milestone">Firewall rules opened</td>
+            <td class="impl-cloud">Week 1–2 (outbound to vendor endpoints)</td>
+            <td class="impl-na">N/A — internal network only</td>
+          </tr>
+          <tr>
+            <td class="impl-milestone">Software install &amp; license activation</td>
+            <td class="impl-na">N/A — cloud-hosted</td>
+            <td class="impl-onprem">Week 3–5 (Circle CVI engineer on-site or remote)</td>
+          </tr>
+          <tr>
+            <td class="impl-milestone">Staging test with de-identified cases</td>
+            <td class="impl-cloud">Week 2–3</td>
+            <td class="impl-onprem">Week 4–6</td>
+          </tr>
+          <tr>
+            <td class="impl-milestone">CDM updated (75580/75577 as chargeable)</td>
+            <td class="impl-cloud">Week 3–5 (revenue cycle IT)</td>
+            <td class="impl-onprem">Week 3–5 (revenue cycle IT)</td>
+          </tr>
+          <tr>
+            <td class="impl-milestone">EHR order/result workflow configured</td>
+            <td class="impl-cloud">Week 3–5 (Epic App Orchard if HeartFlow)</td>
+            <td class="impl-onprem">Week 3–5 (PDF attachment fallback)</td>
+          </tr>
+          <tr>
+            <td class="impl-milestone">Staff training (ordering, reading, billing)</td>
+            <td class="impl-cloud">Week 4–6</td>
+            <td class="impl-onprem">Week 5–7</td>
+          </tr>
+          <tr>
+            <td class="impl-milestone">First live clinical case</td>
+            <td class="impl-cloud">Week 4–8</td>
+            <td class="impl-onprem">Week 6–10</td>
+          </tr>
+          <tr>
+            <td class="impl-milestone">Revenue cycle workflow stable</td>
+            <td class="impl-cloud">Week 8–12 (90-day denial tracking period)</td>
+            <td class="impl-onprem">Week 8–12 (90-day denial tracking period)</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="ev-notice"><i class="ti ti-info-circle" aria-hidden="true" style="font-size:12px;flex-shrink:0;margin-top:1px"></i><span>Timelines are estimates based on typical hospital IT project cycles. GPU server lead times (on-prem) and Epic App Orchard review queues (cloud) are common sources of delay. Build at least 2 weeks of contingency into your go-live target before committing a date to clinical staff.</span></div>
+  </div>
+
+  <!-- Common failure modes -->
+  <div class="cfo-section">
+    <div class="cfo-sec-lbl lbl-it">IT — Common failure modes and fixes</div>
+    <div class="fail-wrap">
+      <table class="fail-tbl">
+        <thead>
+          <tr>
+            <th>Failure</th>
+            <th>Root cause</th>
+            <th>Fix</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="fail-name">DICOM send succeeds but no report returned</td>
+            <td style="font-size:13px">Return AE title not configured; vendor has wrong PACS destination IP or port</td>
+            <td style="font-size:13px">Test round-trip with one de-identified case before go-live. Confirm return DICOM push is a separate DICOM C-Store configured at vendor — distinct from the forward send.</td>
+          </tr>
+          <tr>
+            <td class="fail-name">Report in vendor portal only, not in PACS</td>
+            <td style="font-size:13px">Return DICOM push not configured or firewall blocking inbound on PACS DICOM port</td>
+            <td style="font-size:13px">Confirm PACS accepts inbound DICOM from vendor IP range; check firewall rules for inbound as well as outbound; configure vendor → PACS separately from PACS → vendor.</td>
+          </tr>
+          <tr>
+            <td class="fail-name">Study rejected by vendor (image quality failure)</td>
+            <td style="font-size:13px">Non-compliant acquisition: wrong reconstruction phase, low contrast HU, high heart rate motion artifact</td>
+            <td style="font-size:13px">Review acquisition protocol with CT technologists; set up pre-send QC using PACS automated quality check or manual tech review. Most vendors have published acquisition requirements — embed in your CT protocol documentation.</td>
+          </tr>
+          <tr>
+            <td class="fail-name">Upload timeout on large studies</td>
+            <td style="font-size:13px">Bandwidth bottleneck; study size exceeds vendor file size limit</td>
+            <td style="font-size:13px">Enable DICOM compression (JPEG 2000 lossless — confirm vendor accepts); schedule large batches off-peak; verify dedicated uplink bandwidth is not consumed by other hospital traffic during peak CT hours.</td>
+          </tr>
+          <tr>
+            <td class="fail-name">CPT 75580/75577 charges not generating</td>
+            <td style="font-size:13px">CDM not updated with new CPT codes; ordering workflow not triggering charge in RIS/EHR</td>
+            <td style="font-size:13px">Revenue cycle IT adds 75580 and 75577 to CDM as chargeable items linked to imaging encounter type. Test full charge capture path with one real case before clinical rollout.</td>
+          </tr>
+          <tr>
+            <td class="fail-name">Prior auth denial on submission</td>
+            <td style="font-size:13px">Payer medical policy not yet updated for Category I code; missing clinical indication in order</td>
+            <td style="font-size:13px">Appeal with CMS Category I designation letter + clinical indication documentation. Ensure clinical indication is documented at CCTA order time (not added retroactively). For recurring denials by one payer, escalate through HeartFlow's reimbursement team or submit a coverage determination request to the payer.</td>
+          </tr>
+          <tr>
+            <td class="fail-name">Silent submission failures (no error, no report)</td>
+            <td style="font-size:13px">DICOM C-Store completed but vendor received corrupted or incomplete study; no error notification back to PACS</td>
+            <td style="font-size:13px">Implement DICOM submission monitoring: check vendor portal daily for studies with no report after expected turnaround. HeartFlow sends email alerts for submission failures — enable these. Assign a reimbursement coordinator to review submission status daily in the first 90 days.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- IT Checklist -->
+  <div class="cfo-section">
+    <div class="cfo-sec-lbl lbl-it">IT — Implementation &amp; go-live checklist</div>
+    <div class="checklist-box">
+      <div class="checklist-cols" style="grid-template-columns:1fr">
+        <div>
+          <div class="checklist-col-title it">IT / CISO</div>
+          <ul class="cl-check-list">
+            <li><span class="cl-num">01</span>Execute HIPAA BAA with every cloud vendor before any PHI is transmitted — verify it includes permitted-purpose limits, sub-processor list, breach notification ≤60 days, and PHI deletion timeline</li>
+            <li><span class="cl-num">02</span>Request and review SOC 2 Type II report (dated within 12 months) — read the exceptions section, not just the auditor summary</li>
+            <li><span class="cl-num">03</span>Request most recent penetration test report and confirm critical/high findings were remediated with documented SLA</li>
+            <li><span class="cl-num">04</span>Confirm data residency contractually — name the specific cloud region (e.g., AWS us-east-1), not just "US data centers"</li>
+            <li><span class="cl-num">05</span>Configure PACS DICOM AE Title for both forward send (PACS → vendor) and return receive (vendor → PACS) — two separate configurations</li>
+            <li><span class="cl-num">06</span>Open outbound firewall rules for vendor DICOM/HTTPS endpoints (vendor provides IP allowlist); for on-prem, verify PACS accepts inbound DICOM from cvi42 server</li>
+            <li><span class="cl-num">07</span>Run full round-trip test with one de-identified case — confirm DICOM SR appears in PACS viewer, not vendor portal only</li>
+            <li><span class="cl-num">08</span>Confirm EHR order/result workflow with Epic/Cerner IT team; request HeartFlow's current App Orchard integration documentation before assuming compatibility</li>
+            <li><span class="cl-num">09</span>Establish daily monitoring for failed DICOM submissions — a silent failure means no report, a missed clinical result, and lost revenue</li>
+            <li><span class="cl-num">10</span>On-prem (Circle CVI): size GPU server per current Circle CVI spec sheet; plan recurring maintenance windows; include cvi42 DB and DICOM output in hospital backup schedule</li>
+            <li><span class="cl-num">11</span>Confirm with vendor in writing: is patient PHI used to train or fine-tune the production AI model? Get "inference-only" commitment written into BAA or vendor agreement</li>
+            <li><span class="cl-num">12</span>Define user access management policy for vendor web portals: who can submit cases, retrieve reports, and access audit logs — link to your IAM governance process</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
 <!-- ABOUT -->
 <div id="pane-about" class="pane">
   <div class="about-box"><strong>What this guide is</strong><br>An independent synthesis of published peer-reviewed evidence on CCTA-AI platforms. Built by Nathan Qin — cardiovascular MedTech professional and Founder of Qinnovativ Medtech, Seattle WA — as a personal project. Updated as the landscape changes.</div>
@@ -647,6 +1600,7 @@ function showPane(id,btn){
   document.querySelectorAll('.nav-btn').forEach(b=>b.classList.remove('active'));
   document.getElementById('pane-'+id).classList.add('active');
   btn.classList.add('active');
+  if(id==='evidence'&&!window._evLoaded){window._evLoaded=true;window.loadPubMedEvidence&&loadPubMedEvidence();}
 }
 
 function fV(type,btn){
@@ -663,10 +1617,150 @@ function fV(type,btn){
 function fE(type,btn){
   document.querySelectorAll('.fb').forEach(b=>b.classList.remove('active'));
   btn.classList.add('active');
-  document.querySelectorAll('.ev-card').forEach(c=>{
+  document.querySelectorAll('#ev-list-dynamic .ev-card').forEach(c=>{
     c.style.display=(type==='all'||c.dataset.e.includes(type))?'block':'none';
   });
 }
+
+// ── PubMed live evidence ──────────────────────────────────────
+(function(){
+  const CACHE_KEY='ccta_pubmed_v2';
+  const CACHE_TTL=86400000;
+  const BASE='https://eutils.ncbi.nlm.nih.gov/entrez/eutils/';
+
+  async function delay(ms){return new Promise(r=>setTimeout(r,ms));}
+
+  async function pmSearch(term,max){
+    const url=BASE+'esearch.fcgi?db=pubmed&term='+encodeURIComponent(term)+'&sort=date&retmax='+max+'&retmode=json';
+    const r=await fetch(url);
+    if(!r.ok) throw new Error('PubMed search failed: '+r.status);
+    const j=await r.json();
+    return j.esearchresult.idlist||[];
+  }
+
+  async function pmSummary(ids){
+    if(!ids.length) return [];
+    const url=BASE+'esummary.fcgi?db=pubmed&id='+ids.join(',')+'&retmode=json';
+    const r=await fetch(url);
+    if(!r.ok) throw new Error('PubMed summary failed: '+r.status);
+    const j=await r.json();
+    return Object.values(j.result).filter(x=>x&&x.uid&&x.title);
+  }
+
+  function categorize(a){
+    const t=((a.title||'')+' '+(a.fulljournalname||'')+(a.source||'')).toLowerCase();
+    const cats=new Set();
+    if(/\bffr\b|ct-?ffr|ffrct|fractional flow reserve/.test(t)) cats.add('ffrct');
+    if(/\bplaque\b|qcpa|atherosclerosis|plaque analysis|coronary artery disease.*ct|ncp|lrnc|lap\b|pericoronary fat/.test(t)) cats.add('plaque');
+    if(/\bvs\b|versus|credence|pacific|head.to.head|comparative study/.test(t)) cats.add('h2h');
+    if(/guideline|consensus|statement|appropriate use|appropriate criteria|scientific statement/.test(t)) cats.add('guide');
+    if(cats.size===0) cats.add('ffrct');
+    return [...cats];
+  }
+
+  function sortKey(a){
+    const s=a.sortpubdate||a.pubdate||'';
+    return s.replace(/\b(\d{4}) (\w+)$/,(_,y,m)=>{
+      const mo={Jan:'01',Feb:'02',Mar:'03',Apr:'04',May:'05',Jun:'06',
+                Jul:'07',Aug:'08',Sep:'09',Oct:'10',Nov:'11',Dec:'12'};
+      return y+'-'+(mo[m]||'00');
+    });
+  }
+
+  function renderCards(articles){
+    const list=document.getElementById('ev-list-dynamic');
+    if(!list) return;
+    if(!articles.length){
+      list.innerHTML='<div class="ev-error-card">No results found from PubMed. Try refreshing or check your connection.</div>';
+      return;
+    }
+    const tagLabel={ffrct:'CT-FFR',plaque:'Plaque',h2h:'Head-to-head',guide:'Guideline'};
+    list.innerHTML=articles.map(a=>{
+      const cats=categorize(a);
+      const yr=(a.pubdate||a.sortpubdate||'').split(' ')[0]||'';
+      const journal=a.source||a.fulljournalname||'';
+      const vol=a.volume?' · Vol '+a.volume:'';
+      const pgs=a.pages?', pp. '+a.pages:'';
+      const first=a.authors&&a.authors[0]?a.authors[0].name+(a.authors.length>1?' et al.':''):'';
+      const doi=a.elocationid?a.elocationid.replace(/\[.*?\]/g,'').trim():'';
+      const pmid=a.uid;
+      const title=(a.title||'Untitled').replace(/\.$/, '');
+      const tags=cats.map(c=>`<span class="ev-num">${tagLabel[c]||c}</span>`).join('');
+      return `<div class="ev-card" data-e="${cats.join(' ')}">
+        <div class="ev-top"><div class="ev-name">${title}</div><div class="ev-yr">${yr}${journal?' · '+journal:''}${vol}${pgs}</div></div>
+        <div class="ev-txt">${first}${doi?' · <span style="color:var(--text-3);font-size:11.5px">'+doi+'</span>':''}</div>
+        <div class="ev-nums">${tags}<a href="https://pubmed.ncbi.nlm.nih.gov/${pmid}/" target="_blank" rel="noopener" class="ev-pmid-link">PubMed ↗</a></div>
+      </div>`;
+    }).join('');
+    // Re-apply active filter
+    const activeBtn=document.querySelector('#pane-evidence .fb.active');
+    if(activeBtn){const m=activeBtn.getAttribute('onclick').match(/fE\('(\w+)'/);if(m)fE(m[1],activeBtn);}
+  }
+
+  async function fetchAndRender(force){
+    const statusEl=document.getElementById('ev-pubmed-status');
+    const list=document.getElementById('ev-list-dynamic');
+
+    if(!force){
+      try{
+        const raw=localStorage.getItem(CACHE_KEY);
+        if(raw){
+          const c=JSON.parse(raw);
+          if(Date.now()-c.ts<CACHE_TTL){
+            renderCards(c.articles);
+            const d=new Date(c.ts);
+            if(statusEl) statusEl.innerHTML='<i class="ti ti-database" aria-hidden="true" style="margin-right:5px"></i>Live from PubMed &middot; <strong>'+c.articles.length+' studies</strong> &middot; Cached &middot; Last fetched: '+d.toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'})+' '+d.toLocaleTimeString('en-US',{hour:'2-digit',minute:'2-digit'});
+            return;
+          }
+        }
+      }catch(e){}
+    }
+
+    if(list) list.innerHTML='<div class="ev-loading"><div class="ev-spinner"></div><span>Fetching from PubMed…</span></div>';
+    if(statusEl) statusEl.innerHTML='<i class="ti ti-database" aria-hidden="true" style="margin-right:5px"></i>Querying PubMed…';
+
+    try{
+      const [r1,r2]=await Promise.all([
+        pmSearch('(CT-FFR OR FFRCT OR "fractional flow reserve" AND "coronary computed tomography") AND (outcomes OR validation OR trial OR registry OR prospective)',22),
+        pmSearch('("coronary plaque" OR "AI-QCPA" OR "coronary CTA plaque" OR "pericoronary adipose") AND ("computed tomography" OR CCTA OR "cardiac CT") AND (artificial intelligence OR machine learning OR automated OR deep learning)',22),
+      ]);
+      await delay(400);
+      const r3=await pmSearch('(HeartFlow OR Cleerly OR DEEPVESSEL OR "cvi42" OR Elucid OR Artrya OR Caristo) AND (coronary) AND ("computed tomography" OR CCTA OR CT)',18);
+      await delay(400);
+      const allIds=[...new Set([...r1,...r2,...r3])].slice(0,60);
+      const articles=await pmSummary(allIds);
+      articles.sort((a,b)=>sortKey(b).localeCompare(sortKey(a)));
+
+      try{localStorage.setItem(CACHE_KEY,JSON.stringify({ts:Date.now(),articles}));}catch(e){}
+
+      renderCards(articles);
+      const now=new Date();
+      if(statusEl) statusEl.innerHTML='<i class="ti ti-database" aria-hidden="true" style="margin-right:5px"></i>Live from PubMed &middot; <strong>'+articles.length+' studies</strong> &middot; Last fetched: '+now.toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'})+' '+now.toLocaleTimeString('en-US',{hour:'2-digit',minute:'2-digit'});
+
+    }catch(err){
+      // Try stale cache on error
+      let fallback=false;
+      try{
+        const raw=localStorage.getItem(CACHE_KEY);
+        if(raw){const c=JSON.parse(raw);renderCards(c.articles);const d=new Date(c.ts);if(statusEl) statusEl.innerHTML='<i class="ti ti-alert-triangle" aria-hidden="true" style="margin-right:5px;color:#92400E"></i>PubMed unavailable — showing cached data from '+d.toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'});fallback=true;}
+      }catch(e2){}
+      if(!fallback){
+        if(list) list.innerHTML='<div class="ev-error-card"><strong>Unable to reach PubMed.</strong> Check your internet connection and click Refresh to try again.<br><br><span style="color:var(--text-3);font-size:12px">'+err.message+'</span></div>';
+        if(statusEl) statusEl.innerHTML='<i class="ti ti-alert-triangle" aria-hidden="true" style="color:#92400E;margin-right:5px"></i>PubMed fetch failed';
+      }
+    }
+  }
+
+  window.loadPubMedEvidence=()=>fetchAndRender(false);
+  window.refreshPubMedEvidence=()=>{window._evLoaded=true;fetchAndRender(true);};
+
+  // Auto-load if evidence pane is already visible on page load
+  document.addEventListener('DOMContentLoaded',()=>{
+    if(document.getElementById('pane-evidence')&&document.getElementById('pane-evidence').classList.contains('active')){
+      window._evLoaded=true;fetchAndRender(false);
+    }
+  });
+})();
 </script>
 
 <!-- CCTA KNOWLEDGE ASSISTANT -->
