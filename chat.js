@@ -202,12 +202,59 @@ const CCTA_CHAT_API = (
   .cai-card .cai-msgs{max-height:300px}
 }
 @media(prefers-reduced-motion:reduce) { .cai-panel,.cai-fab,.cai-skel{transition:none!important;animation:none!important} }
+
+/* ── Heart icon containers need white icon color ── */
+.cai-fab { color: #fff; }
+.cai-hdr-mark { color: #fff; }
+.cai-empty-icon { color: #fff; }
+
+/* ── FAB heartbeat pulse (fires 3× on load, stops after) ── */
+@keyframes cai-heartpulse {
+  0%,100%{transform:scale(1);box-shadow:0 4px 20px rgba(27,63,110,.38),0 2px 8px rgba(0,0,0,.14)}
+  15%{transform:scale(1.14);box-shadow:0 7px 30px rgba(27,63,110,.58),0 3px 12px rgba(0,0,0,.18)}
+  30%{transform:scale(1.02)}
+  46%{transform:scale(1.10);box-shadow:0 5px 24px rgba(27,63,110,.48)}
+  72%{transform:scale(1)}
+}
+.cai-fab:not(.open){ animation: cai-heartpulse 2.1s ease-in-out 1.9s 3; }
+
+/* ── Speech bubble greeting ── */
+.cai-greet{
+  position:fixed; bottom:100px; right:16px; z-index:9999;
+  background:#fff; border-radius:14px; padding:12px 30px 12px 14px;
+  max-width:238px;
+  box-shadow:0 4px 26px rgba(27,63,110,.22),0 1px 6px rgba(0,0,0,.10);
+  border:1px solid rgba(27,63,110,.12);
+  font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+  font-size:.77rem; line-height:1.58; color:#3A3A3C;
+  opacity:0; transform:translateY(8px) scale(.97);
+  transition:opacity 300ms ease,transform 300ms ease;
+  pointer-events:none;
+}
+.cai-greet.visible{ opacity:1; transform:translateY(0) scale(1); pointer-events:auto; }
+.cai-greet::after{
+  content:''; position:absolute; bottom:-8px; right:22px;
+  border-width:8px 7px 0; border-style:solid;
+  border-color:#fff transparent transparent;
+  filter:drop-shadow(0 2px 1px rgba(0,0,0,.06));
+}
+.cai-greet-name{ font-weight:700; color:#1B3F6E; display:block; margin-bottom:3px; font-size:.79rem; }
+.cai-greet-x{
+  position:absolute; top:7px; right:7px;
+  width:18px; height:18px; border:none; background:none; cursor:pointer;
+  color:#AEAEB2; font-size:.65rem; padding:0;
+  display:flex; align-items:center; justify-content:center; border-radius:50%;
+}
+.cai-greet-x:hover{ background:rgba(0,0,0,.06); color:#6E6E73; }
+@media(max-width:440px){ .cai-greet{ display:none; } }
   `;
 
   // ── Icons ─────────────────────────────────────────────────────────────────
-  const ICON_BRAIN = `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-    <path d="M9.5 2A2.5 2.5 0 0 1 12 4.5v15a2.5 2.5 0 0 1-4.96-.44 2.5 2.5 0 0 1-2.96-3.08 3 3 0 0 1-.34-5.58 2.5 2.5 0 0 1 1.32-4.24 2.5 2.5 0 0 1 1.98-3A2.5 2.5 0 0 1 9.5 2Z"/>
-    <path d="M14.5 2A2.5 2.5 0 0 0 12 4.5v15a2.5 2.5 0 0 0 4.96-.44 2.5 2.5 0 0 0 2.96-3.08 3 3 0 0 0 .34-5.58 2.5 2.5 0 0 0-1.32-4.24 2.5 2.5 0 0 0-1.98-3A2.5 2.5 0 0 0 14.5 2Z"/>
+  // Anatomical heart: body + aortic arch + pulmonary trunk
+  const ICON_HEART = `<svg width="22" height="22" viewBox="0 0 100 106" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+    <path d="M50 94C50 94 10 67 8 43C6 29 14 17 27 16C36 16 43 21 47 29C53 21 61 16 70 16C82 17 89 29 87 43C84 67 50 94 50 94Z"/>
+    <path d="M46 29C42 20 40 10 44 4C47 0 54 1 56 6C59 12 56 21 52 26" fill="none" stroke="currentColor" stroke-width="10" stroke-linecap="round"/>
+    <path d="M53 23C57 15 64 8 72 6" fill="none" stroke="currentColor" stroke-width="8" stroke-linecap="round"/>
   </svg>`;
   const ICON_SEND = `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
     <line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/>
@@ -256,7 +303,7 @@ const CCTA_CHAT_API = (
     inlineTarget.classList.add('cai-card');
     inlineTarget.innerHTML = `
       <div class="cai-hdr">
-        <div class="cai-hdr-mark">${ICON_BRAIN}</div>
+        <div class="cai-hdr-mark">${ICON_HEART}</div>
         <div class="cai-hdr-text">
           <div class="cai-hdr-title">CCTA Research Assistant</div>
           <div class="cai-hdr-sub">PubMed · ClinicalTrials.gov · Guidelines · Claude · β</div>
@@ -276,10 +323,19 @@ const CCTA_CHAT_API = (
     // ── Floating fab + panel ─────────────────────────────────────────────
     const fab = document.createElement('button');
     fab.className = 'cai-fab';
-    fab.setAttribute('aria-label', 'Open CCTA Knowledge Assistant');
+    fab.setAttribute('aria-label', 'Open CCTA Research Assistant');
     fab.innerHTML = `
-      <span class="cai-fab-icon-open">${ICON_BRAIN}</span>
+      <span class="cai-fab-icon-open">${ICON_HEART}</span>
       <span class="cai-fab-icon-close">${ICON_X}</span>
+    `;
+
+    // ── Speech bubble greeting ──────────────────────────────────────────
+    const greet = document.createElement('div');
+    greet.className = 'cai-greet';
+    greet.innerHTML = `
+      <button class="cai-greet-x" aria-label="Dismiss">✕</button>
+      <span class="cai-greet-name">CCTA Research AI</span>
+      Hi — I'm built by Nathan Qin. Ask me anything: FFRCT accuracy, vendor comparisons, active trials, CPT billing, or the latest SCCT guidelines.
     `;
 
     const panel = document.createElement('div');
@@ -288,7 +344,7 @@ const CCTA_CHAT_API = (
     panel.setAttribute('aria-label', 'CCTA Research Assistant');
     panel.innerHTML = `
       <div class="cai-hdr">
-        <div class="cai-hdr-mark">${ICON_BRAIN}</div>
+        <div class="cai-hdr-mark">${ICON_HEART}</div>
         <div class="cai-hdr-text">
           <div class="cai-hdr-title">CCTA Research Assistant</div>
           <div class="cai-hdr-sub">PubMed · Trials · Guidelines · β</div>
@@ -297,9 +353,9 @@ const CCTA_CHAT_API = (
       </div>
       <div class="cai-msgs" id="cai-msgs">
         <div class="cai-empty" id="cai-empty">
-          <div class="cai-empty-icon">${ICON_BRAIN}</div>
-          <div class="cai-empty-title">Ask anything about CCTA</div>
-          <div class="cai-empty-sub">FFRCT accuracy, vendor comparisons, clinical trials, and guideline recommendations — with live citations.</div>
+          <div class="cai-empty-icon">${ICON_HEART}</div>
+          <div class="cai-empty-title">Hi — I'm Nathan's CCTA Research AI</div>
+          <div class="cai-empty-sub">Ask me anything about coronary CT: FFRCT accuracy, AI plaque vendors, active clinical trials, CPT reimbursement, or the latest SCCT/ACC guidelines — with live citations from PubMed and ClinicalTrials.gov.</div>
           <div class="cai-examples" id="cai-examples"></div>
         </div>
       </div>
@@ -308,11 +364,20 @@ const CCTA_CHAT_API = (
     `;
 
     document.body.appendChild(panel);
+    document.body.appendChild(greet);
     document.body.appendChild(fab);
 
     let isOpen = false;
     const input_ = panel.querySelector('#cai-input');
-    function openPanel()  { isOpen=true;  panel.classList.add('open');    fab.classList.add('open');    setTimeout(()=>input_.focus(),320); }
+
+    // Greeting bubble: show after 2.2 s, auto-dismiss after 8 s
+    let greetTimer;
+    function showGreet() { greet.classList.add('visible'); greetTimer = setTimeout(hideGreet, 8000); }
+    function hideGreet() { clearTimeout(greetTimer); greet.classList.remove('visible'); }
+    setTimeout(showGreet, 2200);
+    greet.querySelector('.cai-greet-x').addEventListener('click', hideGreet);
+
+    function openPanel()  { isOpen=true;  panel.classList.add('open');    fab.classList.add('open');    hideGreet(); setTimeout(()=>input_.focus(),320); }
     function closePanel() { isOpen=false; panel.classList.remove('open'); fab.classList.remove('open'); }
     fab.addEventListener('click', () => isOpen ? closePanel() : openPanel());
     panel.querySelector('.cai-close').addEventListener('click', closePanel);
