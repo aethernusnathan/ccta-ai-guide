@@ -5,10 +5,11 @@
 //   Inline  — if <div id="cai-inline"> exists on the page, renders as an embedded card
 //   Floating — otherwise renders as a floating fab + slide-in panel (clinical guide page)
 //
-// ─── CONFIGURE THIS AFTER DEPLOYING TO VERCEL ──────────────────────────────
-const CCTA_CHAT_API = 'https://ccta-ai-guide.vercel.app/api/chat';
-// For local dev with `vercel dev`: use 'http://localhost:3000/api/chat'
-// ───────────────────────────────────────────────────────────────────────────
+// Auto-detect: use relative path on Vercel (avoids CORS), absolute URL on GitHub Pages / other hosts
+const CCTA_CHAT_API = (
+  window.location.hostname === 'localhost' ||
+  window.location.hostname.includes('vercel.app')
+) ? '/api/chat' : 'https://ccta-ai-guide.vercel.app/api/chat';
 
 (function () {
   'use strict';
@@ -33,7 +34,7 @@ const CCTA_CHAT_API = 'https://ccta-ai-guide.vercel.app/api/chat';
 
 .cai-panel {
   position: fixed; bottom: 0; right: 0; z-index: 9998;
-  width: 390px; height: 100dvh; max-height: 100dvh;
+  width: 390px; height: 100%; height: 100dvh;
   background: #ffffff;
   box-shadow: -6px 0 48px rgba(60,60,100,.14), -1px 0 0 rgba(0,0,0,.06);
   display: flex; flex-direction: column;
@@ -41,9 +42,11 @@ const CCTA_CHAT_API = 'https://ccta-ai-guide.vercel.app/api/chat';
   transition: transform 300ms cubic-bezier(.25,.1,.25,1);
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   -webkit-font-smoothing: antialiased;
+  /* iOS Safari: keep above virtual keyboard */
+  padding-bottom: env(safe-area-inset-bottom);
 }
 .cai-panel.open { transform: translateX(0); }
-.cai-panel .cai-msgs { flex: 1; }
+.cai-panel .cai-msgs { flex: 1; min-height: 0; }
 
 /* ── Inline card mode ── */
 .cai-card {
@@ -193,7 +196,11 @@ const CCTA_CHAT_API = 'https://ccta-ai-guide.vercel.app/api/chat';
 .cai-foot-tag { font-size:.59rem; color:#AEAEB2; font-weight:500; letter-spacing:.02em; }
 .cai-foot-dot { width:2px; height:2px; border-radius:50%; background:#D1D1D6; }
 
-@media(max-width:440px) { .cai-panel{width:100vw} .cai-fab{bottom:20px;right:18px} }
+@media(max-width:440px) {
+  .cai-panel{width:100vw;height:100%;height:100dvh}
+  .cai-fab{bottom:20px;right:18px}
+  .cai-card .cai-msgs{max-height:300px}
+}
 @media(prefers-reduced-motion:reduce) { .cai-panel,.cai-fab,.cai-skel{transition:none!important;animation:none!important} }
   `;
 
@@ -336,6 +343,10 @@ const CCTA_CHAT_API = 'https://ccta-ai-guide.vercel.app/api/chat';
   input.addEventListener('input', () => {
     input.style.height = 'auto';
     input.style.height = Math.min(input.scrollHeight, 96) + 'px';
+  });
+  input.addEventListener('focus', () => {
+    // On mobile, scroll the input into view after virtual keyboard appears
+    setTimeout(() => input.scrollIntoView({ behavior: 'smooth', block: 'nearest' }), 300);
   });
   input.addEventListener('keydown', e => {
     if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); send(); }

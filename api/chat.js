@@ -13,7 +13,11 @@ export default async function handler(req, res) {
   // ── CORS ──────────────────────────────────────────────────────────────────
   const origin = req.headers.origin || '';
   const allowed = (process.env.ALLOWED_ORIGIN || '*').split(',').map(s => s.trim());
-  const corsOrigin = allowed.includes('*') || allowed.includes(origin) ? (origin || '*') : '';
+  // Also allow any *.vercel.app subdomain (preview deployments) and localhost
+  const isVercelPreview = /^https?:\/\/[^/]+\.vercel\.app$/.test(origin);
+  const isLocalhost     = /^https?:\/\/localhost(:\d+)?$/.test(origin);
+  const corsOrigin = allowed.includes('*') || allowed.includes(origin) || isVercelPreview || isLocalhost
+    ? (origin || '*') : '';
   if (corsOrigin) res.setHeader('Access-Control-Allow-Origin', corsOrigin);
   res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
