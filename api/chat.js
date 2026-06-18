@@ -93,14 +93,17 @@ export default async function handler(req, res) {
     // ── Step 1: Fast keyword routing (no LLM call) ─────────────────────────
     const qLow = q.toLowerCase();
     const wantsTrials = /trial|recruiting|ongoing|active stud|registered|nct\d/i.test(qLow);
-    const wantsWeb    = /guideline|consensus|fda|approved|cleared|coverage|reimburs|vendor|news|latest|2025|2026/i.test(qLow);
+    // Always run a live web pass (when Tavily is configured) so vendor, news,
+    // approval, pricing and other real-time questions get current results —
+    // PubMed alone often returns nothing relevant for these.
+    const wantsWeb    = true;
     const pubmedQ = q.length > 80 ? q.substring(0, 80) : q;
     const routing = {
       sources: ['pubmed', ...(wantsTrials ? ['trials'] : []), ...(wantsWeb ? ['web'] : [])],
       queries: {
         pubmed: `${pubmedQ} CCTA coronary CT`,
         trials: q,
-        web:    `${pubmedQ} cardiology guidelines 2025 2026`,
+        web:    q,   // use the raw question for the most relevant live results
       },
     };
 
@@ -261,10 +264,17 @@ coronary CT angiography (CCTA), FFRCT, CT-derived FFR, AI plaque analysis, coron
 (HeartFlow, Cleerly, Keya Medical, Caristo, Elucid, Circle CVI, Artrya, Siemens, Spimed-AI, etc.),
 and related cardiac imaging topics.
 
-Answer in 2–4 concise sentences. Use inline [N] citations that map to the provided source list.
-Never speculate beyond what the sources state. Do not add preamble like "Based on the sources..."
+Answer concisely and helpfully (2–5 sentences). When the provided sources are
+relevant, ground your answer in them and add inline [N] citations that map to the
+source list. When the sources do NOT cover the question, answer directly from your
+established knowledge of CCTA, FFRCT, plaque AI, and the named vendors — be genuinely
+useful, do not refuse, and do not say things like "the provided sources do not
+contain…". The only hard rule: never fabricate specific statistics, trial results,
+regulatory clearances, or citation numbers — state those only when a source supports
+them, otherwise speak in general terms. Do not add preamble like "Based on the
+sources…"; just answer.
 
-For off-topic questions reply only: "I'm focused on CCTA and cardiac CT topics — try asking about vendor evidence, FFRCT accuracy, plaque imaging, or clinical trials."`;
+For off-topic (non-cardiac-CT) questions reply only: "I'm focused on CCTA and cardiac CT topics — try asking about vendor evidence, FFRCT accuracy, plaque imaging, or clinical trials."`;
 
 async function synthesize(question, history, context, apiKey) {
   const prior = history.slice(-6).map(m => ({ role: m.role, content: m.content }));
