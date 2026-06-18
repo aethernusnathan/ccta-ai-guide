@@ -6,10 +6,15 @@
 //   Floating — otherwise renders as a floating fab + slide-in panel (clinical guide page)
 //
 // Auto-detect: use relative path on Vercel (avoids CORS), absolute URL on GitHub Pages / other hosts
-const CCTA_CHAT_API = (
+const CCTA_SAME_ORIGIN = (
   window.location.hostname === 'localhost' ||
   window.location.hostname.includes('vercel.app')
-) ? '/api/chat' : 'https://ccta-ai-guide.vercel.app/api/chat';
+);
+const CCTA_CHAT_API = CCTA_SAME_ORIGIN ? '/api/chat' : 'https://ccta-ai-guide.vercel.app/api/chat';
+// Only send credentials same-origin. Cross-site (GitHub Pages → Vercel) credentialed
+// requests are blocked by Safari's "Prevent Cross-Site Tracking", and the rate-limit
+// cookie can't be set cross-site anyway — so omit credentials there to keep chat working.
+const CCTA_CREDENTIALS = CCTA_SAME_ORIGIN ? 'include' : 'omit';
 
 (function () {
   'use strict';
@@ -458,7 +463,7 @@ const CCTA_CHAT_API = (
       const res = await fetch(CCTA_CHAT_API, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        credentials: 'include',
+        credentials: CCTA_CREDENTIALS,
         body: JSON.stringify({ question, history: history.slice(0, -1) }),
       });
       if (res.status === 429) {
@@ -475,7 +480,9 @@ const CCTA_CHAT_API = (
       history.push({ role: 'assistant', content: data.answer || '' });
     } catch (err) {
       skelEl.remove();
-      const errMsg = (err.message?.includes('fetch') || err.message?.includes('Network'))
+      const m = (err.message || '').toLowerCase();
+      const isNetwork = m.includes('fetch') || m.includes('network') || m.includes('load failed');
+      const errMsg = isNetwork
         ? 'Could not reach the server — please try again in a moment.'
         : 'Something went wrong — please try again.';
       appendBubble('assistant', errMsg);
