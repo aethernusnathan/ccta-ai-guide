@@ -460,9 +460,12 @@ const CCTA_CREDENTIALS = CCTA_SAME_ORIGIN ? 'include' : 'omit';
     scrollBottom();
 
     try {
+      // Use text/plain so the request stays a CORS "simple request" — this
+      // avoids the OPTIONS preflight, which Safari blocks cross-site (GitHub
+      // Pages → Vercel). The server parses the JSON string body.
       const res = await fetch(CCTA_CHAT_API, {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers: { 'Content-Type': 'text/plain;charset=UTF-8' },
         credentials: CCTA_CREDENTIALS,
         body: JSON.stringify({ question, history: history.slice(0, -1) }),
       });

@@ -63,7 +63,13 @@ export default async function handler(req, res) {
   }
   setRLCookie(res, windowStart, count + 1);
 
-  const { question, history = [] } = req.body || {};
+  // Body may arrive as a parsed object (application/json) or a raw string
+  // (text/plain — used by the client to avoid a CORS preflight in Safari).
+  let body = req.body;
+  if (typeof body === 'string') {
+    try { body = JSON.parse(body); } catch { body = {}; }
+  }
+  const { question, history = [] } = body || {};
   if (!question || typeof question !== 'string' || question.trim().length === 0) {
     return res.status(400).json({ error: 'Missing question' });
   }
