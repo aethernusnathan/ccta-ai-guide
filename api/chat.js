@@ -285,20 +285,45 @@ async function synthesizeFromKnowledge(question, history, apiKey) {
 // ── Anthropic helper ───────────────────────────────────────────────────────
 
 async function anthropic(apiKey, body) {
-  const res = await fetch('https://api.anthropic.com/v1/messages', {
-    method:  'POST',
-    headers: {
-      'Content-Type':      'application/json',
-      'x-api-key':         apiKey,
-      'anthropic-version': '2023-06-01',
-    },
-    body: JSON.stringify(body),
-  });
-  if (!res.ok) {
-    const err = await res.text();
-    throw new Error(`Anthropic ${res.status}: ${err}`);
+  // Retry on transient overload / rate-limit / upstream errors so a brief
+  // Anthropic hiccup doesn't surface as a 500 to the chat user.
+  const RETRYABLE = new Set([429, 500, 502, 503, 529]);
+  const MAX_ATTEMPTS = 3;
+  let lastErr;
+
+  for (let attempt = 1; attempt <= MAX_ATTEMPTS; attempt++) {
+    let res;
+    try {
+      res = await fetch('https://api.anthropic.com/v1/messages', {
+        method:  'POST',
+        headers: {
+          'Content-Type':      'application/json',
+          'x-api-key':         apiKey,
+          'anthropic-version': '2023-06-01',
+        },
+        body: JSON.stringify(body),
+      });
+    } catch (e) {
+      lastErr = e; // network error — retry
+      if (attempt < MAX_ATTEMPTS) { await sleep(400 * attempt); continue; }
+      throw e;
+    }
+
+    if (res.ok) return res.json();
+
+    const errText = await res.text();
+    lastErr = new Error(`Anthropic ${res.status}: ${errText}`);
+    if (RETRYABLE.has(res.status) && attempt < MAX_ATTEMPTS) {
+      await sleep(400 * attempt);
+      continue;
+    }
+    throw lastErr;
   }
-  return res.json();
+  throw lastErr;
+}
+
+function sleep(ms) {
+  return new Promise(resolve => setTimeout(resolve, ms));
 }
 
 function stripHtml(str) {
