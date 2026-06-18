@@ -39,11 +39,20 @@ export default async function handler(req, res) {
   // ── CORS ──────────────────────────────────────────────────────────────────
   const origin = req.headers.origin || '';
   const allowed = (process.env.ALLOWED_ORIGIN || '*').split(',').map(s => s.trim());
+  // Always allow the project's own front-ends, regardless of the ALLOWED_ORIGIN
+  // env var — the GitHub Pages host must get an Access-Control-Allow-Origin
+  // header or every browser blocks the cross-origin chat request.
+  const KNOWN_ORIGINS = [
+    'https://aethernusnathan.github.io',
+    'https://ccta-ai-guide.vercel.app',
+  ];
   // Also allow any *.vercel.app subdomain (preview deployments) and localhost
   const isVercelPreview = /^https?:\/\/[^/]+\.vercel\.app$/.test(origin);
   const isLocalhost     = /^https?:\/\/localhost(:\d+)?$/.test(origin);
-  const corsOrigin = allowed.includes('*') || allowed.includes(origin) || isVercelPreview || isLocalhost
-    ? (origin || '*') : '';
+  const corsOrigin =
+    allowed.includes('*') || allowed.includes(origin) ||
+    KNOWN_ORIGINS.includes(origin) || isVercelPreview || isLocalhost
+      ? (origin || '*') : '';
   if (corsOrigin) res.setHeader('Access-Control-Allow-Origin', corsOrigin);
   res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
