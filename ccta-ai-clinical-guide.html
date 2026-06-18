@@ -152,16 +152,14 @@ body{font-family:var(--font);background:linear-gradient(145deg,#EAEDF8 0%,#EEF0F
 .v-body .coi.warn{color:#92400E;font-style:normal;background:#FEF3C7;border-radius:8px;padding:10px 12px;border:none;margin-top:12px}
 .v-body strong{color:var(--text-1);font-weight:500}
 /* Evidence */
-.ev-list{display:flex;flex-direction:column;gap:10px}
-.ev-card{background:var(--surface);border-radius:var(--r);box-shadow:var(--sh-sm);padding:20px 22px;transition:box-shadow var(--t) var(--ease)}
-.ev-card:hover{box-shadow:var(--sh-md)}
-.ev-top{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;margin-bottom:6px}
-.ev-name{font-size:15px;font-weight:600;letter-spacing:-.2px}
-.ev-yr{font-size:12px;color:var(--text-3);white-space:nowrap}
-.ev-txt{font-size:13px;color:var(--text-2);line-height:1.7}
-.ev-txt strong{color:var(--text-1);font-weight:500}
-.ev-nums{display:flex;gap:6px;flex-wrap:wrap;margin-top:10px}
-.ev-num{font-size:11px;padding:3px 10px;background:rgba(0,0,0,.04);border-radius:var(--r-pill);color:var(--text-2)}
+.ev-list{display:flex;flex-direction:column;gap:.7rem}
+/* Compact source-card style — matches the chat citation cards (.cai-cite) */
+.ev-card{display:flex;align-items:flex-start;gap:.55rem;padding:1px}
+.ev-n{flex-shrink:0;width:20px;height:20px;border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:600;background:rgba(11,122,62,.12);color:#0B7A3E;margin-top:1px}
+.ev-body{flex:1;min-width:0}
+.ev-name{display:inline-block;font-size:13.5px;font-weight:500;line-height:1.45;letter-spacing:-.1px;color:var(--text-1);text-decoration:none}
+.ev-name:hover{color:#1B3F6E;text-decoration:underline}
+.ev-meta{display:block;font-size:12px;color:var(--text-3);margin-top:2px;line-height:1.5}
 .ev-caution{font-size:12px;color:#92400E;margin-top:10px;background:#FEF3C7;border-radius:8px;padding:10px 12px}
 /* Protocol */
 .cl-warn{background:#FEF3C7;border-radius:var(--r-sm);padding:14px 18px;margin-bottom:22px;font-size:13px;color:#92400E;display:flex;gap:10px;align-items:flex-start;line-height:1.65}
@@ -1679,7 +1677,7 @@ function fE(type,btn){
   document.querySelectorAll('.fb').forEach(b=>b.classList.remove('active'));
   btn.classList.add('active');
   document.querySelectorAll('#ev-list-dynamic .ev-card').forEach(c=>{
-    c.style.display=(type==='all'||c.dataset.e.includes(type))?'block':'none';
+    c.style.display=(type==='all'||c.dataset.e.includes(type))?'':'none';
   });
 }
 
@@ -1736,21 +1734,20 @@ function fE(type,btn){
       return;
     }
     const tagLabel={ffrct:'CT-FFR',plaque:'Plaque',h2h:'Head-to-head',guide:'Guideline'};
-    list.innerHTML=articles.map(a=>{
+    list.innerHTML=articles.map((a,i)=>{
       const cats=categorize(a);
       const yr=(a.pubdate||a.sortpubdate||'').split(' ')[0]||'';
       const journal=a.source||a.fulljournalname||'';
-      const vol=a.volume?' · Vol '+a.volume:'';
-      const pgs=a.pages?', pp. '+a.pages:'';
       const first=a.authors&&a.authors[0]?a.authors[0].name+(a.authors.length>1?' et al.':''):'';
-      const doi=a.elocationid?a.elocationid.replace(/\[.*?\]/g,'').trim():'';
       const pmid=a.uid;
       const title=(a.title||'Untitled').replace(/\.$/, '');
-      const tags=cats.map(c=>`<span class="ev-num">${tagLabel[c]||c}</span>`).join('');
+      const meta=[first,journal,yr].filter(Boolean).join(' · ');
       return `<div class="ev-card" data-e="${cats.join(' ')}">
-        <div class="ev-top"><div class="ev-name">${title}</div><div class="ev-yr">${yr}${journal?' · '+journal:''}${vol}${pgs}</div></div>
-        <div class="ev-txt">${first}${doi?' · <span style="color:var(--text-3);font-size:11.5px">'+doi+'</span>':''}</div>
-        <div class="ev-nums">${tags}<a href="https://pubmed.ncbi.nlm.nih.gov/${pmid}/" target="_blank" rel="noopener" class="ev-pmid-link">PubMed ↗</a></div>
+        <span class="ev-n">${i+1}</span>
+        <div class="ev-body">
+          <a class="ev-name" href="https://pubmed.ncbi.nlm.nih.gov/${pmid}/" target="_blank" rel="noopener">${title}</a>
+          ${meta?`<span class="ev-meta">${meta}</span>`:''}
+        </div>
       </div>`;
     }).join('');
     // Re-apply active filter
