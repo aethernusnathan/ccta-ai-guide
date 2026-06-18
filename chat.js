@@ -511,13 +511,41 @@ const CCTA_CREDENTIALS = CCTA_SAME_ORIGIN ? 'include' : 'omit';
   }
 
   function renderMarkdown(text) {
-    return escapeHtml(text)
+    // Inline formatting applied within each line
+    const inline = (s) => escapeHtml(s)
       .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
       .replace(/\*(.+?)\*/g, '<em>$1</em>')
-      .replace(/^---+$/gm, '<hr style="border:none;border-top:1px solid rgba(0,0,0,.1);margin:.6rem 0">')
-      .replace(/\[(\d+)\]/g, '<sup style="font-size:.65em;font-weight:600;color:#0071E3">[$1]</sup>')
-      .replace(/\n\n/g, '<br><br>')
-      .replace(/\n/g, '<br>');
+      .replace(/`([^`]+)`/g, '<code style="background:rgba(0,0,0,.05);border-radius:4px;padding:.05em .3em;font-size:.9em">$1</code>')
+      .replace(/\[(\d+)\]/g, '<sup style="font-size:.65em;font-weight:600;color:#0071E3">[$1]</sup>');
+    // Block-level: process line by line so headings/quotes/lists render properly
+    const lines = String(text).split('\n');
+    let html = '', listType = null;
+    const closeList = () => { if (listType) { html += `</${listType}>`; listType = null; } };
+    for (const raw of lines) {
+      const line = raw.trim();
+      let m;
+      if (!line) { closeList(); continue; }
+      if (/^---+$/.test(line)) { closeList(); html += '<hr style="border:none;border-top:1px solid rgba(0,0,0,.1);margin:.55rem 0">'; continue; }
+      if ((m = line.match(/^(#{1,3})\s+(.*)$/))) {
+        closeList(); const lvl = m[1].length; const sz = lvl === 1 ? '1rem' : lvl === 2 ? '.92rem' : '.85rem';
+        html += `<div style="font-weight:700;font-size:${sz};margin:.55rem 0 .2rem;letter-spacing:-.01em">${inline(m[2])}</div>`; continue;
+      }
+      if ((m = line.match(/^>\s?(.*)$/))) {
+        closeList(); html += `<div style="border-left:3px solid rgba(0,0,0,.15);padding:.1rem .6rem;margin:.35rem 0;color:#48484A">${inline(m[1])}</div>`; continue;
+      }
+      if ((m = line.match(/^[-*]\s+(.*)$/))) {
+        if (listType !== 'ul') { closeList(); html += '<ul style="margin:.3rem 0;padding-left:1.1rem">'; listType = 'ul'; }
+        html += `<li style="margin:.14rem 0">${inline(m[1])}</li>`; continue;
+      }
+      if ((m = line.match(/^(\d+)\.\s+(.*)$/))) {
+        if (listType !== 'ol') { closeList(); html += '<ol style="margin:.3rem 0;padding-left:1.25rem">'; listType = 'ol'; }
+        html += `<li style="margin:.14rem 0">${inline(m[2])}</li>`; continue;
+      }
+      closeList();
+      html += `<p style="margin:.35rem 0">${inline(line)}</p>`;
+    }
+    closeList();
+    return html;
   }
 
   function appendSkeleton() {
