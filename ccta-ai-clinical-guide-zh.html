@@ -1,0 +1,1871 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CCTA-AI 临床指南 — 独立证据参考 · Nathan Qin 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,300..700;1,14..32,300..700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.11.0/dist/tabler-icons.min.css">
+<style>
+:root {
+  --font: 'Inter', 'Noto Sans SC', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+  --bg: #EAEDF8;
+  --surface: #FFFFFF;
+  --surface-2: rgba(0,0,0,0.03);
+  --text-1: #1C1C1E;
+  --text-2: #6E6E73;
+  --text-3: #8E8E93;
+  --border: rgba(0,0,0,0.07);
+  --border-s: rgba(0,0,0,0.11);
+  --sh-sm: 0 1px 4px rgba(60,60,100,0.06), 0 2px 10px rgba(60,60,100,0.07);
+  --sh-md: 0 4px 18px rgba(60,60,100,0.10), 0 1px 4px rgba(60,60,100,0.05);
+  --sh-lg: 0 12px 48px rgba(60,60,100,0.15), 0 2px 10px rgba(60,60,100,0.07);
+  --r: 18px;
+  --r-sm: 10px;
+  --r-pill: 100px;
+  --ease: cubic-bezier(0.25,0.1,0.25,1);
+  --t: 180ms;
+  --ffr: #1B3F6E;
+  --plq: #7A3B1E;
+  --comb: #1A5C36;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{font-family:var(--font);background:linear-gradient(145deg,#EAEDF8 0%,#EEF0F6 45%,#F5EDE8 100%);background-attachment:fixed;min-height:100vh;color:var(--text-1);font-size:15px;line-height:1.6;-webkit-font-smoothing:antialiased}
+*:focus-visible{outline:2px solid #0071E3;outline-offset:2px;border-radius:4px}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{transition-duration:.01ms!important;animation-duration:.01ms!important}}
+
+/* Disclaimer */
+.disc-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.4);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);z-index:200;display:flex;align-items:center;justify-content:center;padding:20px}
+.disc-box{background:var(--surface);border-radius:22px;box-shadow:var(--sh-lg);max-width:460px;width:100%;padding:30px}
+.disc-box h3{font-size:17px;font-weight:600;letter-spacing:-.3px;margin-bottom:14px}
+.disc-box p{font-size:13px;color:var(--text-2);line-height:1.7;margin-bottom:10px}
+.disc-box p strong{color:var(--text-1)}
+.disc-btn{width:100%;padding:13px;background:var(--text-1);color:#fff;border:none;border-radius:var(--r-pill);font-family:var(--font);font-size:14px;font-weight:500;cursor:pointer;margin-top:8px;transition:opacity var(--t) var(--ease)}
+.disc-btn:hover{opacity:.8}
+/* Bookmark nudge toast */
+.bm-toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(12px);z-index:9000;background:#1C1C1E;color:#fff;border-radius:12px;padding:11px 16px 11px 14px;font-family:var(--font);font-size:13px;display:flex;align-items:center;gap:10px;box-shadow:0 6px 24px rgba(0,0,0,.22);opacity:0;transition:opacity 350ms ease,transform 350ms ease;pointer-events:none;white-space:nowrap}
+.bm-toast.show{opacity:1;transform:translateX(-50%) translateY(0);pointer-events:auto}
+.bm-toast-icon{font-size:16px}
+.bm-toast kbd{background:rgba(255,255,255,.15);border-radius:5px;padding:2px 6px;font-size:11px;font-family:monospace;letter-spacing:.02em}
+/* Amber bar */
+.amber-bar{background:rgba(255,251,235,.85);backdrop-filter:blur(8px);border-bottom:1px solid rgba(245,158,11,.15);padding:8px 24px;font-size:11.5px;color:#92400E;display:flex;align-items:center;gap:8px;letter-spacing:.01em}
+/* Nav — frosted glass */
+.top-nav{background:rgba(234,237,248,.90);backdrop-filter:blur(24px) saturate(180%);-webkit-backdrop-filter:blur(24px) saturate(180%);border-bottom:1px solid rgba(0,0,0,0.06);padding:0 24px;display:flex;align-items:center;overflow-x:auto;scrollbar-width:none;position:sticky;top:0;z-index:100;height:54px;gap:0}
+.top-nav::-webkit-scrollbar{display:none}
+.nav-brand-wrap{display:flex;align-items:center;gap:9px;padding-right:16px;border-right:1px solid var(--border);margin-right:6px;flex-shrink:0}
+.nav-mark{width:28px;height:28px;background:var(--text-1);border-radius:7px;display:flex;align-items:center;justify-content:center;color:#fff;font-size:13px;flex-shrink:0}
+.nav-brand{display:flex;flex-direction:column;}
+.nav-brand-main{font-size:13px;font-weight:600;letter-spacing:-.2px;color:var(--text-1);line-height:1.15;white-space:nowrap}
+.nav-brand-sub{font-size:9.5px;font-weight:500;color:var(--text-3);letter-spacing:.04em;text-transform:uppercase;}
+.nav-btn{font-family:var(--font);font-size:13px;color:var(--text-2);padding:0 14px;height:54px;cursor:pointer;border:none;background:transparent;border-bottom:2px solid transparent;white-space:nowrap;transition:color var(--t) var(--ease),border-color var(--t) var(--ease);display:flex;align-items:center}
+.nav-btn:hover{color:var(--text-1)}
+.nav-btn.active{color:var(--text-1);font-weight:500;border-bottom-color:var(--text-1)}
+/* Contact Author button */
+.nav-contact-wrap{flex-shrink:0;margin-left:auto;padding-left:10px;display:flex;align-items:center}
+.nav-contact-btn{font-family:var(--font);font-size:12px;font-weight:500;color:var(--text-2);background:rgba(0,0,0,.055);border:1px solid rgba(0,0,0,.09);border-radius:7px;padding:0 11px;height:30px;white-space:nowrap;cursor:pointer;display:flex;align-items:center;gap:5px;transition:background 140ms,color 140ms}
+.nav-contact-btn:hover{background:rgba(0,0,0,.10);color:var(--text-1)}
+/* Contact dropdown — rendered as fixed portal, not inside nav */
+.nav-contact-dd{position:fixed;background:#fff;border:1px solid rgba(0,0,0,.09);border-radius:11px;box-shadow:0 8px 32px rgba(0,0,0,.13),0 1px 4px rgba(0,0,0,.07);min-width:172px;padding:6px;display:none;z-index:10000}
+.nav-contact-dd.open{display:block}
+.nav-contact-link{display:flex;align-items:center;gap:9px;padding:8px 10px;border-radius:7px;font-size:13px;color:var(--text-1);text-decoration:none;font-family:var(--font);transition:background 110ms}
+.nav-contact-link:hover{background:rgba(0,0,0,.045)}
+.nc-icon{width:28px;height:28px;border-radius:7px;display:flex;align-items:center;justify-content:center;flex-shrink:0;color:#fff}
+.nc-icon.li{background:#0A66C2}
+.nc-icon.em{background:#1B3F6E}
+.nc-icon.gh{background:#1C1C1E}
+/* Pane */
+.pane{display:none;padding:32px 24px 80px;max-width:1120px;margin:0 auto}
+.pane.active{display:block}
+/* Info notice */
+.ev-notice{background:rgba(0,0,0,0.03);border:1px solid var(--border);border-radius:var(--r-sm);padding:11px 14px;font-size:12px;color:var(--text-2);line-height:1.65;margin-bottom:20px;display:flex;gap:8px;align-items:flex-start}
+/* Legend */
+.legend{display:flex;gap:16px;flex-wrap:wrap;margin-bottom:18px}
+.leg-item{display:flex;align-items:center;gap:6px;font-size:12px;color:var(--text-2)}
+.leg-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0}
+/* Scenarios */
+.sc-intro{margin-bottom:22px}
+.sc-intro h2{font-size:24px;font-weight:700;letter-spacing:-.5px;margin-bottom:6px}
+.sc-intro p{font-size:14px;color:var(--text-2);max-width:520px;line-height:1.65}
+.scenario-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(205px,1fr));gap:12px}
+.sc-card{border-radius:var(--r);box-shadow:var(--sh-sm);padding:20px;cursor:pointer;transition:box-shadow var(--t) var(--ease),transform var(--t) var(--ease);position:relative;overflow:hidden;border-top:4px solid transparent}
+.sc-card.ffr{background:rgba(27,63,110,0.05);border-top-color:var(--ffr)}
+.sc-card.plq{background:rgba(122,59,30,0.05);border-top-color:var(--plq)}
+.sc-card.comb{background:rgba(26,92,54,0.05);border-top-color:var(--comb)}
+.sc-card:hover{box-shadow:var(--sh-md);transform:translateY(-2px)}
+.sc-card:active{transform:translateY(0)}
+.sc-tag{display:inline-block;font-size:9.5px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;margin-bottom:10px;padding:3px 8px;border-radius:100px;color:#fff}
+.sc-card.ffr .sc-tag{background:var(--ffr)}
+.sc-card.plq .sc-tag{background:var(--plq)}
+.sc-card.comb .sc-tag{background:var(--comb)}
+.sc-title{font-size:13px;font-weight:500;line-height:1.4;margin-bottom:5px;color:var(--text-1)}
+.sc-sub{font-size:12px;color:var(--text-2);line-height:1.45}
+.sc-arr{font-size:11px;color:var(--text-3);margin-top:12px;transition:color var(--t) var(--ease)}
+.sc-card:hover .sc-arr{color:var(--text-1)}
+/* Answer panel */
+.ans-panel{display:none}
+.ans-panel.active{display:block;margin-bottom:20px}
+.ans-back{font-family:var(--font);font-size:13px;color:var(--text-2);cursor:pointer;margin-bottom:22px;display:inline-flex;align-items:center;gap:6px;border:none;background:none;padding:6px 0;transition:color var(--t) var(--ease)}
+.ans-back:hover{color:var(--text-1)}
+.ans-tag{font-size:10px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;margin-bottom:8px}
+.ans-title{font-size:24px;font-weight:700;letter-spacing:-.4px;margin-bottom:18px;line-height:1.25}
+.platforms-box{background:rgba(0,0,0,.03);border:1px solid var(--border);border-radius:var(--r-sm);padding:14px 16px;margin-bottom:14px}
+.pt-label{font-size:10px;color:var(--text-3);margin-bottom:8px;text-transform:uppercase;letter-spacing:.05em}
+.pt-list{display:flex;flex-wrap:wrap;gap:6px}
+.pt-pill{font-size:12px;padding:4px 12px;border-radius:var(--r-pill);background:var(--surface);box-shadow:var(--sh-sm);color:var(--text-1)}
+.ans-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:14px}
+.ans-cell{background:var(--surface);border-radius:var(--r);padding:18px;box-shadow:var(--sh-sm)}
+.cell-lbl{font-size:10px;color:var(--text-3);margin-bottom:6px;text-transform:uppercase;letter-spacing:.05em}
+.cell-val{font-size:13px;color:var(--text-1);line-height:1.65}
+.cpt-row{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:12px}
+.cpt-pill{font-size:12px;padding:5px 12px;border-radius:var(--r-pill);background:#DBEAFE;color:#1D4ED8;font-weight:500}
+.ans-footer{font-size:11px;color:var(--text-3);border-top:1px solid var(--border);padding-top:12px;line-height:1.7}
+/* Filters */
+.filter-bar{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:22px}
+.fb{font-family:var(--font);font-size:12.5px;padding:6px 16px;border-radius:var(--r-pill);cursor:pointer;border:1px solid var(--border-s);background:var(--surface);color:var(--text-2);box-shadow:0 1px 2px rgba(0,0,0,.04);transition:all var(--t) var(--ease)}
+.fb:hover{color:var(--text-1);box-shadow:var(--sh-sm)}
+.fb.active{background:var(--text-1);color:#fff;border-color:var(--text-1);box-shadow:0 2px 8px rgba(0,0,0,.18)}
+/* Vendor cards */
+.vendor-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(295px,1fr));gap:12px}
+.v-card{background:var(--surface);border-radius:var(--r);box-shadow:var(--sh-sm);padding:22px;transition:box-shadow var(--t) var(--ease)}
+.v-card:hover{box-shadow:var(--sh-md)}
+.v-card.research{opacity:.75}
+.v-head{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:10px;gap:10px}
+.v-name{font-size:15px;font-weight:600;letter-spacing:-.2px;color:var(--text-1)}
+.v-prod{font-size:12px;color:var(--text-2);margin-top:2px}
+.badges{display:flex;gap:4px;flex-wrap:wrap;justify-content:flex-end;flex-shrink:0}
+.badge{font-size:10px;padding:3px 8px;border-radius:var(--r-pill);font-weight:500;white-space:nowrap}
+.b-fda{background:#DBEAFE;color:#1D4ED8}
+.b-ce{background:#DCFCE7;color:#166534}
+.b-nmpa{background:#FEF3C7;color:#92400E}
+.b-hsa{background:#FCE7F3;color:#9D174D}
+.b-mfds{background:#F3E8FF;color:#6B21A8}
+.b-res{background:#F3F4F6;color:#6B7280}
+.v-status{font-size:11px;font-weight:500;padding:4px 10px;border-radius:var(--r-pill);display:inline-block;margin-bottom:12px}
+.s-cleared{background:#DCFCE7;color:#166534}
+.s-research{background:#F3F4F6;color:#6B7280}
+.s-regional{background:#FEF3C7;color:#92400E}
+.v-body{font-size:13px;color:var(--text-2);line-height:1.7}
+.v-body p{margin-bottom:8px}
+.v-body .coi{font-size:12px;color:var(--text-3);font-style:italic;margin-top:12px;padding-top:12px;border-top:1px solid var(--border)}
+.v-body .coi.warn{color:#92400E;font-style:normal;background:#FEF3C7;border-radius:8px;padding:10px 12px;border:none;margin-top:12px}
+.v-body strong{color:var(--text-1);font-weight:500}
+/* Evidence */
+.ev-list{display:flex;flex-direction:column;gap:.7rem}
+/* Compact source-card style — matches the chat citation cards (.cai-cite) */
+.ev-card{display:flex;align-items:flex-start;gap:.55rem;padding:1px}
+.ev-n{flex-shrink:0;width:20px;height:20px;border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:600;background:rgba(11,122,62,.12);color:#0B7A3E;margin-top:1px}
+.ev-body{flex:1;min-width:0}
+.ev-name{display:inline-block;font-size:13.5px;font-weight:500;line-height:1.45;letter-spacing:-.1px;color:var(--text-1);text-decoration:none}
+.ev-name:hover{color:#1B3F6E;text-decoration:underline}
+.ev-meta{display:block;font-size:12px;color:var(--text-3);margin-top:2px;line-height:1.5}
+.ev-caution{font-size:12px;color:#92400E;margin-top:10px;background:#FEF3C7;border-radius:8px;padding:10px 12px}
+/* Protocol */
+.cl-warn{background:#FEF3C7;border-radius:var(--r-sm);padding:14px 18px;margin-bottom:22px;font-size:13px;color:#92400E;display:flex;gap:10px;align-items:flex-start;line-height:1.65}
+.cl-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:22px}
+.cl-box{background:var(--surface);border-radius:var(--r);box-shadow:var(--sh-sm);padding:20px}
+.cl-title{font-size:14px;font-weight:600;letter-spacing:-.1px;margin-bottom:14px;display:flex;align-items:center;gap:6px}
+.cl-item{display:flex;gap:8px;font-size:13px;margin-bottom:9px;line-height:1.5;align-items:flex-start}
+.cl-item small{font-size:12px;color:var(--text-2)}
+.sec-lbl{font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.08em;color:var(--text-3);margin:28px 0 12px}
+/* About */
+.about-box{background:var(--surface);border-radius:var(--r);box-shadow:var(--sh-sm);padding:22px 26px;margin-bottom:12px;font-size:14px;color:var(--text-2);line-height:1.8}
+.about-box strong{color:var(--text-1);display:block;font-size:15px;font-weight:600;letter-spacing:-.2px;margin-bottom:6px}
+/* Responsive */
+@media(max-width:768px){
+  .pane{padding:20px 16px 60px}
+  .top-nav{padding:0 16px}
+  .cl-grid,.ans-grid,.ov-how-grid{grid-template-columns:1fr}
+  .ov-hero{padding:28px 22px}
+  .ov-h1{font-size:26px}
+  .sc-intro h2,.ans-title{font-size:20px}
+}
+
+/* ===== CFO & IT pane ===== */
+.cfo-hero{background:var(--surface);border-radius:22px;box-shadow:var(--sh-sm);padding:44px 40px;margin-bottom:28px}
+.cfo-eyebrow{font-size:10px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--text-3);margin-bottom:16px}
+.cfo-h1{font-size:32px;font-weight:700;letter-spacing:-.8px;line-height:1.15;color:var(--text-1);margin-bottom:14px;max-width:640px}
+.cfo-lead{font-size:15px;color:var(--text-2);line-height:1.75;max-width:580px}
+.cfo-aud-row{display:flex;gap:8px;margin-top:18px;flex-wrap:wrap}
+.aud-pill{font-size:12px;padding:5px 14px;border-radius:var(--r-pill);font-weight:500}
+.aud-cfo{background:#DBEAFE;color:#1D4ED8}
+.aud-it{background:#F3E8FF;color:#6B21A8}
+.cfo-section{margin-bottom:36px}
+.cfo-sec-lbl{font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:4px 12px;border-radius:var(--r-pill);display:inline-block;margin-bottom:18px}
+.lbl-fin{background:#DBEAFE;color:#1D4ED8}
+.lbl-it{background:#F3E8FF;color:#6B21A8}
+.lbl-both{background:#DCFCE7;color:#166534}
+.rev-banner{background:linear-gradient(135deg,#1B3F6E 0%,#1A5C36 100%);border-radius:var(--r);padding:28px 32px;margin-bottom:14px;color:#fff;display:grid;grid-template-columns:1fr auto;gap:20px;align-items:center}
+.rev-eyebrow{font-size:10px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;opacity:.65;margin-bottom:6px}
+.rev-amount{font-size:46px;font-weight:700;letter-spacing:-2px;line-height:1;margin-bottom:4px}
+.rev-desc{font-size:13px;opacity:.75;max-width:380px;line-height:1.55}
+.rev-right{display:flex;flex-direction:column;gap:8px;flex-shrink:0}
+.rev-box{background:rgba(255,255,255,.13);border-radius:10px;padding:12px 16px;min-width:160px}
+.rev-box-code{font-size:10px;font-weight:600;opacity:.65;letter-spacing:.05em;margin-bottom:3px}
+.rev-box-amt{font-size:20px;font-weight:700;letter-spacing:-.4px}
+.rev-box-desc{font-size:11px;opacity:.65;margin-top:2px;line-height:1.35}
+.cfo-cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(255px,1fr));gap:12px;margin-bottom:16px}
+.cfo-card{background:var(--surface);border-radius:var(--r);box-shadow:var(--sh-sm);padding:22px}
+.cfo-card-label{font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.06em;color:var(--text-3);margin-bottom:8px}
+.cfo-card-title{font-size:15px;font-weight:600;letter-spacing:-.2px;color:var(--text-1);margin-bottom:8px}
+.cfo-card-body{font-size:13px;color:var(--text-2);line-height:1.7}
+.cfo-card-body strong{color:var(--text-1);font-weight:500}
+.cfo-caution{background:#FEF3C7;border-radius:var(--r-sm);padding:14px 18px;font-size:13px;color:#92400E;line-height:1.65;display:flex;gap:10px;align-items:flex-start;margin-bottom:16px}
+.cpt-wrap{overflow-x:auto;border-radius:var(--r);box-shadow:var(--sh-sm);margin-bottom:14px}
+.cpt-tbl{width:100%;border-collapse:collapse;background:var(--surface);font-size:13px}
+.cpt-tbl th{font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.06em;color:var(--text-3);padding:12px 16px;text-align:left;border-bottom:1px solid var(--border);white-space:nowrap}
+.cpt-tbl td{padding:14px 16px;border-bottom:1px solid var(--border);color:var(--text-2);line-height:1.5;vertical-align:top}
+.cpt-tbl tr:last-child td{border-bottom:none}
+.cpt-tbl tr:hover td{background:rgba(0,0,0,.018)}
+.cpt-code{font-family:ui-monospace,monospace;font-size:14px;font-weight:600;color:var(--text-1);white-space:nowrap}
+.cpt-rate{font-weight:600;color:#1A5C36;font-size:15px;white-space:nowrap}
+.badge-cat1{background:#DCFCE7;color:#166534;font-size:10px;padding:2px 8px;border-radius:var(--r-pill);font-weight:600;display:inline-block}
+.badge-cat3{background:#FEF3C7;color:#92400E;font-size:10px;padding:2px 8px;border-radius:var(--r-pill);font-weight:600;display:inline-block}
+.deploy-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:16px}
+.deploy-card{background:var(--surface);border-radius:var(--r);box-shadow:var(--sh-sm);padding:24px;border-top:4px solid transparent}
+.deploy-card.cloud{border-top-color:#1B3F6E}
+.deploy-card.onprem{border-top-color:#6B21A8}
+.deploy-hd{font-size:16px;font-weight:600;letter-spacing:-.2px;color:var(--text-1);margin-bottom:4px}
+.deploy-sub{font-size:12px;color:var(--text-3);margin-bottom:16px}
+.deploy-items{list-style:none;padding:0}
+.deploy-items li{font-size:13px;color:var(--text-2);padding:7px 0;border-bottom:1px solid var(--border);display:flex;gap:8px;line-height:1.5}
+.deploy-items li:last-child{border-bottom:none}
+.d-chk{color:#1A5C36;flex-shrink:0;margin-top:1px}
+.d-note{color:#92400E;flex-shrink:0;margin-top:1px}
+.deploy-vendors{display:flex;flex-wrap:wrap;gap:5px;margin-top:14px;padding-top:14px;border-top:1px solid var(--border)}
+.dv-lbl{font-size:10px;color:var(--text-3);width:100%;text-transform:uppercase;letter-spacing:.05em;margin-bottom:4px}
+.dv-chip{font-size:11px;padding:3px 9px;border-radius:var(--r-pill);background:rgba(0,0,0,.05);color:var(--text-2)}
+.wf-steps{background:var(--surface);border-radius:var(--r);box-shadow:var(--sh-sm);overflow:hidden;margin-bottom:16px}
+.wf-step{display:flex;gap:14px;padding:16px 22px;border-bottom:1px solid var(--border);align-items:flex-start}
+.wf-step:last-child{border-bottom:none}
+.wf-n{width:24px;height:24px;border-radius:50%;background:#1B3F6E;color:#fff;font-size:11px;font-weight:600;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:2px}
+.wf-title{font-size:13px;font-weight:600;color:var(--text-1);margin-bottom:2px}
+.wf-body{font-size:13px;color:var(--text-2);line-height:1.6}
+.it-req-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(265px,1fr));gap:12px;margin-bottom:16px}
+.it-req-card{background:var(--surface);border-radius:var(--r);box-shadow:var(--sh-sm);padding:20px}
+.it-req-icon{font-size:18px;margin-bottom:10px}
+.it-req-title{font-size:14px;font-weight:600;letter-spacing:-.1px;color:var(--text-1);margin-bottom:8px}
+.it-req-list{list-style:none;padding:0}
+.it-req-list li{font-size:12.5px;color:var(--text-2);padding:5px 0;border-bottom:1px solid var(--border);line-height:1.5;display:flex;gap:6px}
+.it-req-list li:last-child{border-bottom:none}
+.it-wrap{overflow-x:auto;border-radius:var(--r);box-shadow:var(--sh-sm);margin-bottom:16px}
+.it-tbl{width:100%;border-collapse:collapse;background:var(--surface);font-size:12.5px}
+.it-tbl th{font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.06em;color:var(--text-3);padding:11px 14px;text-align:left;border-bottom:1px solid var(--border);white-space:nowrap}
+.it-tbl td{padding:12px 14px;border-bottom:1px solid var(--border);color:var(--text-2);line-height:1.45;vertical-align:top}
+.it-tbl tr:last-child td{border-bottom:none}
+.it-tbl tr:hover td{background:rgba(0,0,0,.015)}
+.it-vname{font-size:13px;font-weight:600;color:var(--text-1)}
+.it-vprod{font-size:11px;color:var(--text-3)}
+.d-cloud{background:#DBEAFE;color:#1D4ED8;font-size:10px;padding:2px 8px;border-radius:var(--r-pill);font-weight:600;display:inline-block;white-space:nowrap}
+.d-onprem{background:#F3E8FF;color:#6B21A8;font-size:10px;padding:2px 8px;border-radius:var(--r-pill);font-weight:600;display:inline-block;white-space:nowrap}
+.checklist-box{background:var(--surface);border-radius:var(--r);box-shadow:var(--sh-sm);padding:28px;margin-bottom:16px}
+.checklist-cols{display:grid;grid-template-columns:1fr 1fr;gap:28px}
+.checklist-col-title{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;margin-bottom:14px}
+.checklist-col-title.fin{color:#1D4ED8}
+.checklist-col-title.it{color:#6B21A8}
+.cl-check-list{list-style:none;padding:0}
+.cl-check-list li{font-size:13px;color:var(--text-2);padding:7px 0;border-bottom:1px solid var(--border);display:flex;gap:8px;line-height:1.5;align-items:flex-start}
+.cl-check-list li:last-child{border-bottom:none}
+.cl-num{font-size:10px;font-weight:700;color:var(--text-3);min-width:18px;margin-top:2px;flex-shrink:0}
+/* IT hero (purple-tinted variant) */
+.it-hero{background:linear-gradient(135deg,rgba(107,33,168,.05) 0%,rgba(107,33,168,.015) 100%);border:1px solid rgba(107,33,168,.12);border-radius:22px;padding:44px 40px;margin-bottom:28px}
+/* Payer portal lookup table */
+.payer-wrap{overflow-x:auto;border-radius:var(--r);box-shadow:var(--sh-sm);margin-bottom:14px}
+.payer-tbl{width:100%;border-collapse:collapse;background:var(--surface);font-size:13px}
+.payer-tbl th{font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.06em;color:var(--text-3);padding:11px 16px;text-align:left;border-bottom:1px solid var(--border);white-space:nowrap}
+.payer-tbl td{padding:13px 16px;border-bottom:1px solid var(--border);color:var(--text-2);line-height:1.5;vertical-align:top}
+.payer-tbl tr:last-child td{border-bottom:none}
+.payer-tbl tr:hover td{background:rgba(0,0,0,.018)}
+.payer-name{font-size:13px;font-weight:600;color:var(--text-1)}
+.payer-path{font-size:11px;color:var(--text-3);margin-top:2px}
+/* Coverage timeline table */
+.timeline-wrap{overflow-x:auto;border-radius:var(--r);box-shadow:var(--sh-sm);margin-bottom:14px}
+.timeline-tbl{width:100%;border-collapse:collapse;background:var(--surface);font-size:12.5px}
+.timeline-tbl th{font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.06em;color:var(--text-3);padding:11px 14px;text-align:left;border-bottom:1px solid var(--border)}
+.timeline-tbl td{padding:12px 14px;border-bottom:1px solid var(--border);color:var(--text-2);line-height:1.45;vertical-align:top}
+.timeline-tbl tr:last-child td{border-bottom:none}
+.timeline-tbl tr:hover td{background:rgba(0,0,0,.015)}
+.t-code{font-family:ui-monospace,monospace;font-size:13px;font-weight:600;color:var(--text-1);white-space:nowrap}
+.t-covered{color:#166534;font-weight:500}
+.t-partial{color:#92400E;font-weight:500}
+.t-not{color:#6B7280;font-weight:500}
+/* Call script box */
+.call-script{background:rgba(0,0,0,.04);border-left:3px solid var(--text-3);border-radius:0 var(--r-sm) var(--r-sm) 0;padding:12px 16px;font-size:13px;color:var(--text-1);font-style:italic;line-height:1.65;margin:10px 0}
+/* BAA clause list */
+.baa-list{list-style:none;padding:0;margin-top:10px}
+.baa-list li{font-size:13px;color:var(--text-2);padding:6px 0;border-bottom:1px solid var(--border);display:flex;gap:8px;line-height:1.5}
+.baa-list li:last-child{border-bottom:none}
+.baa-bullet{color:#6B21A8;flex-shrink:0;font-weight:600}
+/* Implementation timeline */
+.impl-wrap{overflow-x:auto;border-radius:var(--r);box-shadow:var(--sh-sm);margin-bottom:14px}
+.impl-tbl{width:100%;border-collapse:collapse;background:var(--surface);font-size:12.5px}
+.impl-tbl th{font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.06em;color:var(--text-3);padding:11px 16px;text-align:left;border-bottom:1px solid var(--border)}
+.impl-tbl td{padding:12px 16px;border-bottom:1px solid var(--border);color:var(--text-2);line-height:1.45;vertical-align:top}
+.impl-tbl tr:last-child td{border-bottom:none}
+.impl-tbl tr:hover td{background:rgba(0,0,0,.015)}
+.impl-milestone{font-size:13px;color:var(--text-1);font-weight:500}
+.impl-cloud{color:#1B3F6E;font-weight:500}
+.impl-onprem{color:#6B21A8;font-weight:500}
+.impl-na{color:var(--text-3);font-style:italic}
+/* Failure modes table */
+.fail-wrap{overflow-x:auto;border-radius:var(--r);box-shadow:var(--sh-sm);margin-bottom:14px}
+.fail-tbl{width:100%;border-collapse:collapse;background:var(--surface);font-size:12.5px}
+.fail-tbl th{font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.06em;color:var(--text-3);padding:11px 14px;text-align:left;border-bottom:1px solid var(--border)}
+.fail-tbl td{padding:13px 14px;border-bottom:1px solid var(--border);color:var(--text-2);line-height:1.55;vertical-align:top}
+.fail-tbl tr:last-child td{border-bottom:none}
+.fail-tbl tr:hover td{background:rgba(0,0,0,.015)}
+.fail-name{font-size:13px;font-weight:600;color:#92400E}
+@media(max-width:768px){
+  .deploy-grid,.checklist-cols,.rev-banner{grid-template-columns:1fr}
+  .cfo-hero,.it-hero{padding:28px 22px}
+  .cfo-h1{font-size:24px}
+  .rev-amount{font-size:34px}
+}
+
+/* Overview */
+.ov-hero{background:var(--surface);border-radius:22px;box-shadow:var(--sh-sm);padding:44px 40px;margin-bottom:28px}
+.ov-eyebrow{font-size:10px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--text-3);margin-bottom:16px}
+.ov-h1{font-size:36px;font-weight:700;letter-spacing:-.8px;line-height:1.15;color:var(--text-1);margin-bottom:14px;max-width:700px}
+.ov-lead{font-size:16px;color:var(--text-2);line-height:1.75;max-width:600px}
+.ov-section{margin-bottom:32px}
+.ov-section-label{font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:4px 12px;border-radius:var(--r-pill);display:inline-block;margin-bottom:18px}
+.why-label{background:#DBEAFE;color:#1D4ED8}
+.how-label{background:#DCFCE7;color:#166534}
+.what-label{background:#F3E8FF;color:#6B21A8}
+.ov-cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:12px}
+.ov-card{background:var(--surface);border-radius:var(--r);box-shadow:var(--sh-sm);padding:22px;transition:box-shadow var(--t) var(--ease),transform var(--t) var(--ease)}
+.ov-card:hover{box-shadow:var(--sh-md);transform:translateY(-1px)}
+.ov-card-icon{width:36px;height:36px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:17px;margin-bottom:14px}
+.ov-card-title{font-size:14px;font-weight:600;letter-spacing:-.1px;color:var(--text-1);margin-bottom:8px}
+.ov-card-body{font-size:13px;color:var(--text-2);line-height:1.7}
+.ov-how-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.ov-how-block{background:var(--surface);border-radius:var(--r);box-shadow:var(--sh-sm);padding:26px}
+.ov-how-num{font-size:11px;font-weight:700;color:var(--text-3);letter-spacing:.07em;margin-bottom:8px}
+.ov-how-title{font-size:16px;font-weight:600;letter-spacing:-.2px;color:var(--text-1);margin-bottom:14px;line-height:1.3}
+.ov-how-body p{font-size:13px;color:var(--text-2);line-height:1.75;margin-bottom:10px}
+.ov-how-body p:last-child{margin-bottom:0}
+.ov-steps{background:var(--surface);border-radius:var(--r);box-shadow:var(--sh-sm);overflow:hidden;margin-bottom:20px}
+.ov-step{display:flex;gap:18px;padding:20px 26px;border-bottom:1px solid var(--border);align-items:flex-start;transition:background var(--t) var(--ease)}
+.ov-step:hover{background:rgba(0,0,0,.015)}
+.ov-step:last-child{border-bottom:none}
+.ov-step-n{width:28px;height:28px;border-radius:50%;background:var(--text-1);color:#fff;font-size:12px;font-weight:600;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px}
+.ov-step-content{flex:1}
+.ov-step-title{font-size:14px;font-weight:600;letter-spacing:-.1px;color:var(--text-1);margin-bottom:5px}
+.ov-step-body{font-size:13px;color:var(--text-2);line-height:1.7}
+.ov-cta-row{display:flex;gap:10px;flex-wrap:wrap}
+.ov-cta{font-family:var(--font);font-size:14px;font-weight:500;padding:11px 24px;border-radius:var(--r-pill);border:none;cursor:pointer;transition:opacity var(--t) var(--ease),box-shadow var(--t) var(--ease);background:var(--text-1);color:#fff;box-shadow:0 2px 8px rgba(0,0,0,.18)}
+.ov-cta:hover{opacity:.82}
+.ov-cta.ov-cta-sec{background:var(--surface);color:var(--text-1);border:1px solid var(--border-s);box-shadow:var(--sh-sm)}
+.ov-cta.ov-cta-sec:hover{box-shadow:var(--sh-md);opacity:1}
+/* PubMed live evidence */
+.ev-pubmed-bar{display:flex;align-items:center;justify-content:space-between;gap:12px;background:var(--surface);border-radius:var(--r);box-shadow:var(--sh-sm);padding:11px 16px;margin-bottom:12px;font-size:12.5px;color:var(--text-2);flex-wrap:wrap}
+.ev-pubmed-bar strong{color:var(--text-1)}
+.ev-refresh-btn{display:inline-flex;align-items:center;gap:5px;background:none;border:1px solid var(--border);border-radius:20px;padding:4px 12px;font-size:11.5px;color:var(--text-2);cursor:pointer;font-family:var(--font);transition:background .15s,color .15s;flex-shrink:0}
+.ev-refresh-btn:hover{background:var(--bg);color:var(--text-1)}
+.ev-loading{display:flex;align-items:center;gap:12px;padding:48px 20px;justify-content:center;color:var(--text-3);font-size:13px}
+@keyframes ev-spin{to{transform:rotate(360deg)}}
+.ev-spinner{width:20px;height:20px;border:2px solid var(--border);border-top-color:#1B3F6E;border-radius:50%;animation:ev-spin .75s linear infinite;flex-shrink:0}
+@media(prefers-reduced-motion:reduce){.ev-spinner{animation:none}}
+.ev-pmid-link{font-size:11px;color:var(--text-3);text-decoration:none;border:1px solid var(--border);border-radius:10px;padding:2px 7px;white-space:nowrap;transition:color .12s,border-color .12s}
+.ev-pmid-link:hover{color:#1B3F6E;border-color:#1B3F6E}
+.ev-error-card{background:var(--surface);border-radius:var(--r);padding:28px 24px;color:var(--text-2);font-size:13.5px;line-height:1.6;box-shadow:var(--sh-sm)}
+/* Language switch */
+.nav-lang{display:flex;align-items:center;gap:2px;background:rgba(0,0,0,.05);border:1px solid rgba(0,0,0,.08);border-radius:8px;padding:2px;flex-shrink:0;margin-right:10px}
+.lang-opt{font-family:var(--font);font-size:12px;font-weight:500;color:var(--text-2);text-decoration:none;padding:4px 10px;border-radius:6px;line-height:1;transition:background 140ms,color 140ms}
+.lang-opt:hover{color:var(--text-1)}
+.lang-opt.active{background:var(--surface);color:var(--text-1);box-shadow:0 1px 2px rgba(0,0,0,.08)}
+</style>
+</head>
+<body>
+
+<h2 class="sr-only">CCTA-AI 临床指南 — 独立证据参考</h2>
+
+<div class="disc-overlay" id="disc">
+  <div class="disc-box">
+    <h3>开始前请阅读</h3>
+    <p><strong>仅为教育资源 — 非临床指导。</strong>本指南汇总已发表的同行评审证据与公开的监管数据，不构成医疗建议或产品推荐。所有临床决策仍由主治医师负责。</p>
+    <p><strong>利益冲突：</strong>作者与 Keya Medical、Heartio、Ligence 及 CASIS 存在顾问关系。所有内容均仅来源于同行评审文献与公开监管备案。没有任何厂商审阅或赞助本内容。Keya Medical 条目附有明确的顾问关系披露。</p>
+    <p>监管批准日期来源于公开的 FDA 数据库与官方公司公告。凡无法独立核实的批准，均不予陈述。</p>
+    <button class="disc-btn" onclick="acceptDisclaimer()">我已了解 — 继续</button>
+  </div>
+</div>
+<div class="bm-toast" id="bm-toast">
+  <span class="bm-toast-icon">☆</span>
+  收藏本页以便快速访问 &nbsp;<kbd>⌘D</kbd>
+</div>
+<script>
+if(localStorage.getItem('ccta_disc_v1')==='1'){document.getElementById('disc').style.display='none';}
+function acceptDisclaimer(){
+  var firstVisit=!localStorage.getItem('ccta_disc_v1');
+  localStorage.setItem('ccta_disc_v1','1');
+  document.getElementById('disc').style.display='none';
+  if(firstVisit){
+    var t=document.getElementById('bm-toast');
+    setTimeout(function(){t.classList.add('show');},400);
+    setTimeout(function(){t.classList.remove('show');},5000);
+  }
+}
+</script>
+
+<div class="amber-bar"><i class="ti ti-info-circle" aria-hidden="true" style="font-size:13px;flex-shrink:0"></i><span><strong>教育资源。</strong>非临床建议。作者担任 Keya Medical、Heartio、Ligence、CASIS 顾问。所有论述均来源于同行评审文献或公开监管备案。无厂商赞助。· Nathan Qin 2026</span></div>
+
+<nav class="top-nav">
+  <div class="nav-brand-wrap">
+    <div class="nav-mark">♥</div>
+    <div class="nav-brand">
+      <span class="nav-brand-main">CCTA-AI 指南</span>
+      <span class="nav-brand-sub">独立 · Nathan Qin</span>
+    </div>
+  </div>
+  <button class="nav-btn active" onclick="showPane('overview',this)">概览</button>
+  <button class="nav-btn" onclick="showPane('scenarios',this)">临床场景</button>
+  <button class="nav-btn" onclick="showPane('vendors',this)">全部厂商</button>
+  <button class="nav-btn" onclick="showPane('evidence',this)">证据</button>
+  <button class="nav-btn" onclick="showPane('protocol',this)">采集方案</button>
+  <button class="nav-btn" onclick="showPane('cfo',this)">财务与计费</button>
+  <button class="nav-btn" onclick="showPane('it',this)">IT 与集成</button>
+  <button class="nav-btn" onclick="showPane('about',this)">关于</button>
+  <div class="nav-lang" id="navLang" style="margin-left:auto">
+    <a class="lang-opt" href="ccta-ai-clinical-guide.html" data-lang="en">EN</a>
+    <a class="lang-opt active" href="ccta-ai-clinical-guide-zh.html" data-lang="zh">中文</a>
+  </div>
+  <div class="nav-contact-wrap">
+    <button class="nav-contact-btn" id="nav-contact-btn" onclick="toggleContactMenu(event)">联系作者 ▾</button>
+  </div>
+</nav>
+
+<!-- Contact dropdown portal (outside nav to avoid overflow-x clipping) -->
+<div class="nav-contact-dd" id="nav-contact-dd">
+  <a class="nav-contact-link" href="https://www.linkedin.com/in/nathanqin" target="_blank" rel="noopener">
+    <span class="nc-icon li"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7H10V9h4v2a6 6 0 0 1 6-3zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg></span>
+    LinkedIn
+  </a>
+  <a class="nav-contact-link" href="mailto:qinmingyang2000@gmail.com">
+    <span class="nc-icon em"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg></span>
+    Email
+  </a>
+  <a class="nav-contact-link" href="https://github.com/aethernusnathan" target="_blank" rel="noopener">
+    <span class="nc-icon gh"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12c0 4.42 2.87 8.17 6.84 9.5.5.08.66-.23.66-.5v-1.69c-2.77.6-3.36-1.34-3.36-1.34-.46-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.87 1.52 2.34 1.07 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.92 0-1.11.38-2 1.03-2.71-.1-.25-.45-1.29.1-2.64 0 0 .84-.27 2.75 1.02A9.56 9.56 0 0 1 12 6.8c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.743 0 .267.18.578.688.48C19.138 20.167 22 16.418 22 12c0-5.52-4.48-10-10-10z"/></svg></span>
+    GitHub
+  </a>
+</div>
+
+<!-- OVERVIEW -->
+<div id="pane-overview" class="pane active">
+  <div class="ov-hero">
+    <div class="ov-eyebrow">CCTA · FFRCT · 斑块 AI · 独立临床参考 · 2026</div>
+    <h1 class="ov-h1">冠状动脉 CT 血管成像不再只是解剖学。</h1>
+    <p class="ov-lead">AI 现在能从同一次扫描中提取生理学与斑块生物学信息——无需导管检查、腺苷或额外辐射。这改变了一份 CCTA 报告对患者的意义。</p>
+  </div>
+
+  <div class="ov-section">
+    <div class="ov-section-label why-label">为何重要</div>
+    <div class="ov-cards">
+      <div class="ov-card">
+        <div class="ov-card-icon" style="background:#EEF3FB;color:#1B3F6E">♥</div>
+        <div class="ov-card-title">诊断缺口</div>
+        <div class="ov-card-body">CCTA 上的阻塞性狭窄并不等于缺血。在解剖上看似显著的病变中，高达 40% 在有创检测时血流动力学并不显著。把这些患者送入导管室，使他们承担风险与费用却无获益。</div>
+      </div>
+      <div class="ov-card">
+        <div class="ov-card-icon" style="background:#F3EFF5;color:#5B2D8E">⚡</div>
+        <div class="ov-card-title">预防缺口</div>
+        <div class="ov-card-body">主要不良心血管事件（MACE）的风险存在于斑块成分而非狭窄程度。一个具有大量富脂质坏死核心或冠状动脉周围炎症的非阻塞性病变，可能在引起症状之前就已破裂。传统报告完全无法发现它。</div>
+      </div>
+      <div class="ov-card">
+        <div class="ov-card-icon" style="background:#EAF3DE;color:#1A5C36">→</div>
+        <div class="ov-card-title">机遇</div>
+        <div class="ov-card-body">AI 衍生的 FFRCT 与斑块定量，可从你已经开具的一次扫描中同时弥补这两个缺口。NICE、AHA、SCCT 和 ACC 均已发布支持性指导。在美国，两者现已为 Category I 报销级别（CPT 75580 与 75577，自 2026 年 1 月起）。</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="ov-section">
+    <div class="ov-section-label how-label">工作原理</div>
+    <div class="ov-how-grid">
+      <div class="ov-how-block">
+        <div class="ov-how-num">01</div>
+        <div class="ov-how-title">CT-FFR — AI 衍生的血流储备分数</div>
+        <div class="ov-how-body">
+          <p>将 CCTA 的 DICOM 发送至 AI 平台。系统分割出三维冠状动脉树，并由计算流体力学（CFD）或深度学习模型在无需腺苷的情况下模拟充血状态下的血流。</p>
+          <p>输出为在模拟负荷下、狭窄远端任意一点的连续压力比值（0–1.0）。数值 ≤ 0.80 即为血流动力学显著——与有创 FFR 所用阈值相同。</p>
+          <p><strong>两个平台同时持有 FDA 与 CE 批准</strong>——这是美国与欧洲临床实践的相关标准：HeartFlow FFRCT 与 Keya DEEPVESSEL FFR。另有五个平台仅在亚洲获批（中国 NMPA、韩国 MFDS），在 SCCT-SCAI-ACC 2026 表 1 中列出以求完整，但在美国或欧盟市场不可用。Cleerly 的 ISCHEMIA 模块提供的是缺血概率评分，而非连续 FFR 数值——被 2026 共识归类为 CT-FFR 范畴之外。</p>
+        </div>
+      </div>
+      <div class="ov-how-block">
+        <div class="ov-how-num">02</div>
+        <div class="ov-how-title">AI 斑块定量 — 超越狭窄</div>
+        <div class="ov-how-body">
+          <p>已获批平台（Cleerly、HeartFlow、Elucid、Caristo、Artrya、Circle CVI）从同一次 CCTA 中分割并表征动脉粥样硬化斑块。输出包括总斑块体积、钙化负荷、非钙化斑块（NCP），并视平台而定提供富脂质成分（LRNC）、冠状动脉周围脂肪衰减指数（FAI）或基于组织学的亚型。</p>
+          <p>Caristo 的 FAI 即使在狭窄 &lt; 50% 的动脉中也能捕捉冠状动脉炎症——这是标准 CCTA 无法显现的风险信号。Elucid 是唯一一款对斑块亚型进行组织学验证的获批工具（CT-VH™）。HeartFlow Next Gen Plaque（2025 年 9 月）新增了带人群列线图的三维可视化。</p>
+          <p>DECIDE 注册研究：AI 斑块分期在 &gt; 50% 的病例中改变了临床管理，并在 90 天时使 LDL 降低 18.7 mg/dL。</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="ov-section">
+    <div class="ov-section-label what-label">如何应用</div>
+    <div class="ov-steps">
+      <div class="ov-step">
+        <div class="ov-step-n">1</div>
+        <div class="ov-step-content">
+          <div class="ov-step-title">识别合适的患者</div>
+          <div class="ov-step-body">CT-FFR 适用于 CCTA 上 50–90% 狭窄的稳定型胸痛患者（SCCT-SCAI-ACC 2026，证据等级 A）。不适用于左主干 ≥ 50%、CTO、支架内或 &lt; 1.8 mm 的血管。AI 斑块分析适用于任何在 CCTA 上可见斑块、需进行风险分层的患者（ACC 2025）——并非面向所有就诊者。</div>
+        </div>
+      </div>
+      <div class="ov-step">
+        <div class="ov-step-n">2</div>
+        <div class="ov-step-content">
+          <div class="ov-step-title">正确采集扫描</div>
+          <div class="ov-step-body">扫描前即刻舌下含服硝酸甘油 400–800 mcg，是 FFRCT 提交的强制要求。心率 &lt; 65 bpm。重建层厚 ≤ 0.625 mm。主动脉根部衰减 300–450 HU。完整清单见“采集方案”标签页。</div>
+        </div>
+      </div>
+      <div class="ov-step">
+        <div class="ov-step-n">3</div>
+        <div class="ov-step-content">
+          <div class="ov-step-title">为临床问题选择合适的平台</div>
+          <div class="ov-step-body">使用“临床场景”标签页，将你的问题与在该情境下有已发表证据的平台进行匹配。使用“全部厂商”标签页比较监管批准、利益冲突披露与功能。并非每个获批平台都适合每种使用场景。</div>
+        </div>
+      </div>
+      <div class="ov-step">
+        <div class="ov-step-n">4</div>
+        <div class="ov-step-content">
+          <div class="ov-step-title">结合临床情境解读</div>
+          <div class="ov-step-body">CT-FFR ≤ 0.80 可识别血流动力学显著的病变。0.75–0.85 的灰区需结合症状与影像质量综合判断。斑块结果可指导他汀强度与随访频率——但不能替代临床判断或主治医师的责任。</div>
+        </div>
+      </div>
+    </div>
+    <div class="ov-cta-row">
+      <button class="ov-cta" onclick="showPane('scenarios',document.querySelectorAll('.nav-btn')[1])">浏览临床场景 →</button>
+      <button class="ov-cta ov-cta-sec" onclick="showPane('protocol',document.querySelectorAll('.nav-btn')[4])">采集方案 →</button>
+    </div>
+  </div>
+</div>
+
+<!-- SCENARIOS -->
+<div id="pane-scenarios" class="pane">
+  <div class="sc-intro">
+    <h2>按临床场景分类的证据</h2>
+    <p>选择一个场景，查看哪些平台在该情境下有已发表数据。本页汇总文献——并非产品推荐。</p>
+  </div>
+  <div class="legend">
+    <div class="leg-item"><div class="leg-dot" style="background:#1B3F6E"></div>FFR / 生理学</div>
+    <div class="leg-item"><div class="leg-dot" style="background:#7A3B1E"></div>斑块 / 风险</div>
+    <div class="leg-item"><div class="leg-dot" style="background:#1A5C36"></div>两者兼具</div>
+  </div>
+  <div id="ans-container"></div>
+  <div id="sc-grid" class="scenario-grid">
+    <div class="sc-card ffr" onclick="showAns('s1')"><div class="sc-tag">FFR</div><div class="sc-title">中度狭窄 50–90%</div><div class="sc-sub">该病变是否限制血流？</div><div class="sc-arr"><i class="ti ti-arrow-right" aria-hidden="true"></i> 查看证据</div></div>
+    <div class="sc-card ffr" onclick="showAns('s2')"><div class="sc-tag">FFR</div><div class="sc-title">高冠脉钙化 CAC ≥400</div><div class="sc-sub">FFRCT 是否仍然有效？</div><div class="sc-arr"><i class="ti ti-arrow-right" aria-hidden="true"></i> 查看证据</div></div>
+    <div class="sc-card plq" onclick="showAns('s3')"><div class="sc-tag">斑块</div><div class="sc-title">一级预防 / 他汀优化</div><div class="sc-sub">真实的斑块负荷有多少？</div><div class="sc-arr"><i class="ti ti-arrow-right" aria-hidden="true"></i> 查看证据</div></div>
+    <div class="sc-card plq" onclick="showAns('s4')"><div class="sc-tag">斑块</div><div class="sc-title">斑块连续监测</div><div class="sc-sub">病变在进展还是消退？</div><div class="sc-arr"><i class="ti ti-arrow-right" aria-hidden="true"></i> 查看证据</div></div>
+    <div class="sc-card comb" onclick="showAns('s5')"><div class="sc-tag">综合</div><div class="sc-title">PCI 术前规划</div><div class="sc-sub">处理哪个病变、如何处理？</div><div class="sc-arr"><i class="ti ti-arrow-right" aria-hidden="true"></i> 查看证据</div></div>
+    <div class="sc-card comb" onclick="showAns('s6')"><div class="sc-tag">综合</div><div class="sc-title">双 CPT 计费 75580 + 75577</div><div class="sc-sub">哪些平台两项均已获批？</div><div class="sc-arr"><i class="ti ti-arrow-right" aria-hidden="true"></i> 查看证据</div></div>
+    <div class="sc-card ffr" onclick="showAns('s7')"><div class="sc-tag">FFR</div><div class="sc-title">TAVR 术前评估</div><div class="sc-sub">瓣膜置换前评估冠心病</div><div class="sc-arr"><i class="ti ti-arrow-right" aria-hidden="true"></i> 查看证据</div></div>
+    <div class="sc-card plq" onclick="showAns('s8')"><div class="sc-tag">斑块</div><div class="sc-title">本地部署 / 数据主权</div><div class="sc-sub">数据不能离开机构</div><div class="sc-arr"><i class="ti ti-arrow-right" aria-hidden="true"></i> 查看证据</div></div>
+    <div class="sc-card comb" onclick="showAns('s9')"><div class="sc-tag">综合</div><div class="sc-title">三支病变 CABG 对比 PCI</div><div class="sc-sub">无创血运重建规划</div><div class="sc-arr"><i class="ti ti-arrow-right" aria-hidden="true"></i> 查看证据</div></div>
+  </div>
+</div>
+
+<!-- VENDORS -->
+<div id="pane-vendors" class="pane">
+  <div class="ev-notice"><i class="ti ti-info-circle" aria-hidden="true" style="font-size:12px;flex-shrink:0;margin-top:1px"></i><span>监管批准仅来源于公开的 FDA 510(k) 数据库与官方公司公告。无法独立核实的日期不予陈述。仅供研究的工具以虚线边框显示。作者与 Keya Medical 存在顾问关系——披露见该厂商卡片。</span></div>
+  <div class="filter-bar">
+    <button class="fb active" onclick="fV('all',this)">全部</button>
+    <button class="fb" onclick="fV('ffrct',this)">FFR CT</button>
+    <button class="fb" onclick="fV('plaque',this)">斑块</button>
+    <button class="fb" onclick="fV('cleared',this)">全球已获批</button>
+    <button class="fb" onclick="fV('asia',this)">亚洲 / 区域</button>
+    <button class="fb" onclick="fV('research',this)">仅供研究</button>
+  </div>
+  <div class="vendor-grid">
+
+    <!-- HeartFlow -->
+    <div class="v-card" data-v="ffrct plaque cleared">
+      <div class="v-head"><div><div class="v-name">HeartFlow</div><div class="v-prod">FFRCT · Plaque Analysis · PCI Planner</div></div><div class="badges"><span class="badge b-fda">FDA</span><span class="badge b-ce">CE</span></div></div>
+      <div class="v-status s-cleared">已获批 — 美国、欧盟、英国、日本、加拿大</div>
+      <div class="v-body">
+        <p><strong>FFRCT：</strong>FDA 于 2014 年 11 月批准。三维 CFD 模型。600+ 篇出版物。NXT 试验 AUC 0.90，PACIFIC 每血管 AUC 0.94。在英国获 NICE 推荐。FISH&CHIPS 纳入 n=90,553 例 NHS 患者。</p>
+        <p><strong>斑块分析：</strong>第一代于 2022 年 10 月获 FDA 批准。Next Gen 斑块分析于 2025 年 9 月获批（更新算法、扩展列线图、三维可视化）。与 IVUS 一致率 95%（REVEALPLAQUE）。Cigna 自 2025 年 10 月起覆盖。</p>
+        <p><strong>PCI Planner：</strong>虚拟支架模拟。已获 CE + FDA 批准。</p>
+        <p class="coi">作者与 HeartFlow 之间无顾问关系。</p>
+      </div>
+    </div>
+
+    <!-- Cleerly -->
+    <div class="v-card" data-v="plaque cleared">
+      <div class="v-head"><div><div class="v-name">Cleerly</div><div class="v-prod">LABS · ISCHEMIA · COMPARE</div></div><div class="badges"><span class="badge b-fda">FDA</span></div></div>
+      <div class="v-status s-cleared">已获批 — 仅美国。ISCHEMIA 无 CE 标志。</div>
+      <div class="v-body">
+        <p><strong>LABS v1.0：</strong>FDA 于 2020 年批准。<strong>LABS v2.0：</strong>FDA 于 2025 年 3 月 7 日批准（K242338）。</p>
+        <p><strong>ISCHEMIA 模块：</strong>提供血管级缺血概率（AI-QCT<sub>ISCHEMIA</sub>）。据 SCCT-SCAI-ACC 2026，被明确归类为 CT-FFR 范畴之外——它并非连续 FFR 数值，无法报告狭窄后或差值 CT-FFR。不可与 CT-FFR ≤0.80 阈值互换使用。</p>
+        <p><strong>COMPARE：</strong>连续纵向斑块监测模块——其他获批厂商无同类产品。</p>
+        <p>在 CREDENCE（Cleerly 资助）中：每血管 ISCHEMIA AUC 0.86 对比 HeartFlow 0.76。在独立的 PACIFIC 数据集中：每患者 Cleerly 0.91 对比 HeartFlow 0.90——无显著差异。</p>
+        <p class="coi">作者与 Cleerly 之间无顾问关系。</p>
+      </div>
+    </div>
+
+    <!-- Keya -->
+    <div class="v-card" data-v="ffrct cleared">
+      <div class="v-head"><div><div class="v-name">Keya Medical</div><div class="v-prod">DEEPVESSEL FFR</div></div><div class="badges"><span class="badge b-fda">FDA</span><span class="badge b-ce">CE</span><span class="badge b-nmpa">NMPA</span><span class="badge b-hsa">HSA</span></div></div>
+      <div class="v-status s-cleared">DEEPVESSEL FFR：美国（2022 年 4 月）· 欧盟（CE 2018 年 8 月）· 中国 NMPA（2020 年 1 月）· 新加坡 HSA</div>
+      <div class="v-body">
+        <p><strong>DEEPVESSEL FFR：</strong>基于 CCTA + 有创 FFR 训练的深度学习模型。FDA 于 2022 年 4 月批准，CE 于 2018 年 8 月认证，NMPA 于 2020 年 1 月，HSA 认证（新加坡）。在 ADAPT 多中心试验（美欧 10 个中心）中验证。发表于 TARGET 随机对照试验（中度狭窄中对比功能学检查）。</p>
+        <p><strong>斑块模块：</strong>Keya 已宣布一款斑块分析产品。截至撰写时，尚未在公开 FDA 数据库中独立确认其斑块模块的单独 FDA 批准。读者应直接向 Keya Medical 或 FDA 510(k) 数据库核实当前批准状态。</p>
+        <p class="coi warn">⚠ 作者与 Keya Medical 存在顾问关系。读者在评估有关该厂商的信息时应予以权衡。所有事实性论述均来源于公开记录。</p>
+      </div>
+    </div>
+
+    <!-- Elucid -->
+    <div class="v-card" data-v="plaque cleared">
+      <div class="v-head"><div><div class="v-name">Elucid</div><div class="v-prod">PlaqueIQ — CT-VH™</div></div><div class="badges"><span class="badge b-fda">FDA</span></div></div>
+      <div class="v-status s-cleared">FDA 批准于 2024 年 10 月 1 日</div>
+      <div class="v-body">
+        <p>斑块成分分析以组织学金标准进行验证（CT-VH™）。首款基于组织学对 LRNC（富脂质坏死核心）、IPH 与纤维成分进行分类的 FDA 获批工具——在方法学上不同于基于 HU 阈值的分类。商业部署有限——截至 2024 年第四季度处于测试 / 有限发布。正在申请 FFRCT 适应证（尚未获批）。</p>
+        <p class="coi">作者与 Elucid 之间无顾问关系。</p>
+      </div>
+    </div>
+
+    <!-- Caristo -->
+    <div class="v-card" data-v="plaque cleared">
+      <div class="v-head"><div><div class="v-name">Caristo Diagnostics</div><div class="v-prod">CaRi-Plaque · CaRi-Heart</div></div><div class="badges"><span class="badge b-fda">FDA</span><span class="badge b-ce">CE</span></div></div>
+      <div class="v-status s-cleared">CaRi-Plaque：FDA 2025 年 3 月。CaRi-Heart：CE 2021，FDA 待批。</div>
+      <div class="v-body">
+        <p>冠状动脉周围脂肪衰减指数（FAI）——即使动脉狭窄 &lt;50% 时也能测量可见的冠状动脉炎症。Lancet 2024 结局数据。CPT 0992T/0993T（Category III，2026 年 1 月）。CaRi-Heart 的 FDA 批准待定——临床部署前请核实支付方覆盖情况，因为 Category III 代码的报销覆盖低于 Category I。</p>
+        <p class="coi">作者与 Caristo 之间无顾问关系。</p>
+      </div>
+    </div>
+
+    <!-- Artrya -->
+    <div class="v-card" data-v="plaque cleared">
+      <div class="v-head"><div><div class="v-name">Artrya</div><div class="v-prod">Salix Anatomy · Salix Coronary Plaque</div></div><div class="badges"><span class="badge b-fda">FDA</span></div></div>
+      <div class="v-status s-cleared">Anatomy：FDA 2025 年 3 月。Plaque：FDA 2025 年 8 月 21 日（K251837）。</div>
+      <div class="v-body">
+        <p>基于网页的平台（ASX: AYA）。斑块模块可在 10 分钟内完成，无需多套系统。已发表的结局数据有限——近期获批。正在申请 Coronary Flow（FFRCT）模块——尚未获批。</p>
+        <p class="coi">作者与 Artrya 之间无顾问关系。</p>
+      </div>
+    </div>
+
+    <!-- Circle CVI -->
+    <div class="v-card" data-v="plaque cleared">
+      <div class="v-head"><div><div class="v-name">Circle CVI</div><div class="v-prod">cvi42 | Plaque</div></div><div class="badges"><span class="badge b-fda">FDA</span><span class="badge b-ce">CE</span></div></div>
+      <div class="v-status s-cleared">FDA 批准于 2025 年 10 月。已获 CE 标志。</div>
+      <div class="v-body">
+        <p>本地部署的斑块分析——数据保留在机构内部。与现有 cvi42 平台集成（1,700+ 家医院、90 个国家）。可使完整的 CPT 75577 医师判读费留在院内。斑块表征覆盖钙化、NCP 与总负荷——成分分析的精细度低于 Cleerly 或 Elucid（无 LAP 亚型或基于组织学的分类）。无 FFRCT 模块。</p>
+        <p class="coi">作者与 Circle CVI 之间无顾问关系。</p>
+      </div>
+    </div>
+
+    <!-- Shukun -->
+    <div class="v-card" data-v="ffrct asia">
+      <div class="v-head"><div><div class="v-name">Shukun Technology</div><div class="v-prod">Careverse skCT-FFR</div></div><div class="badges"><span class="badge b-nmpa">NMPA</span></div></div>
+      <div class="v-status s-regional">仅中国 NMPA — 无 FDA 或 CE 批准</div>
+      <div class="v-body">
+        <p>基于降阶 CFD 训练的机器学习模型。在中国临床可用。发表于 China CT-FFR study 3（随机对照试验）。在 SCCT-SCAI-ACC 2026 表 1 中列为临床可用。无全球监管批准。</p>
+      </div>
+    </div>
+
+    <!-- United Imaging -->
+    <div class="v-card" data-v="ffrct asia">
+      <div class="v-head"><div><div class="v-name">United Imaging Healthcare</div><div class="v-prod">uAI-FFRCT</div></div><div class="badges"><span class="badge b-nmpa">NMPA</span></div></div>
+      <div class="v-status s-regional">据 SCCT 2026 表 1：中国 NMPA + 印度批准</div>
+      <div class="v-body">
+        <p>降阶 CFD 模型。在 SCCT-SCAI-ACC 2026 表 1 中列为在中国与印度临床可用。发表于中国多中心试验（Tang 等，JACC CVI 2020）。无 FDA 或 CE 批准。</p>
+      </div>
+    </div>
+
+    <!-- Raysight -->
+    <div class="v-card" data-v="ffrct asia">
+      <div class="v-head"><div><div class="v-name">Raysight Medical</div><div class="v-prod">RuiXin-FFR</div></div><div class="badges"><span class="badge b-nmpa">NMPA</span></div></div>
+      <div class="v-status s-regional">据 SCCT 2026 表 1：仅中国 NMPA</div>
+      <div class="v-body">
+        <p>降阶 CFD 模型。在 SCCT-SCAI-ACC 2026 表 1 中列为临床可用。已发表准确性数据（Rev Española Cardiol 2024，多中心）。无 FDA 或 CE 批准。</p>
+      </div>
+    </div>
+
+    <!-- ArteryFlow -->
+    <div class="v-card" data-v="ffrct asia">
+      <div class="v-head"><div><div class="v-name">ArteryFlow Technology</div><div class="v-prod">AccuFFRct</div></div><div class="badges"><span class="badge b-nmpa">NMPA</span></div></div>
+      <div class="v-status s-regional">据 SCCT 2026 表 1：仅中国 NMPA</div>
+      <div class="v-body">
+        <p>降阶 CFD 模型。列于 SCCT-SCAI-ACC 2026 表 1。发表于 JACC Cardiovasc Interv 2024 多中心研究。无 FDA 或 CE 批准。</p>
+      </div>
+    </div>
+
+    <!-- HeartMedi+ -->
+    <div class="v-card" data-v="ffrct asia">
+      <div class="v-head"><div><div class="v-name">AiMedic</div><div class="v-prod">HeartMedi+</div></div><div class="badges"><span class="badge b-mfds">MFDS</span></div></div>
+      <div class="v-status s-regional">韩国 MFDS 三类 · 国家医保报销</div>
+      <div class="v-body">
+        <p>降阶 CFD 模型。MFDS 三类已获批。列于 SCCT-SCAI-ACC 2026 表 1。在韩国纳入国家医保报销（18,100 韩元）。发表于 Korean Circ J 2024。无 FDA 或 CE 批准。</p>
+      </div>
+    </div>
+
+    <!-- Spimed-AI -->
+    <div class="v-card research" data-v="ffrct research">
+      <div class="v-head"><div><div class="v-name">Spimed-AI</div><div class="v-prod">CorEx — FFRAI</div></div><div class="badges"><span class="badge b-res">Research only</span></div></div>
+      <div class="v-status s-research">仅供研究 — 据 SCCT 2026 表 1 无临床批准</div>
+      <div class="v-body">
+        <p>法国初创公司（巴黎）。基于 CCTA + 有创 FFR 训练的深度学习模型。所持 CE 标志为软件分类标志，而非 CT-FFR 临床批准。在 SCCT-SCAI-ACC 2026 表 1 中明确列为仅供研究。发表于 Peters 等，Int J Cardiovasc Imaging 2024。无 FDA 批准。</p>
+      </div>
+    </div>
+
+    <!-- Siemens -->
+    <div class="v-card research" data-v="ffrct research">
+      <div class="v-head"><div><div class="v-name">Siemens Healthineers</div><div class="v-prod">cFFR · Syngo.CT Coronary Cockpit</div></div><div class="badges"><span class="badge b-res">Research only</span></div></div>
+      <div class="v-status s-research">cFFR：据 SCCT 2026 仅供研究。Cockpit：截至 RSNA 2025 仍在 510(k) 待批。</div>
+      <div class="v-body">
+        <p>cFFR：基于合成 CFD 训练的机器学习模型——在 SCCT-SCAI-ACC 2026 表 1 中归类为仅供研究。与 HeartFlow 建立商业合作（2024 年 1 月），在西门子扫描仪上交付 FFRCT。Syngo.CT Coronary Cockpit：聚焦 PCI 规划，针对光子计数 CT 优化，于 RSNA 2025 展示，510(k) 待批——尚未获批。</p>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- EVIDENCE -->
+<div id="pane-evidence" class="pane">
+  <div class="ev-pubmed-bar">
+    <span id="ev-pubmed-status"><i class="ti ti-database" aria-hidden="true" style="margin-right:5px"></i>正在从 PubMed 加载最新出版物…</span>
+    <button class="ev-refresh-btn" onclick="refreshPubMedEvidence()"><i class="ti ti-refresh" aria-hidden="true"></i> 刷新</button>
+  </div>
+  <div class="ev-notice"><i class="ti ti-info-circle" aria-hidden="true" style="font-size:12px;flex-shrink:0;margin-top:1px"></i><span>来自 PubMed 的实时数据 · 按最新排序 · 按关键词自动归类 · 缓存 24 小时 · 评估研究独立性：前瞻性多中心随机对照试验 &gt; 注册研究 &gt; 回顾性研究。已知赞助情况均予披露。</span></div>
+  <div class="filter-bar">
+    <button class="fb active" onclick="fE('all',this)">全部</button>
+    <button class="fb" onclick="fE('ffrct',this)">FFR CT</button>
+    <button class="fb" onclick="fE('plaque',this)">Plaque</button>
+    <button class="fb" onclick="fE('h2h',this)">头对头</button>
+    <button class="fb" onclick="fE('guide',this)">指南</button>
+  </div>
+  <div id="ev-list-dynamic" class="ev-list">
+    <div class="ev-loading"><div class="ev-spinner"></div><span>正在从 PubMed 获取…</span></div>
+  </div>
+</div>
+
+<!-- PROTOCOL -->
+<div id="pane-protocol" class="pane">
+  <div class="cl-warn"><i class="ti ti-alert-triangle" aria-hidden="true" style="font-size:16px;flex-shrink:0;margin-top:1px"></i><div>据 SCCT-SCAI-ACC 2026，<strong>硝酸甘油是 FFRCT 提交的强制要求</strong>。扫描前即刻舌下含服 400–800 mcg。若不使用硝酸盐，CT-FFR 数值会系统性偏高（造成假性安心）。仅在收缩压 &lt;90 mmHg 或重度主动脉瓣反流时停用。</div></div>
+  <div class="sec-lbl">患者准备</div>
+  <div class="cl-grid">
+    <div class="cl-box"><div class="cl-title"><i class="ti ti-heart-rate-monitor" aria-hidden="true" style="font-size:14px"></i>心率控制</div>
+      <div class="cl-item"><span style="color:#3B6D11;flex-shrink:0">✓</span>扫描前目标 &lt;65 bpm</div>
+      <div class="cl-item"><span style="color:#3B6D11;flex-shrink:0">✓</span>美托洛尔 50–100mg 口服（提前 1 小时）或 5–15mg 检查台上静脉注射</div>
+      <div class="cl-item"><span style="color:#3B6D11;flex-shrink:0">✓</span>检查前 12 小时禁咖啡因</div>
+      <div class="cl-item"><span style="color:#A32D2D;flex-shrink:0">✗</span>无需腺苷——充血由计算模拟生成</div>
+    </div>
+    <div class="cl-box"><div class="cl-title"><i class="ti ti-pill" aria-hidden="true" style="font-size:14px"></i>硝酸甘油（强制）</div>
+      <div class="cl-item"><span style="color:#3B6D11;flex-shrink:0">✓</span>扫描前即刻舌下含服 400–800 mcg</div>
+      <div class="cl-item"><span style="color:#3B6D11;flex-shrink:0">✓</span>左心室功能保留的重度主动脉瓣狭窄中安全（CAST-FFR）</div>
+      <div class="cl-item"><span style="color:#A32D2D;flex-shrink:0">✗</span>收缩压 &lt;90 mmHg 时停用</div>
+      <div class="cl-item"><span style="color:#A32D2D;flex-shrink:0">✗</span>重度主动脉瓣反流时停用</div>
+    </div>
+  </div>
+  <div class="sec-lbl">扫描仪参数</div>
+  <div class="cl-grid">
+    <div class="cl-box"><div class="cl-title"><i class="ti ti-adjustments-horizontal" aria-hidden="true" style="font-size:14px"></i>采集</div>
+      <div class="cl-item"><span style="color:#3B6D11;flex-shrink:0">✓</span>重建层厚 ≤0.625mm</div>
+      <div class="cl-item"><span style="color:#3B6D11;flex-shrink:0">✓</span>管电压 100–120 kVp（高 CAC 时 ≥120）</div>
+      <div class="cl-item"><span style="color:#3B6D11;flex-shrink:0">✓</span>视野（FOV）仅锥束至心脏</div>
+      <div class="cl-item"><span style="color:#3B6D11;flex-shrink:0">✓</span>优先采用 ECG 门控前瞻性采集</div>
+    </div>
+    <div class="cl-box"><div class="cl-title"><i class="ti ti-droplet" aria-hidden="true" style="font-size:14px"></i>对比剂目标</div>
+      <div class="cl-item"><span style="color:#3B6D11;flex-shrink:0">✓</span>主动脉根部 300–450 HU</div>
+      <div class="cl-item"><span style="color:#3B6D11;flex-shrink:0">✓</span>300–370 mgI/mL，流速 5–6 mL/秒</div>
+      <div class="cl-item"><span style="color:#3B6D11;flex-shrink:0">✓</span>随后生理盐水冲管 40–50 mL</div>
+      <div class="cl-item"><span style="color:#A32D2D;flex-shrink:0">✗</span>主动脉根部 &lt;250 HU 时不要提交</div>
+    </div>
+  </div>
+  <div class="sec-lbl">时相选择</div>
+  <div class="cl-grid">
+    <div class="cl-box"><div class="cl-title">首选 — 舒张中期（推荐）</div>
+      <div class="cl-item"><span style="color:#3B6D11;flex-shrink:0">✓</span>R-R 间期的 70–80%</div>
+      <div class="cl-item"><span style="color:#3B6D11;flex-shrink:0">✓</span>多数患者冠脉运动最小</div>
+      <div class="cl-item"><span style="color:#3B6D11;flex-shrink:0">✓</span>据 SCCT 2026，舒张期 CT-FFR AUC 0.94</div>
+    </div>
+    <div class="cl-box"><div class="cl-title">备选 — 收缩末期</div>
+      <div class="cl-item"><span style="color:#854F0B;flex-shrink:0">→</span>R-R 间期的 35–45%</div>
+      <div class="cl-item"><span style="color:#854F0B;flex-shrink:0">→</span>舒张期存在运动伪影时使用</div>
+      <div class="cl-item"><span style="color:#854F0B;flex-shrink:0">→</span>心率较快、心律失常、舒张功能障碍</div>
+      <div class="cl-item"><small>收缩期 CT-FFR AUC 0.77——收缩期采集中 0.70–0.80 的灰区数值须谨慎解读</small></div>
+    </div>
+  </div>
+  <div class="sec-lbl">出现以下情况时不要提交</div>
+  <div class="cl-box" style="max-width:440px">
+    <div class="cl-item"><span style="color:#A32D2D;flex-shrink:0">✗</span>左主干狭窄 ≥50%</div>
+    <div class="cl-item"><span style="color:#A32D2D;flex-shrink:0">✗</span>狭窄 &gt;90% 或 &lt;30%</div>
+    <div class="cl-item"><span style="color:#A32D2D;flex-shrink:0">✗</span>近期 STEMI / ACS</div>
+    <div class="cl-item"><span style="color:#A32D2D;flex-shrink:0">✗</span>FFRCT 用于 CTO 血管</div>
+    <div class="cl-item"><span style="color:#A32D2D;flex-shrink:0">✗</span>FFRCT 用于已置支架血管</div>
+    <div class="cl-item"><span style="color:#A32D2D;flex-shrink:0">✗</span>主动脉根部衰减 &lt;250 HU</div>
+  </div>
+</div>
+
+<!-- CFO & BILLING -->
+<div id="pane-cfo" class="pane">
+
+  <div class="cfo-hero">
+    <div class="cfo-eyebrow">报销 · CPT 计费 · 支付方覆盖 · 财务建模</div>
+    <h1 class="cfo-h1">签约前，先精确掌握你能收到多少。</h1>
+    <p class="cfo-lead">CPT 报销机制、如何核实约 650 家美国支付方各自覆盖哪个代码、财务建模假设以及计费流程——面向评估 CCTA AI 落地的 CFO 与收入周期负责人。</p>
+    <div class="cfo-aud-row">
+      <span class="aud-pill aud-cfo">医院 CFO</span>
+      <span class="aud-pill aud-cfo" style="background:#EDE9FE;color:#5B21B6">收入周期主管</span>
+    </div>
+  </div>
+
+  <!-- Section 1: Revenue opportunity -->
+  <div class="cfo-section">
+    <div class="cfo-sec-lbl lbl-fin">财务 — 收入机会</div>
+    <div class="rev-banner">
+      <div>
+        <div class="rev-eyebrow">最高合并 CPT 报销 · 每例 CCTA</div>
+        <div class="rev-amount">~$1,851</div>
+        <div class="rev-desc">两项 AI 附加分析均可由一次冠脉 CT 扫描计费——无需额外辐射、对比剂或影像预约。两个代码现均为 Category I（最高覆盖级别）。</div>
+      </div>
+      <div class="rev-right">
+        <div class="rev-box">
+          <div class="rev-box-code">CPT 75580</div>
+          <div class="rev-box-amt">~$900</div>
+          <div class="rev-box-desc">CT-FFR · Category I<br>2025 年 1 月生效</div>
+        </div>
+        <div class="rev-box">
+          <div class="rev-box-code">CPT 75577</div>
+          <div class="rev-box-amt">~$951</div>
+          <div class="rev-box-desc">AI 斑块 · Category I<br>2026 年 1 月生效</div>
+        </div>
+      </div>
+    </div>
+    <div class="cfo-cards" style="margin-top:14px">
+      <div class="cfo-card">
+        <div class="cfo-card-label">间接财务收益</div>
+        <div class="cfo-card-title">避免导管检查</div>
+        <div class="cfo-card-body">在转入导管室的中度狭窄患者中，高达 40% 在有创检测时血流动力学并不显著。CT-FFR 使这些患者得以安全地避免导管检查——降低下游成本、操作风险与责任暴露。在基于价值或打包付费的合同中，这种避免可直接转化为利润。</div>
+      </div>
+      <div class="cfo-card">
+        <div class="cfo-card-label">间接财务收益</div>
+        <div class="cfo-card-title">基于价值合同的上行空间</div>
+        <div class="cfo-card-body">通过以斑块为导向的预防治疗减少 MACE（DECIDE 注册研究：90 天时 LDL ↓18.7 mg/dL），可降低下游心血管事件。再入院与急性事件减少，可直接转化为 ACO、MSSP 与 Medicare Advantage 风险安排中的共享结余。</div>
+      </div>
+    </div>
+    <div class="ev-notice"><i class="ti ti-info-circle" aria-hidden="true" style="font-size:12px;flex-shrink:0;margin-top:1px"></i><span>Medicare 机构费用估算基于 CMS OPPS 公布费率。专业（医师）部分由判读的心脏科或放射科医师单独计费。费率每年更新——请在 CMS OPPS 附录 B 中确认当前数值。商业支付方费率各异；请在支付方合同中协商明确费率。</span></div>
+  </div>
+
+  <!-- CPT code breakdown -->
+  <div class="cfo-section">
+    <div class="cfo-sec-lbl lbl-fin">财务 — CPT 代码明细</div>
+    <div class="cpt-wrap">
+      <table class="cpt-tbl">
+        <thead>
+          <tr>
+            <th>CPT 代码</th>
+            <th>服务</th>
+            <th>类别</th>
+            <th>生效</th>
+            <th>Medicare 估算费率</th>
+            <th>美国已获批平台</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><span class="cpt-code">75580</span></td>
+            <td>AI 衍生的 CT 血流储备分数（CT-FFR）——基于 CCTA 的血流动力学缺血评估，无需腺苷或导管检查</td>
+            <td><span class="badge-cat1">Category I</span></td>
+            <td>Jan 2025</td>
+            <td><span class="cpt-rate">~$900</span><br><small style="color:var(--text-3);font-size:11px">OPPS 机构费</small></td>
+            <td style="font-size:12px">HeartFlow FFRCT · Keya DEEPVESSEL FFR<br><span style="color:var(--text-3)">其他平台的 75580 适用性请在计费前向各支付方核实。</span></td>
+          </tr>
+          <tr>
+            <td><span class="cpt-code">75577</span></td>
+            <td>AI 冠状动脉粥样硬化斑块定量分析——基于 CCTA 数据的斑块体积、成分与负荷分层</td>
+            <td><span class="badge-cat1">Category I</span></td>
+            <td>Jan 2026</td>
+            <td><span class="cpt-rate">~$951</span><br><small style="color:var(--text-3);font-size:11px">OPPS 机构费</small></td>
+            <td style="font-size:12px">HeartFlow Plaque · Cleerly LABS · Elucid PlaqueIQ · Caristo CaRi-Plaque · Artrya Salix · Circle CVI cvi42|Plaque · Keya DEEPVESSEL Plaque（核实 FDA 510(k)）</td>
+          </tr>
+          <tr>
+            <td><span class="cpt-code">0992T<br>0993T</span></td>
+            <td>冠状动脉周围脂肪组织衰减分析（FAI）——基于 CCTA 衍生的冠状动脉炎症标志物；独立于斑块定量</td>
+            <td><span class="badge-cat3">Category III</span></td>
+            <td>Jan 2026</td>
+            <td><span style="color:#92400E;font-weight:500">逐家支付方而定</span><br><small style="color:var(--text-3);font-size:11px">覆盖低于 Cat I</small></td>
+            <td style="font-size:12px">Caristo CaRi-Heart——截至本指南更新时 FDA 批准待定。任何临床计费前请在 FDA 510(k) 数据库中核实。</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="cfo-caution"><i class="ti ti-alert-triangle" aria-hidden="true" style="font-size:14px;flex-shrink:0;margin-top:1px"></i><span><strong>Category III 代码（0992T/0993T）的支付方覆盖远低于 Category I。</strong>许多商业计划及部分 Medicare Advantage 计划不报销 Category III 代码，或要求逐例事先授权。任何 FAI 产品临床部署前，请逐家支付方确认覆盖情况。不要因为 75577 已覆盖就假定 0992T/0993T 也会被覆盖。</span></div>
+  </div>
+
+  <!-- Payer coverage: How to verify -->
+  <div class="cfo-section">
+    <div class="cfo-sec-lbl lbl-fin">财务 — 如何核实支付方覆盖</div>
+
+    <div class="cfo-cards" style="margin-bottom:20px">
+      <div class="cfo-card">
+        <div class="cfo-card-label">支付方全景</div>
+        <div class="cfo-card-title">约 650 家美国支付方——但你无需覆盖全部</div>
+        <div class="cfo-card-body">美国大约有 650 家商业支付方，外加 Medicare、Medicare Advantage 计划以及各州的 Medicaid 项目。按业务量计，你的<strong>前 5 大支付方通常占商业收入的 70–80%</strong>，前 10 大覆盖 85–90%。<br><br>约 640 家较小支付方组成的长尾，大多以 12–18 个月的滞后跟随前 10 大。把覆盖核实集中在你的前 10 大支付方。在确认这 10 家各自的覆盖状态之前，不要签订厂商合同或预估收入。</div>
+      </div>
+      <div class="cfo-card">
+        <div class="cfo-card-label">第一步</div>
+        <div class="cfo-card-title">在做其他任何事之前，先拉取支付方构成报告</div>
+        <div class="cfo-card-body">向收入周期团队索取<strong>按年收入排序的支付方构成报告</strong>——而非按报销笔数。你需要知道哪些支付方代表最多的金额，而不仅仅是最多的患者。<br><br>取前 10 大。它们是初次覆盖核实中唯一重要的支付方。在拿到这份名单之前，不要开始任何其他调研步骤。</div>
+      </div>
+      <div class="cfo-card">
+        <div class="cfo-card-label">“Category I”在商业层面意味着什么</div>
+        <div class="cfo-card-title">CMS 覆盖 ≠ 商业覆盖</div>
+        <div class="cfo-card-body">Category I 状态意味着<strong>CMS 在全国范围内通过 Medicare OPPS 予以覆盖——仅此而已。</strong>商业支付方并不会自动受约束。每家都有自己的医疗政策委员会，并独立作出覆盖决定。<br><br>多数大型商业支付方在<em>费率</em>上参照 Medicare 费率表（支付 Medicare 的 X%）。但它们的<em>覆盖</em>决定完全独立——且通常比 CMS 滞后 12–24 个月。</div>
+      </div>
+    </div>
+
+    <div class="sec-lbl">四层核实框架</div>
+    <div class="wf-steps" style="margin-bottom:20px">
+      <div class="wf-step">
+        <div class="wf-n">1</div>
+        <div>
+          <div class="wf-title">先咨询厂商的报销团队（最快路径）</div>
+          <div class="wf-body">多数厂商按州维护支付方覆盖地图，并配有实时跟踪政策更新的专职报销人员。这是最快的起点——向你的厂商代表询问：<em>“能否提供本地区按业务量排名前 10 的支付方对 75580 与 75577 的当前覆盖政策状态？”</em><br><br>成熟度各异：有些厂商已建立完善的报销支持团队，有些尚处早期阶段。对于 75577（Category I，2026 年 1 月生效），各厂商的支付方采纳仍在推进——把厂商地图作为起点，再按第 2 步在支付方门户独立核实。</div>
+        </div>
+      </div>
+      <div class="wf-step">
+        <div class="wf-n">2</div>
+        <div>
+          <div class="wf-title">直接查阅支付方医疗政策门户</div>
+          <div class="wf-body">每家大型支付方都会在线发布其医疗政策。若找不到相关政策，该代码通常不被覆盖，或被作为“试验性”处理——两者都不意味着你可以随意计费。
+          <div class="payer-wrap" style="margin-top:12px">
+            <table class="payer-tbl">
+              <thead>
+                <tr>
+                  <th>支付方</th>
+                  <th>政策直达链接</th>
+                  <th>状态（2026 年 6 月）</th>
+                  <th>检索词</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><div class="payer-name">UnitedHealthcare</div></td>
+                  <td style="font-size:12px"><a href="https://www.uhcprovider.com/content/dam/provider/docs/public/policies/medadv-mp/noninvasive-fractional-flow-reserve-ffr-ischemic-heart-disease.pdf" target="_blank" rel="noopener" style="color:#1B3F6E">MA: FFR Policy PDF ↗</a><br><a href="https://www.uhcprovider.com/en/policies-protocols/commercial-policies/commercial-medical-drug-policies.html" target="_blank" rel="noopener" style="color:#1B3F6E">Commercial policies search ↗</a></td>
+                  <td style="font-size:12px;color:#1A5C36">✓ 已覆盖<br><span style="color:var(--text-3)">75580 + 75577；适用一定标准</span></td>
+                  <td style="font-size:12px">"75580" or "coronary CT fractional flow reserve"</td>
+                </tr>
+                <tr>
+                  <td><div class="payer-name">Aetna</div></td>
+                  <td style="font-size:12px"><a href="https://www.aetna.com/cpb/medical/data/200_299/0228.html" target="_blank" rel="noopener" style="color:#1B3F6E">CPB #0228 — Cardiac CT ↗</a><br><span style="color:var(--text-3)">Public, no login required</span></td>
+                  <td style="font-size:12px;color:#1A5C36">✓ 已覆盖<br><span style="color:var(--text-3)">75580 ✓ · 75577 ✓（CAD-RADS 1–3，FDA 获批平台）</span></td>
+                  <td style="font-size:12px">"CPT 75580" or "CCTA plaque" or "CT angiography FFR"</td>
+                </tr>
+                <tr>
+                  <td><div class="payer-name">Cigna</div></td>
+                  <td style="font-size:12px"><a href="https://www.cigna.com/health-care-providers/coverage-and-claims/policies" target="_blank" rel="noopener" style="color:#1B3F6E">Provider coverage policies ↗</a><br><a href="https://www.evicore.com/sites/default/files/clinical-guidelines/2025-02/Cigna_Cardiac%20Imaging%20Guidelines_V1.0.2025_Eff03.01.2025_pub11.26.24_upd02.04.25.pdf" target="_blank" rel="noopener" style="color:#1B3F6E">Cardiac Imaging Guidelines (EviCore) ↗</a></td>
+                  <td style="font-size:12px;color:#1A5C36">✓ 已覆盖<br><span style="color:var(--text-3)">FFR-CT 已取消事先授权（2025）；心脏影像经 EviCore</span></td>
+                  <td style="font-size:12px">"coronary CTA" or "75577" or "coronary plaque"</td>
+                </tr>
+                <tr>
+                  <td><div class="payer-name">BCBS / Anthem</div><div class="payer-path">各分支机构独立——并非全国统一</div></td>
+                  <td style="font-size:12px"><a href="https://www.anthem.com/provider/" target="_blank" rel="noopener" style="color:#1B3F6E">Anthem provider portal ↗</a><br><a href="https://www.southcarolinablues.com/web/public/brands/medicalpolicy/external-policies/fractional-flow-reserve-ct/" target="_blank" rel="noopener" style="color:#1B3F6E">BCBS SC policy example ↗</a><br><span style="color:var(--text-3)">请单独检索你所在地区的分支机构</span></td>
+                  <td style="font-size:12px;color:#92400E">⚠ 因分支而异<br><span style="color:var(--text-3)">请查阅你所在地区的具体计划；并非全国统一</span></td>
+                  <td style="font-size:12px">"CT-FFR" or "coronary plaque analysis" or "fractional flow reserve"</td>
+                </tr>
+                <tr>
+                  <td><div class="payer-name">Humana</div></td>
+                  <td style="font-size:12px"><a href="https://provider.humana.com/" target="_blank" rel="noopener" style="color:#1B3F6E">Humana provider portal ↗</a><br><a href="https://www.humana.com/provider/medical-resources/claims-payments/claims-payment-policies" target="_blank" rel="noopener" style="color:#1B3F6E">Medical Coverage Policies ↗</a></td>
+                  <td style="font-size:12px;color:#1A5C36">✓ 已覆盖<br><span style="color:var(--text-3)">75577 已于 2026 确认；75580 — 请在门户核实</span></td>
+                  <td style="font-size:12px">"fractional flow reserve CT" or "coronary plaque" or "75580"</td>
+                </tr>
+                <tr>
+                  <td><div class="payer-name">Medicaid</div><div class="payer-path">逐州而定——并不统一</div></td>
+                  <td style="font-size:12px">Find your state: <a href="https://www.medicaid.gov/state-overviews/index.html" target="_blank" rel="noopener" style="color:#1B3F6E">medicaid.gov state overviews ↗</a><br><span style="color:var(--text-3)">前往你所在州的费率表或覆盖服务查询</span></td>
+                  <td style="font-size:12px;color:#92400E">⚠ 因州而异<br><span style="color:var(--text-3)">并不统一；请查阅各州费率表</span></td>
+                  <td style="font-size:12px">州费率表 PDF 中的 CPT 代码编号</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          </div>
+        </div>
+      </div>
+      <div class="wf-step">
+        <div class="wf-n">3</div>
+        <div>
+          <div class="wf-title">用 Availity 查询事先授权要求</div>
+          <div class="wf-body">Availity 是多数美国医院已用于资格核验与事先授权的支付方门户聚合器。只需一次登录，即可按 CPT 代码跨多家支付方查询事先授权要求——无需逐家致电。<br><br>在 Availity 中检查你的前 10 大支付方：75580 或 75577 是否需要事先授权？若是，则在首例临床病例前你需要建立事先授权流程。另外有用的工具：<strong>CoverMyMeds</strong> 与 <strong>Cohere Health</strong>，用于自动化事先授权提交与跟踪。</div>
+        </div>
+      </div>
+      <div class="wf-step">
+        <div class="wf-n">4</div>
+        <div>
+          <div class="wf-title">就前 5 大支付方直接致电其医疗机构服务部</div>
+          <div class="wf-body">对于代表最多收入的支付方，一次直接致电值得花时间。可使用以下话术：
+          <div class="call-script">“CPT [75580 / 75577] 用于门诊医院索赔是否需要事先授权？该代码是否有现行的覆盖政策？能否确认它是被覆盖还是被视为试验性？能否提供本次通话的参考编号？”</div>
+          <strong>务必索取参考编号。</strong>口头确认在拒付申诉中无效。若代表称已覆盖，请要求通过传真或安全消息提供书面确认，并注明 CPT 代码与通话日期。若该索赔日后以“试验性”被拒付，这份文档就是你的第一道防线。</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="sec-lbl">按支付方层级的覆盖时间线</div>
+    <div class="timeline-wrap">
+      <table class="timeline-tbl">
+        <thead>
+          <tr>
+            <th>CPT 代码</th>
+            <th>Medicare（传统）</th>
+            <th>大型商业<br>（UHC、Aetna、Cigna）</th>
+            <th>BCBS 分支机构</th>
+            <th>较小支付方</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><span class="t-code">75580</span><br><small style="color:var(--text-3)">CT-FFR · Cat I 2025 年 1 月</small></td>
+            <td><span class="t-covered">已覆盖</span></td>
+            <td><span class="t-partial">参差不齐</span><br><small>截至 2026 年中，约 50–60% 有正面政策。事先授权仍普遍。</small></td>
+            <td><span class="t-partial">因分支而异</span><br><small>部分大型分支已有政策；请逐家独立核查——BCBS 并非全国统一。</small></td>
+            <td><span class="t-not">滞后</span><br><small>多为挂起或拒付；以 12–18 个月的延迟跟随大型支付方的决定。</small></td>
+          </tr>
+          <tr>
+            <td><span class="t-code">75577</span><br><small style="color:var(--text-3)">AI 斑块 · Cat I 2026 年 1 月</small></td>
+            <td><span class="t-covered">已覆盖</span></td>
+            <td><span class="t-partial">政策制定中</span><br><small>2026 年许多处于“审核中”。预计 2027 年覆盖更广。</small></td>
+            <td><span class="t-not">早期阶段</span><br><small>截至 2026 年中，多数分支尚未发布 75577 政策。</small></td>
+            <td><span class="t-not">落后 1–2 年</span><br><small>第 1 年不要预估来自较小支付方的 75577 收入。</small></td>
+          </tr>
+          <tr>
+            <td><span class="t-code">0992T / 0993T</span><br><small style="color:var(--text-3)">FAI · Cat III 2026 年 1 月</small></td>
+            <td><span class="t-not">有限 / 挂起</span><br><small>Category III = Medicare 覆盖低于 Cat I。</small></td>
+            <td><span class="t-not">2026–2027 不太可能</span><br><small>若无积极游说与结局数据，Category III 代码很少被商业支付方覆盖。</small></td>
+            <td><span class="t-not">无实际意义</span></td>
+            <td><span class="t-not">无实际意义</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="cfo-cards" style="margin-top:14px">
+      <div class="cfo-card">
+        <div class="cfo-card-label">事先授权——实务指引</div>
+        <div class="cfo-card-title">务必预先规划，尤其在第 1 年</div>
+        <div class="cfo-card-body">历史上，CPT 75580 曾被部分商业支付方要求事先授权。随着 Category I 状态，这一情况正在缓解——Cigna 已于 2025 年取消 FFR-CT 的事先授权要求。75577 较新，预计 2026 年阻力更大。<br><br>询问各厂商是否提供事先授权支持服务——这因厂商成熟度而异。来自厂商的事先授权支持，能切实减轻你收入周期团队的负担，尤其在最初 90 天。<br><br>最初 90 天每周跟踪拒付原因。最常见的可拒付原因：缺少事先授权文档、ICD-10 配对错误，以及支付方“试验性”政策尚未更新以反映 Category I 状态。每一项都可申诉——但申诉需占用人力。</div>
+      </div>
+      <div class="cfo-card">
+        <div class="cfo-card-label">Medicare Advantage</div>
+        <div class="cfo-card-title">与传统 Medicare 相互独立</div>
+        <div class="cfo-card-body">Medicare Advantage（MA）计划是与 CMS 签约的商业计划——它们<strong>不是</strong>传统 Medicare，即使对 Category I 代码也可施加自己的事先授权要求与覆盖限制。<br><br>若 MA 在你的支付方构成中占比可观，则在覆盖核实时应将每个 MA 计划视为独立的商业支付方。大型 MA 计划（UHC Medicare Advantage、Humana Medicare Advantage、Aetna MA）通常跟随传统 Medicare 覆盖，但叠加各自的事先授权要求。</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Financial modeling -->
+  <div class="cfo-section">
+    <div class="cfo-sec-lbl lbl-fin">财务 — 成本与财务建模</div>
+    <div class="cfo-cards">
+      <div class="cfo-card">
+        <div class="cfo-card-label">云端按例计费模式（多数厂商）</div>
+        <div class="cfo-card-title">可变成本，零资本支出</div>
+        <div class="cfo-card-body">HeartFlow、Cleerly、Keya、Elucid、Artrya 与 Caristo 均采用云端按例定价。机构按每次提交向厂商付费；CPT 报销视支付方构成与业务量部分或全部抵消该费用。厂商按例费用不公开——签约前请向各厂商索取详细报价并测算净利率。<br><br><strong>关键变量：</strong>完全覆盖（Category I）与被拒付或不覆盖病例之比，决定实际净利率。请按低、中、高年病例量分别建模。</div>
+      </div>
+      <div class="cfo-card">
+        <div class="cfo-card-label">本地部署模式（Circle CVI）</div>
+        <div class="cfo-card-title">固定成本，利润与量无关</div>
+        <div class="cfo-card-body">Circle CVI cvi42 采用平台授权模式。一旦授权，按例边际成本接近于零——机构在每例已覆盖病例上保留完整的 CPT 75577 报销。资本支出：若不使用现有 cvi42，则需服务器硬件。软件：年度授权费。<br><br>对已在运行 cvi42 的机构（全球 1,700+ 家医院），<strong>盈亏平衡到来更快</strong>。本地部署还消除了 PHI 外送风险——若你的机构网络风险态势较高或有严格数据驻留要求，这对 CFO 可能具有额外价值。</div>
+      </div>
+      <div class="cfo-card">
+        <div class="cfo-card-label">双平台计费</div>
+        <div class="cfo-card-title">一次扫描约 $1,851——单一厂商</div>
+        <div class="cfo-card-body">当使用同时获得 CPT 75580（CT-FFR）与 75577（斑块分析）FDA 批准的单一平台时，每例符合条件的 CCTA 可合并计费约 $1,851。这简化了流程：一份厂商合同、一次 DICOM 提交、一次扫描产生两个可计费代码。<br><br>截至 2026 年 6 月，请确认你候选名单中哪些厂商对两个代码均持有获批状态——FDA 批准范围各异且会变化；采购时请在公开 510(k) 数据库中核实。注意：SCCT 2026 将 Cleerly ISCHEMIA 归类为 CT-FFR 范畴之外，这可能专门影响该产品的 75580 支付方覆盖资格。</div>
+      </div>
+      <div class="cfo-card">
+        <div class="cfo-card-label">采用现实的已覆盖病例假设</div>
+        <div class="cfo-card-title">不要按 100% 回款率建模</div>
+        <div class="cfo-card-body"><strong>为第 1 年设定保守的已覆盖病例比例：</strong><br><br>
+          <strong>75580：</strong>70–80% 已覆盖率（因支付方构成而异）<br>
+          <strong>75577：</strong>40–60% 已覆盖率（太新，商业采纳尚不充分）<br>
+          <strong>拒付开销：</strong>最初 90 天，每例拒付预留 1–2 个全职工时<br><br>
+          常见拒付原因：缺少事先授权、ICD-10 配对错误、支付方“试验性”政策尚未更新以反映 Category I 状态。每一项都可申诉——但申诉需占用人力。每周复盘拒付原因，并尽早建立申诉模板。</div>
+      </div>
+      <div class="cfo-card">
+        <div class="cfo-card-label">TC/26 拆分计费</div>
+        <div class="cfo-card-title">机构与医师分别计费</div>
+        <div class="cfo-card-body">75580 与 75577 均按技术/专业部分拆分计费：<br><br>
+          <strong>TC（技术部分）：</strong>由机构在 UB-04（医院门诊索赔）上计费<br>
+          <strong>26（专业部分）：</strong>由判读医师在 CMS-1500 上计费<br><br>
+          两者必须引用相同的服务日期与就诊。确保判读的心脏科与放射科医师理解计费路径——部分支付方要求随 26 修饰码提供特定亚专科资质文档。与你的医师集团或住院医师计费团队协调，以避免重复计费错误。</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CFO checklist -->
+  <div class="cfo-section">
+    <div class="cfo-sec-lbl lbl-fin">财务 — CFO 与收入周期清单</div>
+    <div class="checklist-box">
+      <div class="checklist-col-title fin" style="margin-bottom:16px">上线前</div>
+      <ul class="cl-check-list">
+        <li><span class="cl-num">01</span>向收入周期团队拉取按年收入排序的支付方构成报告——在任何其他调研步骤之前先确定前 10 大支付方</li>
+        <li><span class="cl-num">02</span>获取各厂商针对本地区前 10 大支付方的 75580 与 75577 覆盖地图——再对照支付方门户独立核实（见四层核实框架）</li>
+        <li><span class="cl-num">03</span>通过支付方门户（Aetna CPB、UHC 医疗政策、Cigna 覆盖政策）就前 5 大支付方独立核实覆盖</li>
+        <li><span class="cl-num">04</span>就前 5 大支付方致电其医疗机构服务部——使用上述核实话术——记录每次通话的参考编号与代表姓名</li>
+        <li><span class="cl-num">05</span>逐家支付方、逐个 CPT 代码确认事先授权要求；在首例临床病例前于 Availity（或 CoverMyMeds/Cohere）建立事先授权流程</li>
+        <li><span class="cl-num">06</span>签约前协商厂商按例费用——以 75580 的 70–80% 与 75577 的 40–60% 已覆盖率，在保守/基准/乐观病例量下测算净利率</li>
+        <li><span class="cl-num">07</span>若考虑 Circle CVI 本地部署：按预计年量，测算固定授权 + 服务器成本与按例 CPT 收入，以确定盈亏平衡点</li>
+        <li><span class="cl-num">08</span>与医师集团确认 TC/26 计费路径——由谁、以何资质、在哪份索赔单（CMS-1500）上计 26</li>
+        <li><span class="cl-num">09</span>与收入周期 IT 协作，在上线前将 CPT 75580 与 75577 加入 CDM（收费项目主表），并关联到影像就诊类型</li>
+        <li><span class="cl-num">10</span>若 Medicaid 占你支付方构成的 &gt;15%，请确认其覆盖——直接查阅你所在州的 Medicaid 费率表</li>
+        <li><span class="cl-num">11</span>在 FDA 批准已于公开 510(k) 数据库核实、且支付方覆盖已逐家书面确认之前，不要预估 0992T/0993T（FAI）的收入</li>
+        <li><span class="cl-num">12</span>为最初 90 天指定一名报销协调员——建立每周复盘的拒付跟踪台账（支付方名称、原因代码、CPT 代码、处理结果）</li>
+      </ul>
+    </div>
+  </div>
+
+</div>
+
+<!-- IT & INTEGRATION -->
+<div id="pane-it" class="pane">
+
+  <div class="it-hero">
+    <div class="cfo-eyebrow" style="color:#6B21A8;opacity:.75">DICOM · PACS · 安全 · 数据治理 · 实施</div>
+    <h1 class="cfo-h1">你的团队所需的每个集成点、安全要求与上线决策。</h1>
+    <p class="cfo-lead">部署架构、DICOM 流程、基础设施要求、数据治理、安全认证、实施时间线以及常见故障模式——面向 IT 主管、CISO 与 PACS 管理员。</p>
+    <div class="cfo-aud-row">
+      <span class="aud-pill aud-it">IT 主管</span>
+      <span class="aud-pill aud-it">CISO</span>
+      <span class="aud-pill aud-it">PACS 管理员</span>
+    </div>
+  </div>
+
+  <!-- IT Section 1: Deployment architecture -->
+  <div class="cfo-section">
+    <div class="cfo-sec-lbl lbl-it">IT — 部署架构</div>
+    <div class="deploy-grid">
+      <div class="deploy-card cloud">
+        <div class="deploy-hd">云端部署</div>
+        <div class="deploy-sub">DICOM 数据离开机构网络进行 AI 处理</div>
+        <ul class="deploy-items">
+          <li><span class="d-chk">✓</span>无需任何本地硬件</li>
+          <li><span class="d-chk">✓</span>由厂商管理算力、扩展与可用性</li>
+          <li><span class="d-chk">✓</span>AI 模型自动更新——无需 IT 维护窗口</li>
+          <li><span class="d-chk">✓</span>通常以周为单位部署，而非数月</li>
+          <li><span class="d-note">→</span>PHI 离开医院网络——上线前强制签署 HIPAA BAA</li>
+          <li><span class="d-note">→</span>需为厂商 DICOM/HTTPS 端点配置防火墙出站规则</li>
+          <li><span class="d-note">→</span>周转：每例通常 45 分钟–2 小时（取决于网络）</li>
+          <li><span class="d-note">→</span>必须确认数据驻留地（美国或欧盟数据中心）</li>
+        </ul>
+        <div class="deploy-vendors">
+          <div class="dv-lbl">美国已获批云端厂商</div>
+          <span class="dv-chip">HeartFlow</span>
+          <span class="dv-chip">Cleerly</span>
+          <span class="dv-chip">Keya（仅云端）</span>
+          <span class="dv-chip">Elucid</span>
+          <span class="dv-chip">Artrya</span>
+          <span class="dv-chip">Caristo</span>
+        </div>
+      </div>
+      <div class="deploy-card onprem">
+        <div class="deploy-hd">本地部署</div>
+        <div class="deploy-sub">数据完全保留在机构防火墙内</div>
+        <ul class="deploy-items">
+          <li><span class="d-chk" style="color:#6B21A8">✓</span>PHI 绝不离开医院网络</li>
+          <li><span class="d-chk" style="color:#6B21A8">✓</span>AI 处理不依赖外部互联网</li>
+          <li><span class="d-chk" style="color:#6B21A8">✓</span>保留完整的 CPT 75577 利润——无按例厂商费用</li>
+          <li><span class="d-chk" style="color:#6B21A8">✓</span>与 1,700+ 家已安装 cvi42 的医院集成</li>
+          <li><span class="d-note">→</span>需要配备 GPU 的专用服务器（推荐 NVIDIA）</li>
+          <li><span class="d-note">→</span>IT 团队负责本地可用性、备份与维护</li>
+          <li><span class="d-note">→</span>软件更新需与厂商协调</li>
+          <li><span class="d-note">→</span>仅斑块分析——截至 2026 年 6 月尚无获批的本地 CT-FFR</li>
+        </ul>
+        <div class="deploy-vendors">
+          <div class="dv-lbl">美国已获批本地部署厂商</div>
+          <span class="dv-chip">Circle CVI cvi42 | Plaque（FDA 2025 年 10 月）</span>
+          <span class="dv-chip" style="opacity:.6">Siemens Coronary Cockpit（510(k) 待批）</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- DICOM workflow -->
+  <div class="cfo-section">
+    <div class="cfo-sec-lbl lbl-it">IT — DICOM 流程：云端厂商</div>
+    <div class="wf-steps">
+      <div class="wf-step">
+        <div class="wf-n">1</div>
+        <div>
+          <div class="wf-title">CT 采集与重建</div>
+          <div class="wf-body">按方案采集 CCTA（层厚 ≤0.625 mm、ECG 门控、对比剂在目标 HU 范围内）。在 CT 工作站生成 DICOM 序列。无需改动现有 CT 流程——AI 流水线在重建完成且序列推送至 PACS 后启动。</div>
+        </div>
+      </div>
+      <div class="wf-step">
+        <div class="wf-n">2</div>
+        <div>
+          <div class="wf-title">PACS 将序列路由至厂商 DICOM 端点</div>
+          <div class="wf-body">一条 DICOM 路由规则（实施时配置一次）自动将指定的 CCTA 序列从 PACS 发送到厂商的 DICOM 接收端（AE Title）。这是标准的 DICOM C-Store 操作——与在 PACS 节点间发送检查相同的机制。检查大小：通常 500 MB–2 GB。传输：TLS 加密的 DICOM 或 HTTPS。配置完成后无需人工处理文件，每例无需员工操作。</div>
+        </div>
+      </div>
+      <div class="wf-step">
+        <div class="wf-n">3</div>
+        <div>
+          <div class="wf-title">厂商云端进行 AI 处理</div>
+          <div class="wf-body">厂商接收序列，执行冠状动脉分割，并在其云端基础设施上应用 CT-FFR 或斑块 AI 模型。<strong>HeartFlow：</strong>通常 45–90 分钟（急诊病例可优先提交）。其他厂商：范围相近。一旦 DICOM 上传完成，处理时间与你的本地基础设施无关——上传慢只会延迟开始，而非处理速度。</div>
+        </div>
+      </div>
+      <div class="wf-step">
+        <div class="wf-n">4</div>
+        <div>
+          <div class="wf-title">报告回传至你的 PACS</div>
+          <div class="wf-body">AI 报告以 DICOM 结构化报告（SR）和/或 PDF 形式交付，经预配置的回传 DICOM C-Store 推回你的 PACS。DICOM SR 可在任何符合 DICOM 标准的查看器中显示，阅片工作站无需安装额外软件。<br><br><strong>关键配置点：</strong>回传 DICOM 发送（厂商 → 你的 PACS）必须与正向发送（你的 PACS → 厂商）分别配置。两者是相互独立的 DICOM 关联——遗漏回传路径是最常见的配置错误（见下文“故障模式”）。</div>
+        </div>
+      </div>
+      <div class="wf-step">
+        <div class="wf-n">5</div>
+        <div>
+          <div class="wf-title">医师判读与计费触发</div>
+          <div class="wf-body">判读医师在 PACS 查看器或厂商门户中审阅 AI 输出并出具签名报告。CPT 75580 或 75577 的计费由收入周期团队从 RIS/EHR 发起——AI 平台不会自动生成收费。在此步骤生效前，CDM 必须已将 75580/75577 配置为关联到影像就诊类型的可计费项目。</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="sec-lbl" style="margin-top:24px">本地部署流程（Circle CVI cvi42）</div>
+    <div class="wf-steps">
+      <div class="wf-step">
+        <div class="wf-n">1</div>
+        <div>
+          <div class="wf-title">CT 采集与重建</div>
+          <div class="wf-body">与云端流程相同——按方案采集 CCTA，在 CT 工作站生成 DICOM 序列并推送至 PACS。</div>
+        </div>
+      </div>
+      <div class="wf-step">
+        <div class="wf-n">2</div>
+        <div>
+          <div class="wf-title">PACS 路由至本地 cvi42 服务器 AE Title</div>
+          <div class="wf-body">一条 DICOM 路由规则将 CCTA 序列从 PACS 发送到本地 cvi42 服务器的 AE Title。<strong>数据完全保留在医院网络内</strong>——DICOM 检查不经互联网传输。该路由规则在实施时配置一次，从 PACS 配置角度看与云端厂商相同。</div>
+        </div>
+      </div>
+      <div class="wf-step">
+        <div class="wf-n">3</div>
+        <div>
+          <div class="wf-title">本地 GPU 处理斑块分析</div>
+          <div class="wf-body">cvi42 服务器的 GPU 完全在本地处理斑块分析。典型周转：<strong>数分钟，而非数小时</strong>——本地 GPU 明显快于等待云端排队与网络往返传输。此步骤不依赖互联网。</div>
+        </div>
+      </div>
+      <div class="wf-step">
+        <div class="wf-n">4</div>
+        <div>
+          <div class="wf-title">在 cvi42 查看器中查看结果 + PACS 导出</div>
+          <div class="wf-body">分析结果可直接在 cvi42 阅片界面查看。以 DICOM SR 形式导出至 PACS，在标准 PACS 查看器中审阅。医师判读并出具签名报告。计费从 RIS/EHR 触发，与云端流程相同。</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Infrastructure requirements -->
+  <div class="cfo-section">
+    <div class="cfo-sec-lbl lbl-it">IT — 基础设施要求</div>
+    <div class="it-req-grid">
+      <div class="it-req-card">
+        <div class="it-req-icon"><i class="ti ti-network" aria-hidden="true" style="font-size:20px;color:#1B3F6E"></i></div>
+        <div class="it-req-title">网络与带宽</div>
+        <ul class="it-req-list">
+          <li><span style="color:#1A5C36">→</span>标准医院千兆局域网即可满足本地 DICOM 传输</li>
+          <li><span style="color:#1A5C36">→</span>专用互联网：并发云端提交推荐 100 Mbps</li>
+          <li><span style="color:#1A5C36">→</span><strong>容量公式：</strong>并发病例数 × 平均检查 GB × 8 ÷ 上传窗口分钟 = Mbps。示例：3 例 × 1.5 GB × 8 ÷ 10 分钟 = 需 36 Mbps；100 Mbps 留有充裕余量</li>
+          <li><span style="color:#1A5C36">→</span>出站端口：至厂商端点的 DICOM（104 / 11112）或 HTTPS（443）</li>
+          <li><span style="color:#1A5C36">→</span>防火墙白名单：厂商提供具体 IP 段或基于域名的允许规则</li>
+          <li><span style="color:#92400E">→</span>DICOM 压缩：JPEG 2000 无损可将检查体积减小 30–50%——启用前请确认厂商接受压缩后的 DICOM</li>
+          <li><span style="color:#92400E">→</span>站点到站点 VPN：部分厂商提供或要求——请在采购时确认</li>
+        </ul>
+      </div>
+      <div class="it-req-card">
+        <div class="it-req-icon"><i class="ti ti-server" aria-hidden="true" style="font-size:20px;color:#1B3F6E"></i></div>
+        <div class="it-req-title">PACS 集成</div>
+        <ul class="it-req-list">
+          <li><span style="color:#1A5C36">→</span>在 PACS 中分别为发送（至厂商）与接收（自厂商）配置 DICOM AE Title</li>
+          <li><span style="color:#1A5C36">→</span>已测试的主流 PACS：GE Centricity、Philips IntelliSpace、Fujifilm Synapse、Sectra、Merge、Intelerad</li>
+          <li><span style="color:#1A5C36">→</span><strong>Philips IntelliSpace</strong> 与 <strong>Sectra：</strong>提供原生厂商连接器项目——向厂商索取已验证的连接器版本</li>
+          <li><span style="color:#1A5C36">→</span><strong>GE Centricity：</strong>需配置 AE Title；请在厂商兼容列表中确认 PACS 版本</li>
+          <li><span style="color:#1A5C36">→</span>路由中间件选项：Intelerad Intelliroute（基于规则、无需编码）、Nuance AI Marketplace（预置连接器）、RamSoft PowerServer</li>
+          <li><span style="color:#92400E">→</span>PACS 集成深度因厂商而异——签约前请确认你的 PACS 版本在各厂商兼容列表中</li>
+        </ul>
+      </div>
+      <div class="it-req-card">
+        <div class="it-req-icon"><i class="ti ti-heart-rate-monitor" aria-hidden="true" style="font-size:20px;color:#1B3F6E"></i></div>
+        <div class="it-req-title">EHR 集成</div>
+        <ul class="it-req-list">
+          <li><span style="color:#1A5C36">→</span>所有厂商均提供 PDF 形式的 AI 报告——经文档管理附加到 EHR 就诊记录</li>
+          <li><span style="color:#1A5C36">→</span><strong>Epic：</strong>部分厂商已有经验证的 App Orchard 集成，用于 FFRCT 开单 + 结果——签约前向各厂商索取当前集成文档</li>
+          <li><span style="color:#1A5C36">→</span><strong>Cerner（Oracle Health）：</strong>HeartFlow 提供 HL7 2.x 集成——请核实当前 FHIR 路线图状态</li>
+          <li><span style="color:#1A5C36">→</span>HL7 FHIR：各厂商正逐步推出——请逐家核实当前状态，切勿假定</li>
+          <li><span style="color:#92400E">→</span>必须更新 CDM：将 75580 与 75577 作为关联到影像就诊类型的可计费项目加入——涉及收入周期 IT，而不仅是 IT 运维</li>
+          <li><span style="color:#92400E">→</span>AI 平台不会自动生成收费——计费是独立的 RIS/EHR 流程步骤</li>
+        </ul>
+      </div>
+      <div class="it-req-card">
+        <div class="it-req-icon"><i class="ti ti-cpu" aria-hidden="true" style="font-size:20px;color:#6B21A8"></i></div>
+        <div class="it-req-title">本地服务器规格（Circle CVI）</div>
+        <ul class="it-req-list">
+          <li><span style="color:#6B21A8">→</span>医院网络内的专用服务器——AI 处理不依赖云端</li>
+          <li><span style="color:#6B21A8">→</span><strong>GPU：</strong>NVIDIA RTX 或 A 系列；显存最低 16 GB——采购时向 Circle CVI 确认当前规格</li>
+          <li><span style="color:#6B21A8">→</span><strong>操作系统：</strong>Windows Server 或 Linux——向 Circle CVI 核实受支持版本</li>
+          <li><span style="color:#6B21A8">→</span><strong>存储：</strong>用 RAID 阵列存放输入 DICOM 归档；用本地 SSD 承载活动处理队列</li>
+          <li><span style="color:#6B21A8">→</span><strong>备份：</strong>将 cvi42 数据库与 DICOM 输出纳入医院标准备份计划</li>
+          <li><span style="color:#6B21A8">→</span>仅授权校验需要互联网——AI 处理无需</li>
+          <li><span style="color:#6B21A8">→</span>维护窗口：与 Circle CVI 协调 cvi42 软件更新；安排在非高峰时段</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- Data governance & security -->
+  <div class="cfo-section">
+    <div class="cfo-sec-lbl lbl-it">IT — 数据治理与安全</div>
+    <div class="cfo-cards">
+      <div class="cfo-card">
+        <div class="cfo-card-label">HIPAA BAA — 必备条款</div>
+        <div class="cfo-card-title">在传输任何 PHI 之前签署——无一例外</div>
+        <div class="cfo-card-body">在发送第一例 DICOM 之前，法律上要求签署 HIPAA 业务伙伴协议（BAA）。缺失或缺少以下具体条款的 BAA 均不充分。<br><br><strong>书面要求以下条款：</strong></div>
+        <ul class="baa-list">
+          <li class="baa-bullet"><strong>许可用途：</strong>PHI 仅限用于交付 AI 分析服务——不得用于模型训练、营销或二次研究</li>
+          <li class="baa-bullet"><strong>次级处理方：</strong>厂商须列出所有第三方处理方（云服务商、分包商）；变更须经你方批准</li>
+          <li class="baa-bullet"><strong>违规通知：</strong>依 HIPAA §164.410 须 ≤60 天——争取将“发现后 24 小时内通知你方 CISO”作为额外合同义务</li>
+          <li class="baa-bullet"><strong>PHI 删除时限：</strong>明确报告交付后的天数（如 30 天）；确认其有文档记录且可审计</li>
+          <li class="baa-bullet"><strong>审计权：</strong>你的机构保留每年审计厂商 HIPAA 合规的权利</li>
+          <li class="baa-bullet"><strong>PHI 返还：</strong>合同终止时，厂商须在约定期限内（通常 60 天）返还或可证明地销毁全部 PHI</li>
+        </ul>
+      </div>
+      <div class="cfo-card">
+        <div class="cfo-card-label">数据驻留</div>
+        <div class="cfo-card-title">在合同中写明具体云区域</div>
+        <div class="cfo-card-body"><strong>美国机构：</strong>要求厂商在合同中写明具体云区域（如“AWS us-east-1 与 us-west-2”）。仅写“美国数据中心”而无具体区域名，在合同上不可强制执行。<br><br>询问：备份是否跨区域或跨境复制？对多站点系统：确认所有院区的数据均留在同一国家的数据中心。<br><br><strong>欧盟/英国：</strong>CE 获批厂商应具备独立、合规 GDPR 的欧盟云实例——核实其为独立实例，而非自美国主区域的跨境传输。<br><br><strong>Keya Medical</strong> 仅云端（无本地选项）。请在合同中确认美国数据中心区域。</div>
+      </div>
+      <div class="cfo-card">
+        <div class="cfo-card-label">PHI 处理与 AI 训练</div>
+        <div class="cfo-card-title">明确询问你的 PHI 是否用于训练模型</div>
+        <div class="cfo-card-body"><strong>多数 FDA 获批厂商采用仅推理部署</strong>——你的 DICOM 数据被用于分析处理，但不用于重新训练生产环境 AI 模型。请书面确认：“我们机构的患者数据是否用于训练或微调你们的生产环境 AI 模型？”<br><br><strong>报告后的留存：</strong>厂商的 PHI 留存政策各异。对每家厂商都在 BAA 中拿到具体时限——不要依赖口头保证。<br><br><strong>研究用去标识化：</strong>在共享任何去标识化数据之前，确认厂商的去标识方法满足 HIPAA Safe Harbor 或专家判定标准——而不仅是“已去标识”。这与临床部署 BAA 相互独立，需要单独协议。</div>
+      </div>
+      <div class="cfo-card">
+        <div class="cfo-card-label">安全认证 — 采购清单</div>
+        <div class="cfo-card-title">要读“例外”部分，而不只是摘要</div>
+        <div class="cfo-card-body">采购期间应索取的标准文档：</div>
+        <ul class="baa-list">
+          <li class="baa-bullet"><strong>SOC 2 Type II：</strong>索取近 12 个月内的报告；阅读“例外（exceptions）”部分，而不只是审计师摘要——可获得性因厂商而异，采购时直接确认</li>
+          <li class="baa-bullet"><strong>ISO 27001：</strong>并非所有厂商都有——索取证书并核实有效期当前有效</li>
+          <li class="baa-bullet"><strong>渗透测试：</strong>索取最新报告及严重/高危发现已修复的证据；询问修复时间线</li>
+          <li class="baa-bullet"><strong>最低 TLS 版本：</strong>在合同条款中要求最低 TLS 1.2；新部署优先 TLS 1.3</li>
+          <li class="baa-bullet"><strong>DICOM 加密：</strong>确认厂商使用 TLS 封装的 DICOM（DICOM over TLS / DICOMTLS），而非经互联网的明文 DICOM</li>
+          <li class="baa-bullet"><strong>静态加密：</strong>对存储的 DICOM 数据与报告使用 AES-256</li>
+          <li class="baa-bullet"><strong>漏洞管理：</strong>索取补丁 SLA（如严重 CVE 在 30 天内修补）</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- Vendor IT reference table -->
+  <div class="cfo-section">
+    <div class="cfo-sec-lbl lbl-it">IT — 厂商 IT 参考表</div>
+    <div class="it-wrap">
+      <table class="it-tbl">
+        <thead>
+          <tr>
+            <th>厂商 / 产品</th>
+            <th>部署</th>
+            <th>CPT 代码</th>
+            <th>数据驻留</th>
+            <th>可提供 BAA</th>
+            <th>SOC 2 Type II</th>
+            <th>周转</th>
+            <th>EHR / PACS</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><div class="it-vname">HeartFlow</div><div class="it-vprod">FFRCT + Plaque + PCI Planner</div></td>
+            <td><span class="d-cloud">云端</span></td>
+            <td style="font-size:12px">75580 ✓<br>75577 ✓</td>
+            <td style="font-size:12px">美国 + 欧盟（CE）</td>
+            <td style="font-size:12px;color:#1A5C36">✓ 标准提供</td>
+            <td style="font-size:12px;color:#1A5C36">✓ 已确认<br><span style="color:var(--text-3);font-size:11px">据 HeartFlow 投资者关系：HITRUST + SOC 2 Type II</span></td>
+            <td style="font-size:12px">45–90 分钟<br>可优先</td>
+            <td style="font-size:12px">Epic（App Orchard）· Cerner · 主流 PACS</td>
+          </tr>
+          <tr>
+            <td><div class="it-vname">Cleerly</div><div class="it-vprod">LABS v2.0 + ISCHEMIA</div></td>
+            <td><span class="d-cloud">云端</span></td>
+            <td style="font-size:12px">75577 ✓<br>75580 — 待核实*</td>
+            <td style="font-size:12px">美国</td>
+            <td style="font-size:12px;color:#1A5C36">✓ 标准提供</td>
+            <td style="font-size:12px;color:#92400E">待核实<br><span style="color:var(--text-3);font-size:11px">正推进 SOC 2（2023）；请确认当前状态</span></td>
+            <td style="font-size:12px">~1–2 小时</td>
+            <td style="font-size:12px">DICOM SR · PDF · 支付方门户</td>
+          </tr>
+          <tr>
+            <td><div class="it-vname">Keya Medical</div><div class="it-vprod">DEEPVESSEL FFR + Plaque</div></td>
+            <td><span class="d-cloud">仅云端</span></td>
+            <td style="font-size:12px">75580 ✓<br>75577 — 待核实 510(k)</td>
+            <td style="font-size:12px">美国（仅云端）</td>
+            <td style="font-size:12px;color:#1A5C36">✓ 标准提供</td>
+            <td style="font-size:12px;color:#92400E">待核实</td>
+            <td style="font-size:12px">~1–2 小时</td>
+            <td style="font-size:12px">DICOM SR · 厂商门户</td>
+          </tr>
+          <tr>
+            <td><div class="it-vname">Elucid</div><div class="it-vprod">PlaqueIQ</div></td>
+            <td><span class="d-cloud">云端</span></td>
+            <td style="font-size:12px">75577 ✓</td>
+            <td style="font-size:12px">美国</td>
+            <td style="font-size:12px;color:#92400E">待核实</td>
+            <td style="font-size:12px;color:#92400E">待核实</td>
+            <td style="font-size:12px">向厂商核实</td>
+            <td style="font-size:12px">DICOM SR · PDF</td>
+          </tr>
+          <tr>
+            <td><div class="it-vname">Caristo</div><div class="it-vprod">CaRi-Plaque + CaRi-Heart</div></td>
+            <td><span class="d-cloud">云端</span></td>
+            <td style="font-size:12px">75577 ✓<br>0992T/0993T（Cat III）</td>
+            <td style="font-size:12px">美国 + 英国/欧盟</td>
+            <td style="font-size:12px;color:#92400E">待核实</td>
+            <td style="font-size:12px;color:#92400E">待核实</td>
+            <td style="font-size:12px">向厂商核实</td>
+            <td style="font-size:12px">DICOM SR · PDF · 门户</td>
+          </tr>
+          <tr>
+            <td><div class="it-vname">Artrya</div><div class="it-vprod">Salix Plaque</div></td>
+            <td><span class="d-cloud">云端</span></td>
+            <td style="font-size:12px">75577 ✓</td>
+            <td style="font-size:12px">美国 + 澳大利亚</td>
+            <td style="font-size:12px;color:#92400E">待核实</td>
+            <td style="font-size:12px;color:#92400E">待核实</td>
+            <td style="font-size:12px">向厂商核实</td>
+            <td style="font-size:12px">DICOM SR · 门户</td>
+          </tr>
+          <tr>
+            <td><div class="it-vname">Circle CVI</div><div class="it-vprod">cvi42 | Plaque</div></td>
+            <td><span class="d-onprem">本地</span></td>
+            <td style="font-size:12px">75577 ✓</td>
+            <td style="font-size:12px">仅本地<br>PHI 绝不离开</td>
+            <td style="font-size:12px;color:#6B21A8">不适用（本地）</td>
+            <td style="font-size:12px;color:#92400E">待核实</td>
+            <td style="font-size:12px">数分钟<br>（本地 GPU）</td>
+            <td style="font-size:12px">cvi42 查看器 · PACS DICOM 导出</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="ev-notice"><i class="ti ti-info-circle" aria-hidden="true" style="font-size:12px;flex-shrink:0;margin-top:1px"></i><span>本表反映截至 2026 年 6 月的公开信息。SOC 2 与 BAA 状态会随厂商更新而变化——采购时请直接索取当前文档。作者顾问关系披露：Keya Medical、Heartio、Ligence、CASIS。*Cleerly ISCHEMIA：SCCT 2026 将其归类为 CT-FFR 范畴之外——请逐家支付方核实 75580 适用性。</span></div>
+  </div>
+
+  <!-- Implementation timeline -->
+  <div class="cfo-section">
+    <div class="cfo-sec-lbl lbl-it">IT — 实施时间线：云端对比本地</div>
+    <div class="impl-wrap">
+      <table class="impl-tbl">
+        <thead>
+          <tr>
+            <th>里程碑</th>
+            <th>云端厂商（如 HeartFlow）</th>
+            <th>本地（Circle CVI）</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="impl-milestone">合同签署</td>
+            <td class="impl-cloud">第 0 周</td>
+            <td class="impl-onprem">第 0 周</td>
+          </tr>
+          <tr>
+            <td class="impl-milestone">HIPAA BAA 签署</td>
+            <td class="impl-cloud">第 0–1 周（任何 PHI 之前必须完成）</td>
+            <td class="impl-na">不适用——无 PHI 离开本地</td>
+          </tr>
+          <tr>
+            <td class="impl-milestone">硬件采购</td>
+            <td class="impl-na">不适用——厂商基础设施</td>
+            <td class="impl-onprem">第 1–4 周（GPU 服务器订货周期）</td>
+          </tr>
+          <tr>
+            <td class="impl-milestone">PACS AE Title 配置</td>
+            <td class="impl-cloud">第 1–2 周</td>
+            <td class="impl-onprem">第 1–2 周（服务器到货后）</td>
+          </tr>
+          <tr>
+            <td class="impl-milestone">开放防火墙规则</td>
+            <td class="impl-cloud">第 1–2 周（出站至厂商端点）</td>
+            <td class="impl-na">不适用——仅内部网络</td>
+          </tr>
+          <tr>
+            <td class="impl-milestone">软件安装与授权激活</td>
+            <td class="impl-na">不适用——云端托管</td>
+            <td class="impl-onprem">第 3–5 周（Circle CVI 工程师现场或远程）</td>
+          </tr>
+          <tr>
+            <td class="impl-milestone">用去标识化病例做暂存测试</td>
+            <td class="impl-cloud">第 2–3 周</td>
+            <td class="impl-onprem">第 4–6 周</td>
+          </tr>
+          <tr>
+            <td class="impl-milestone">更新 CDM（75580/75577 设为可计费）</td>
+            <td class="impl-cloud">第 3–5 周（收入周期 IT）</td>
+            <td class="impl-onprem">第 3–5 周（收入周期 IT）</td>
+          </tr>
+          <tr>
+            <td class="impl-milestone">配置 EHR 开单/结果流程</td>
+            <td class="impl-cloud">第 3–5 周（若为 HeartFlow 则用 Epic App Orchard）</td>
+            <td class="impl-onprem">第 3–5 周（以 PDF 附件作为后备）</td>
+          </tr>
+          <tr>
+            <td class="impl-milestone">员工培训（开单、阅片、计费）</td>
+            <td class="impl-cloud">第 4–6 周</td>
+            <td class="impl-onprem">第 5–7 周</td>
+          </tr>
+          <tr>
+            <td class="impl-milestone">首例临床实战病例</td>
+            <td class="impl-cloud">第 4–8 周</td>
+            <td class="impl-onprem">第 6–10 周</td>
+          </tr>
+          <tr>
+            <td class="impl-milestone">收入周期流程稳定</td>
+            <td class="impl-cloud">第 8–12 周（90 天拒付跟踪期）</td>
+            <td class="impl-onprem">第 8–12 周（90 天拒付跟踪期）</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="ev-notice"><i class="ti ti-info-circle" aria-hidden="true" style="font-size:12px;flex-shrink:0;margin-top:1px"></i><span>时间线为基于典型医院 IT 项目周期的估算。GPU 服务器订货周期（本地）与 Epic App Orchard 审核排队（云端）是常见的延误来源。在向临床人员承诺日期之前，请在上线目标中至少预留 2 周缓冲。</span></div>
+  </div>
+
+  <!-- Common failure modes -->
+  <div class="cfo-section">
+    <div class="cfo-sec-lbl lbl-it">IT — 常见故障模式与修复</div>
+    <div class="fail-wrap">
+      <table class="fail-tbl">
+        <thead>
+          <tr>
+            <th>故障</th>
+            <th>根本原因</th>
+            <th>修复</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="fail-name">DICOM 发送成功但无报告返回</td>
+            <td style="font-size:13px">未配置回传 AE Title；厂商侧 PACS 目标 IP 或端口有误</td>
+            <td style="font-size:13px">上线前用一例去标识化病例测试往返。确认回传 DICOM 推送是在厂商侧单独配置的 DICOM C-Store——与正向发送相互独立。</td>
+          </tr>
+          <tr>
+            <td class="fail-name">报告仅在厂商门户、不在 PACS</td>
+            <td style="font-size:13px">未配置回传 DICOM 推送，或防火墙拦截了 PACS DICOM 端口的入站</td>
+            <td style="font-size:13px">确认 PACS 接受来自厂商 IP 段的入站 DICOM；同时检查入站与出站防火墙规则；将“厂商 → PACS”与“PACS → 厂商”分别配置。</td>
+          </tr>
+          <tr>
+            <td class="fail-name">检查被厂商拒收（图像质量不合格）</td>
+            <td style="font-size:13px">采集不合规：重建时相错误、对比剂 HU 偏低、心率过快导致运动伪影</td>
+            <td style="font-size:13px">与 CT 技师复核采集方案；用 PACS 自动质检或人工技师审查建立发送前质控。多数厂商已公布采集要求——将其纳入你的 CT 方案文档。</td>
+          </tr>
+          <tr>
+            <td class="fail-name">大检查上传超时</td>
+            <td style="font-size:13px">带宽瓶颈；检查体积超过厂商文件大小上限</td>
+            <td style="font-size:13px">启用 DICOM 压缩（JPEG 2000 无损——确认厂商接受）；将大批量安排在非高峰；确认专用上行带宽未在 CT 高峰时段被医院其他流量占用。</td>
+          </tr>
+          <tr>
+            <td class="fail-name">CPT 75580/75577 收费未生成</td>
+            <td style="font-size:13px">CDM 未更新新 CPT 代码；开单流程未在 RIS/EHR 中触发收费</td>
+            <td style="font-size:13px">收入周期 IT 将 75580 与 75577 作为关联影像就诊类型的可计费项目加入 CDM。临床推广前用一例真实病例测试完整的收费采集路径。</td>
+          </tr>
+          <tr>
+            <td class="fail-name">提交时事先授权被拒</td>
+            <td style="font-size:13px">支付方医疗政策尚未为 Category I 代码更新；开单中缺少临床指征</td>
+            <td style="font-size:13px">以 CMS Category I 认定函 + 临床指征文档提起申诉。确保临床指征在开具 CCTA 时即记录（而非事后补加）。对某一支付方反复拒付，可通过厂商报销团队升级处理，或直接向该支付方提交正式覆盖认定申请。</td>
+          </tr>
+          <tr>
+            <td class="fail-name">静默提交失败（无报错、无报告）</td>
+            <td style="font-size:13px">DICOM C-Store 完成，但厂商收到损坏或不完整的检查；无错误通知回传 PACS</td>
+            <td style="font-size:13px">建立 DICOM 提交监控：每日检查厂商门户中超过预期周转仍无报告的检查。HeartFlow 会就提交失败发送邮件提醒——请启用。最初 90 天指定一名报销协调员每日复核提交状态。</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- IT Checklist -->
+  <div class="cfo-section">
+    <div class="cfo-sec-lbl lbl-it">IT — 实施与上线清单</div>
+    <div class="checklist-box">
+      <div class="checklist-cols" style="grid-template-columns:1fr">
+        <div>
+          <div class="checklist-col-title it">IT / CISO</div>
+          <ul class="cl-check-list">
+            <li><span class="cl-num">01</span>在传输任何 PHI 之前与每家云端厂商签署 HIPAA BAA——核实其包含许可用途限制、次级处理方清单、违规通知 ≤60 天及 PHI 删除时限</li>
+            <li><span class="cl-num">02</span>索取并审阅 SOC 2 Type II 报告（12 个月内）——阅读“例外”部分，而不只是审计师摘要</li>
+            <li><span class="cl-num">03</span>索取最新渗透测试报告，并确认严重/高危发现已按有记录的 SLA 修复</li>
+            <li><span class="cl-num">04</span>在合同中确认数据驻留——写明具体云区域（如 AWS us-east-1），而不只是“美国数据中心”</li>
+            <li><span class="cl-num">05</span>为正向发送（PACS → 厂商）与回传接收（厂商 → PACS）分别配置 PACS DICOM AE Title——两套独立配置</li>
+            <li><span class="cl-num">06</span>为厂商 DICOM/HTTPS 端点开放出站防火墙规则（厂商提供 IP 允许列表）；本地部署时，核实 PACS 接受来自 cvi42 服务器的入站 DICOM</li>
+            <li><span class="cl-num">07</span>用一例去标识化病例做完整往返测试——确认 DICOM SR 出现在 PACS 查看器中，而非仅在厂商门户</li>
+            <li><span class="cl-num">08</span>与 Epic/Cerner IT 团队确认 EHR 开单/结果流程；在假定兼容之前，向各厂商索取当前 EHR 集成文档</li>
+            <li><span class="cl-num">09</span>建立对 DICOM 提交失败的每日监控——一次静默失败意味着没有报告、漏掉临床结果并损失收入</li>
+            <li><span class="cl-num">10</span>本地部署（Circle CVI）：按 Circle CVI 当前规格表配置 GPU 服务器；规划周期性维护窗口；将 cvi42 数据库与 DICOM 输出纳入医院备份计划</li>
+            <li><span class="cl-num">11</span>与厂商书面确认：患者 PHI 是否用于训练或微调生产环境 AI 模型？将“仅推理”承诺写入 BAA 或厂商协议</li>
+            <li><span class="cl-num">12</span>为厂商网页门户制定用户访问管理策略：谁可提交病例、检索报告与访问审计日志——并与你的 IAM 治理流程对接</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- ABOUT -->
+<div id="pane-about" class="pane">
+  <div class="about-box"><strong>本指南是什么</strong><br>对 CCTA-AI 平台已发表同行评审证据的独立综合整理。由 Nathan Qin——心血管医疗科技从业者、Qinnovativ Medtech 创始人（华盛顿州西雅图）——作为个人项目编写。随领域变化持续更新。</div>
+  <div class="about-box"><strong>本指南不是什么</strong><br>不是临床建议，也不是产品推荐。它仅汇总同行评审文献在不同临床场景中的发现。平台选择取决于你所在机构的合同、流程、数据治理与患者因素。所有临床决策均由主治医师负责。</div>
+  <div class="about-box"><strong>利益冲突</strong><br>作者与 Keya Medical、Heartio、Ligence 及 CASIS 存在顾问关系。每张厂商卡片都会披露是否存在顾问关系。所有事实性论述均来源于同行评审出版物或公开的 FDA/监管备案。没有任何厂商审阅、付费或被事先告知任何内容。</div>
+  <div class="about-box"><strong>方法学</strong><br>监管批准日期仅来源于公开的 FDA 510(k) 数据库与官方公司新闻稿。凡在公开记录中无法独立核实的批准，均不予陈述，或明确标注为未确认。不引用厂商白皮书、未经同行评审的会议摘要或未经核实的论述作为证据。</div>
+  <div class="about-box"><strong>更新与勘误</strong><br>最近更新于 2026 年 6 月。来源与更新日志：<a href="https://github.com/aethernusnathan/ccta-ai-guide" style="color:var(--color-text-info)">github.com/aethernusnathan/ccta-ai-guide</a>。欢迎任何一方通过 GitHub issues 提交勘误。勘误均依据其内容本身评估，不论来源。</div>
+</div>
+
+<script>
+const answers={
+  s1:{tag:'FFR — 中度狭窄',col:'#1B3F6E',title:'该 50–90% 狭窄是否限制血流？',context:'据 SCCT-SCAI-ACC 2026，这是 CT-FFR 的核心适应证（证据等级 A，稳定型胸痛）。以下平台在该情境下有已发表证据。',pts:['HeartFlow FFRCT（FDA + CE）','Keya DEEPVESSEL FFR（FDA + CE）','Cleerly ISCHEMIA（注：被 SCCT 2026 归类为 CT-FFR 范畴之外）'],key:'HeartFlow NXT：每血管 AUC 0.90。PACIFIC：AUC 0.94。FISH&CHIPS：真实世界 n=90,553。Keya DEEPVESSEL：TARGET 随机对照试验对比功能学检查。Cleerly：并非连续 FFR 数值——提供缺血概率，不可与 CT-FFR ≤0.80 互换。',lim:'不适用于左主干 ≥50%、CTO、已置支架血管、&lt;1.8mm 血管。推荐测量位置：狭窄远端 2cm（病变后），而非远端最低点。',cpt:['CPT 75580（约 $900）']},
+  s2:{tag:'FFR — 高钙化',col:'#1B3F6E',title:'CAC ≥400 时 CT-FFR 是否有效？',context:'已发表证据支持在高钙化患者中使用 CT-FFR，但准确性存在已知限制。',pts:['HeartFlow FFRCT（NXT 亚组分析、FACC 研究）','Keya DEEPVESSEL FFR（MACHINE 注册研究）'],key:'NXT 亚组分析：在较宽钙化范围内诊断性能保持稳定。FACC 研究（HeartFlow，CAC ≥400）：每患者准确性仍高于单独 CCTA，但低于低钙化队列。即使在重度钙化中，CT-FFR &gt;0.80 也与优良的 3 年结局相关（Madsen 等，2023）。',lim:'高钙化患者的总体准确性低于低钙化患者。使用 kVp ≥120 以减少“晕染”。Chiou 等的发现（Cleerly 对比 HeartFlow，n=54，单中心，高 CAC）仅供提出假设——不足以得出临床结论。',cpt:['CPT 75580（约 $900）']},
+  s3:{tag:'斑块 — 预防',col:'#7A3B1E',title:'真实的动脉粥样硬化负荷有多少？',context:'AI 斑块分析在风险分层与指导预防治疗强度方面已有发表证据。',pts:['HeartFlow Plaque Analysis（第一代 FDA 2022，Next Gen 2025 年 9 月）','Cleerly LABS v2.0（FDA 2025 年 3 月）','Elucid PlaqueIQ（FDA 2024 年 10 月）','Caristo CaRi-Plaque（FDA 2025 年 3 月）','Artrya Salix Plaque（FDA 2025 年 8 月）'],key:'DECIDE 注册研究：AI 斑块分期在 &gt;50% 病例中改变管理，90 天时 LDL ↓18.7 mg/dL。ADVANCE-DK：FFRCT + 斑块联合预测 7 年 MACE 的 AUC 0.73，对比单独 CCTA 0.63。REVEALPLAQUE：HeartFlow Plaque 与 IVUS 一致率 95%。Caristo FAI：Lancet 2024 在狭窄 &lt;50% 动脉中的结局。Elucid：经组织学验证的 LRNC 分类。',lim:'ACC 2025：AI-QCPA 适用于 CCTA 上可见斑块的患者——并非所有 CCTA 患者。多数斑块平台于 2024–2025 年获批，结局数据尚处早期。跨厂商可重复性研究尚未发表。',cpt:['CPT 75577（约 $951）']},
+  s4:{tag:'斑块 — 连续监测',col:'#7A3B1E',title:'治疗中斑块在进展还是消退？',context:'纵向连续斑块监测的已发表证据目前有限。',pts:['Cleerly COMPARE（专用连续监测模块）','HeartFlow Plaque Analysis（用于连续研究）'],key:'Cleerly COMPARE：专为连续对比构建的输出，跨 CCTA 时间点追踪 NCP 与 LAP 变化。唯一具备专用结构化连续模块的产品。HeartFlow Plaque 用于 Yang 等 Eur Radiol 2021 连续研究。其他获批厂商尚未发表同类纵向数据。',lim:'要求各时间点采用一致的采集方案。各平台来自连续斑块监测的长期结局数据仍在积累中。',cpt:['CPT 75577（约 $951）']},
+  s5:{tag:'综合 — PCI 术前',col:'#1A5C36',title:'处理哪个病变，以及如何处理？',context:'CT-FFR 在指导血运重建决策方面已有发表证据。',pts:['HeartFlow FFRCT + Plaque Analysis + PCI Planner','Keya DEEPVESSEL FFR'],key:'SYNTAX III REVOLUTION：CCTA + FFRCT 的决策在 5 年时与基于 ICA 的决策一致。FASTTRACK CABG：99% 的病例可行，30 天移植血管通畅率 90%。HeartFlow PCI Planner（虚拟支架模拟）：已获 CE + FDA 批准。',lim:'在复杂 PCI 中，IVUS/OCT 仍是详细病变表征的标准。CT-FFR 识别功能学意义——复杂病例的最终手术规划通常仍需有创影像。',cpt:['CPT 75580（约 $900）','CPT 75577（约 $951）']},
+  s6:{tag:'综合 — 报销',col:'#1A5C36',title:'哪些平台同时获批 CPT 75580 与 75577？',context:'截至 2026 年 5 月，有两家厂商对 FFRCT 与斑块分析均已确认 FDA 批准。',pts:['HeartFlow（FFRCT FDA 2014 + Plaque FDA 2022/2025）','Cleerly（LABS 用于 75577 + ISCHEMIA——75580 适用性请向支付方核实）'],key:'CPT 75580（FFRCT）：约 $900，Category I 2025 年 1 月。CPT 75577（斑块）：约 $951 OPPS，Category I 2026 年 1 月。使用双重获批平台时，两者可由同一次 CCTA 扫描计费。HeartFlow 对两款产品均已确认批准。',lim:'据 SCCT 2026，Cleerly ISCHEMIA 在 CT-FFR 范畴之外——请向你的具体支付方核实 CPT 75580 适用性。Keya Medical 已宣布一款斑块产品，但截至撰写时，其单独的 FDA 斑块批准尚未在公开记录中独立确认——计费前请在 FDA 510(k) 数据库核实。',cpt:['CPT 75580（约 $900）','CPT 75577（约 $951）','合并约 $1,850']},
+  s7:{tag:'FFR — TAVR 术前评估',col:'#1B3F6E',title:'CT-FFR 用于 TAVR 术前冠心病评估',context:'CT-FFR 已在 TAVR 术前评估中开展研究，证据正在积累。',pts:['HeartFlow FFRCT（现有 TAVR 证据主要来自 HeartFlow 研究）'],key:'CAST-FFR（n=42）：在左心室功能保留的重度主动脉瓣狭窄中硝酸甘油安全，对比有创 FFR 的 AUC 0.81。回顾性 n=196：异常 CT-FFR 预测 TAVR 术后非致死性心梗或心源性死亡风险增至 4 倍。Jensen 等 2025：TAVR 术前 CCTA + FFRCT 可行。',lim:'SCCT-SCAI-ACC 2026 将 TAVR 用途列为合理（证据等级 C）——前瞻性数据有限。已发表证据主要来自 HeartFlow。请采用标准采集方案。',cpt:['CPT 75580（约 $900）']},
+  s8:{tag:'斑块 — 本地部署',col:'#7A3B1E',title:'数据不能离开机构时的斑块分析',context:'截至 2026 年 5 月，有一个获批平台支持本地部署。',pts:['Circle CVI cvi42 | Plaque（FDA 2025 年 10 月——唯一获批的本地部署选项）'],key:'Circle CVI cvi42 | Plaque：FDA 于 2025 年 10 月批准，本地部署，数据保留在机构防火墙内。与现有 cvi42 平台集成（1,700+ 家医院）。完整的 CPT 75577 医师判读费留在院内。Siemens Syngo.CT Coronary Cockpit（截至 RSNA 2025 仍 510(k) 待批）获批后将成为第二个本地部署选项。',lim:'任何获批平台均无本地部署的 FFRCT 模块。Circle CVI 的斑块表征覆盖钙化与 NCP 负荷，但不提供 LAP 亚型细分或基于组织学的分类。',cpt:['CPT 75577（约 $951）']},
+  s9:{tag:'综合 — 多支病变',col:'#1A5C36',title:'三支病变：用 CT-FFR 指导 CABG 还是 PCI？',context:'CT-FFR 在多支血运重建规划方面已有发表证据。',pts:['HeartFlow FFRCT + PCI Planner','Keya DEEPVESSEL FFR'],key:'SYNTAX III REVOLUTION：CCTA + FFRCT 的治疗决策在 5 年时与 ICA + FFR 决策一致。FASTTRACK CABG：CCTA + FFRCT 手术规划 99% 可行，30 天移植血管通畅率 90%。SCCT-SCAI-ACC 2026：CT-FFR 用于三支病变合理（证据等级 B）。',lim:'复杂多支病变的决策受益于心脏团队讨论。基于 CFD 的 HeartFlow 会计入 CTO 周围的血流增加；降阶模型在此情境下可能低估血流受限。',cpt:['CPT 75580（约 $900）','CPT 75577（约 $951）']}
+};
+
+function showAns(id){
+  const d=answers[id];
+  const c=document.getElementById('ans-container');
+  const g=document.getElementById('sc-grid');
+  const pts=d.pts.map(p=>`<span class="pt-pill">${p}</span>`).join('');
+  const cpts=d.cpt.map(p=>`<span class="cpt-pill">${p}</span>`).join('');
+  c.innerHTML=`<div class="ans-panel active">
+    <button class="ans-back" onclick="closeAns()"><i class="ti ti-arrow-left" aria-hidden="true"></i> 全部场景</button>
+    <div class="ev-notice"><i class="ti ti-info-circle" aria-hidden="true" style="font-size:12px;flex-shrink:0;margin-top:1px"></i><span>仅为证据摘要——并非产品推荐。平台选择取决于你所在机构的合同、流程、数据治理与患者具体因素。所有临床决策均由主治医师负责。</span></div>
+    <div class="ans-tag" style="color:${d.col}">${d.tag}</div>
+    <div class="ans-title">${d.title}</div>
+    <div class="platforms-box"><div class="pt-label">在该情境下有已发表证据的平台</div><div class="pt-list">${pts}</div></div>
+    <div class="ans-grid">
+      <div class="ans-cell"><div class="cell-lbl">关键已发表数据</div><div class="cell-val">${d.key}</div></div>
+      <div class="ans-cell"><div class="cell-lbl">局限与注意事项</div><div class="cell-val">${d.lim}</div></div>
+    </div>
+    <div class="cpt-row">${cpts}</div>
+    <div class="ans-footer">所有数据均来源于同行评审出版物或公开的 FDA/监管备案。作者顾问关系披露：Keya Medical、Heartio、Ligence、CASIS。完整方法学与利益冲突声明见“关于”标签页。</div>
+  </div>`;
+  g.style.display='none';
+  document.querySelector('.legend').style.display='none';
+  document.querySelector('.sc-intro').style.display='none';
+}
+
+function closeAns(){
+  document.getElementById('ans-container').innerHTML='';
+  document.getElementById('sc-grid').style.display='grid';
+  document.querySelector('.legend').style.display='flex';
+  document.querySelector('.sc-intro').style.display='block';
+}
+
+function showPane(id,btn){
+  document.querySelectorAll('.pane').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.nav-btn').forEach(b=>b.classList.remove('active'));
+  document.getElementById('pane-'+id).classList.add('active');
+  btn.classList.add('active');
+  if(id==='evidence'&&!window._evLoaded){window._evLoaded=true;window.loadPubMedEvidence&&loadPubMedEvidence();}
+}
+
+function fV(type,btn){
+  document.querySelectorAll('.fb').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  document.querySelectorAll('.v-card').forEach(c=>{
+    if(type==='all'){c.style.display='block';return;}
+    if(type==='cleared'){c.style.display=(c.dataset.v.includes('cleared')&&!c.classList.contains('research'))?'block':'none';return;}
+    if(type==='research'){c.style.display=c.classList.contains('research')?'block':'none';return;}
+    c.style.display=c.dataset.v.includes(type)?'block':'none';
+  });
+}
+
+function fE(type,btn){
+  document.querySelectorAll('.fb').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  document.querySelectorAll('#ev-list-dynamic .ev-card').forEach(c=>{
+    c.style.display=(type==='all'||c.dataset.e.includes(type))?'':'none';
+  });
+}
+
+// ── PubMed live evidence ──────────────────────────────────────
+(function(){
+  const CACHE_KEY='ccta_pubmed_v2';
+  const CACHE_TTL=86400000;
+  const BASE='https://eutils.ncbi.nlm.nih.gov/entrez/eutils/';
+
+  async function delay(ms){return new Promise(r=>setTimeout(r,ms));}
+
+  async function pmSearch(term,max){
+    const url=BASE+'esearch.fcgi?db=pubmed&term='+encodeURIComponent(term)+'&sort=date&retmax='+max+'&retmode=json';
+    const r=await fetch(url);
+    if(!r.ok) throw new Error('PubMed search failed: '+r.status);
+    const j=await r.json();
+    return j.esearchresult.idlist||[];
+  }
+
+  async function pmSummary(ids){
+    if(!ids.length) return [];
+    const url=BASE+'esummary.fcgi?db=pubmed&id='+ids.join(',')+'&retmode=json';
+    const r=await fetch(url);
+    if(!r.ok) throw new Error('PubMed summary failed: '+r.status);
+    const j=await r.json();
+    return Object.values(j.result).filter(x=>x&&x.uid&&x.title);
+  }
+
+  function categorize(a){
+    const t=((a.title||'')+' '+(a.fulljournalname||'')+(a.source||'')).toLowerCase();
+    const cats=new Set();
+    if(/\bffr\b|ct-?ffr|ffrct|fractional flow reserve/.test(t)) cats.add('ffrct');
+    if(/\bplaque\b|qcpa|atherosclerosis|plaque analysis|coronary artery disease.*ct|ncp|lrnc|lap\b|pericoronary fat/.test(t)) cats.add('plaque');
+    if(/\bvs\b|versus|credence|pacific|head.to.head|comparative study/.test(t)) cats.add('h2h');
+    if(/guideline|consensus|statement|appropriate use|appropriate criteria|scientific statement/.test(t)) cats.add('guide');
+    if(cats.size===0) cats.add('ffrct');
+    return [...cats];
+  }
+
+  function sortKey(a){
+    const s=a.sortpubdate||a.pubdate||'';
+    return s.replace(/\b(\d{4}) (\w+)$/,(_,y,m)=>{
+      const mo={Jan:'01',Feb:'02',Mar:'03',Apr:'04',May:'05',Jun:'06',
+                Jul:'07',Aug:'08',Sep:'09',Oct:'10',Nov:'11',Dec:'12'};
+      return y+'-'+(mo[m]||'00');
+    });
+  }
+
+  function renderCards(articles){
+    const list=document.getElementById('ev-list-dynamic');
+    if(!list) return;
+    if(!articles.length){
+      list.innerHTML='<div class="ev-error-card">未从 PubMed 找到结果。请尝试刷新或检查网络连接。</div>';
+      return;
+    }
+    const tagLabel={ffrct:'CT-FFR',plaque:'Plaque',h2h:'Head-to-head',guide:'Guideline'};
+    list.innerHTML=articles.map((a,i)=>{
+      const cats=categorize(a);
+      const yr=(a.pubdate||a.sortpubdate||'').split(' ')[0]||'';
+      const journal=a.source||a.fulljournalname||'';
+      const first=a.authors&&a.authors[0]?a.authors[0].name+(a.authors.length>1?' et al.':''):'';
+      const pmid=a.uid;
+      const title=(a.title||'Untitled').replace(/\.$/, '');
+      const meta=[first,journal,yr].filter(Boolean).join(' · ');
+      return `<div class="ev-card" data-e="${cats.join(' ')}">
+        <span class="ev-n">${i+1}</span>
+        <div class="ev-body">
+          <a class="ev-name" href="https://pubmed.ncbi.nlm.nih.gov/${pmid}/" target="_blank" rel="noopener">${title}</a>
+          ${meta?`<span class="ev-meta">${meta}</span>`:''}
+        </div>
+      </div>`;
+    }).join('');
+    // Re-apply active filter
+    const activeBtn=document.querySelector('#pane-evidence .fb.active');
+    if(activeBtn){const m=activeBtn.getAttribute('onclick').match(/fE\('(\w+)'/);if(m)fE(m[1],activeBtn);}
+  }
+
+  async function fetchAndRender(force){
+    const statusEl=document.getElementById('ev-pubmed-status');
+    const list=document.getElementById('ev-list-dynamic');
+
+    if(!force){
+      try{
+        const raw=localStorage.getItem(CACHE_KEY);
+        if(raw){
+          const c=JSON.parse(raw);
+          if(Date.now()-c.ts<CACHE_TTL){
+            renderCards(c.articles);
+            const d=new Date(c.ts);
+            if(statusEl) statusEl.innerHTML='<i class="ti ti-database" aria-hidden="true" style="margin-right:5px"></i>来自 PubMed 的实时数据 &middot; <strong>'+c.articles.length+' 篇研究</strong> &middot; 已缓存 &middot; 最近获取：'+d.toLocaleDateString('zh-CN',{month:'short',day:'numeric',year:'numeric'})+' '+d.toLocaleTimeString('zh-CN',{hour:'2-digit',minute:'2-digit'});
+            return;
+          }
+        }
+      }catch(e){}
+    }
+
+    if(list) list.innerHTML='<div class="ev-loading"><div class="ev-spinner"></div><span>正在从 PubMed 获取…</span></div>';
+    if(statusEl) statusEl.innerHTML='<i class="ti ti-database" aria-hidden="true" style="margin-right:5px"></i>正在查询 PubMed…';
+
+    try{
+      const [r1,r2]=await Promise.all([
+        pmSearch('(CT-FFR OR FFRCT OR "fractional flow reserve" AND "coronary computed tomography") AND (outcomes OR validation OR trial OR registry OR prospective)',22),
+        pmSearch('("coronary plaque" OR "AI-QCPA" OR "coronary CTA plaque" OR "pericoronary adipose") AND ("computed tomography" OR CCTA OR "cardiac CT") AND (artificial intelligence OR machine learning OR automated OR deep learning)',22),
+      ]);
+      await delay(400);
+      const r3=await pmSearch('(HeartFlow OR Cleerly OR DEEPVESSEL OR "cvi42" OR Elucid OR Artrya OR Caristo) AND (coronary) AND ("computed tomography" OR CCTA OR CT)',18);
+      await delay(400);
+      const allIds=[...new Set([...r1,...r2,...r3])].slice(0,60);
+      const articles=await pmSummary(allIds);
+      articles.sort((a,b)=>sortKey(b).localeCompare(sortKey(a)));
+
+      try{localStorage.setItem(CACHE_KEY,JSON.stringify({ts:Date.now(),articles}));}catch(e){}
+
+      renderCards(articles);
+      const now=new Date();
+      if(statusEl) statusEl.innerHTML='<i class="ti ti-database" aria-hidden="true" style="margin-right:5px"></i>来自 PubMed 的实时数据 &middot; <strong>'+articles.length+' 篇研究</strong> &middot; 最近获取：'+now.toLocaleDateString('zh-CN',{month:'short',day:'numeric',year:'numeric'})+' '+now.toLocaleTimeString('zh-CN',{hour:'2-digit',minute:'2-digit'});
+
+    }catch(err){
+      // Try stale cache on error
+      let fallback=false;
+      try{
+        const raw=localStorage.getItem(CACHE_KEY);
+        if(raw){const c=JSON.parse(raw);renderCards(c.articles);const d=new Date(c.ts);if(statusEl) statusEl.innerHTML='<i class="ti ti-alert-triangle" aria-hidden="true" style="margin-right:5px;color:#92400E"></i>PubMed 不可用——显示缓存数据，来自 '+d.toLocaleDateString('zh-CN',{month:'short',day:'numeric',year:'numeric'});fallback=true;}
+      }catch(e2){}
+      if(!fallback){
+        if(list) list.innerHTML='<div class="ev-error-card"><strong>无法连接 PubMed。</strong>请检查你的网络连接并点击“刷新”重试。<br><br><span style="color:var(--text-3);font-size:12px">'+err.message+'</span></div>';
+        if(statusEl) statusEl.innerHTML='<i class="ti ti-alert-triangle" aria-hidden="true" style="color:#92400E;margin-right:5px"></i>PubMed 获取失败';
+      }
+    }
+  }
+
+  window.loadPubMedEvidence=()=>fetchAndRender(false);
+  window.refreshPubMedEvidence=()=>{window._evLoaded=true;fetchAndRender(true);};
+
+  // Auto-load if evidence pane is already visible on page load
+  document.addEventListener('DOMContentLoaded',()=>{
+    if(document.getElementById('pane-evidence')&&document.getElementById('pane-evidence').classList.contains('active')){
+      window._evLoaded=true;fetchAndRender(false);
+    }
+  });
+})();
+</script>
+
+<!-- Contact Author dropdown -->
+<script>
+function toggleContactMenu(e) {
+  e.stopPropagation();
+  var btn  = document.getElementById('nav-contact-btn');
+  var dd   = document.getElementById('nav-contact-dd');
+  var rect = btn.getBoundingClientRect();
+  dd.style.top   = (rect.bottom + 6) + 'px';
+  dd.style.right = (window.innerWidth - rect.right) + 'px';
+  dd.classList.toggle('open');
+}
+document.addEventListener('click', function() {
+  document.getElementById('nav-contact-dd').classList.remove('open');
+});
+</script>
+
+<!-- Language switch (remembers preference; works on /guide and GitHub Pages) -->
+<script>
+(function(){
+  var PAGE_LANG='zh';
+  try{
+    var pref=localStorage.getItem('ccta_lang');
+    if(pref&&pref!==PAGE_LANG&&!sessionStorage.getItem('ccta_lang_redirected')){
+      sessionStorage.setItem('ccta_lang_redirected','1');
+      location.replace((pref==='zh'?'ccta-ai-clinical-guide-zh.html':'ccta-ai-clinical-guide.html')+location.hash);
+      return;
+    }
+  }catch(e){}
+  document.querySelectorAll('.lang-opt').forEach(function(a){
+    a.addEventListener('click',function(){try{localStorage.setItem('ccta_lang',a.getAttribute('data-lang'));}catch(e){}});
+  });
+})();
+</script>
+
+<!-- CCTA KNOWLEDGE ASSISTANT -->
+<script src="chat.js"></script>
+</body>
+</html>

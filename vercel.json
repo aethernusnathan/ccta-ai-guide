@@ -6,6 +6,7 @@
     }
   },
   "rewrites": [
-    { "source": "/guide", "destination": "/ccta-ai-clinical-guide.html" }
+    { "source": "/guide", "destination": "/ccta-ai-clinical-guide.html" },
+    { "source": "/guide-zh", "destination": "/ccta-ai-clinical-guide-zh.html" }
   ]
 }

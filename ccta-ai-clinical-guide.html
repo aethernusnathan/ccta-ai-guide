@@ -370,6 +370,11 @@ body{font-family:var(--font);background:linear-gradient(145deg,#EAEDF8 0%,#EEF0F
 .ev-pmid-link{font-size:11px;color:var(--text-3);text-decoration:none;border:1px solid var(--border);border-radius:10px;padding:2px 7px;white-space:nowrap;transition:color .12s,border-color .12s}
 .ev-pmid-link:hover{color:#1B3F6E;border-color:#1B3F6E}
 .ev-error-card{background:var(--surface);border-radius:var(--r);padding:28px 24px;color:var(--text-2);font-size:13.5px;line-height:1.6;box-shadow:var(--sh-sm)}
+/* Language switch */
+.nav-lang{display:flex;align-items:center;gap:2px;background:rgba(0,0,0,.05);border:1px solid rgba(0,0,0,.08);border-radius:8px;padding:2px;flex-shrink:0;margin-right:10px}
+.lang-opt{font-family:var(--font);font-size:12px;font-weight:500;color:var(--text-2);text-decoration:none;padding:4px 10px;border-radius:6px;line-height:1;transition:background 140ms,color 140ms}
+.lang-opt:hover{color:var(--text-1)}
+.lang-opt.active{background:var(--surface);color:var(--text-1);box-shadow:0 1px 2px rgba(0,0,0,.08)}
 </style>
 </head>
 <body>
@@ -421,6 +426,10 @@ function acceptDisclaimer(){
   <button class="nav-btn" onclick="showPane('cfo',this)">CFO &amp; Billing</button>
   <button class="nav-btn" onclick="showPane('it',this)">IT &amp; Integration</button>
   <button class="nav-btn" onclick="showPane('about',this)">About</button>
+  <div class="nav-lang" id="navLang" style="margin-left:auto">
+    <a class="lang-opt active" href="ccta-ai-clinical-guide.html" data-lang="en">EN</a>
+    <a class="lang-opt" href="ccta-ai-clinical-guide-zh.html" data-lang="zh">中文</a>
+  </div>
   <div class="nav-contact-wrap">
     <button class="nav-contact-btn" id="nav-contact-btn" onclick="toggleContactMenu(event)">Contact author ▾</button>
   </div>
@@ -1835,6 +1844,24 @@ function toggleContactMenu(e) {
 document.addEventListener('click', function() {
   document.getElementById('nav-contact-dd').classList.remove('open');
 });
+</script>
+
+<!-- Language switch (remembers preference; works on /guide and GitHub Pages) -->
+<script>
+(function(){
+  var PAGE_LANG='en';
+  try{
+    var pref=localStorage.getItem('ccta_lang');
+    if(pref&&pref!==PAGE_LANG&&!sessionStorage.getItem('ccta_lang_redirected')){
+      sessionStorage.setItem('ccta_lang_redirected','1');
+      location.replace((pref==='zh'?'ccta-ai-clinical-guide-zh.html':'ccta-ai-clinical-guide.html')+location.hash);
+      return;
+    }
+  }catch(e){}
+  document.querySelectorAll('.lang-opt').forEach(function(a){
+    a.addEventListener('click',function(){try{localStorage.setItem('ccta_lang',a.getAttribute('data-lang'));}catch(e){}});
+  });
+})();
 </script>
 
 <!-- CCTA KNOWLEDGE ASSISTANT -->
